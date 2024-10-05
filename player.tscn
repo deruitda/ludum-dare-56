@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://cofh4isrtksv4"]
+
+[node name="Player" type="Node2D"]
