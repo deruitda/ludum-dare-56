@@ -1,11 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://fvifpd00chk8"]
 
-[ext_resource type="Script" path="res://scenes/player/gun/bullet.gd" id="1_cdvcq"]
+[ext_resource type="Script" path="res://scenes/gun/bullet.gd" id="1_cdvcq"]
 [ext_resource type="Texture2D" uid="uid://co01gstpumt0c" path="res://icon.svg" id="2_uevlj"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qj0nb"]
 
 [node name="Bullet" type="Area2D"]
+collision_layer = 32
+collision_mask = 22
 script = ExtResource("1_cdvcq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -16,3 +18,6 @@ debug_color = Color(0.954637, 0.0558831, 0.516777, 0.42)
 position = Vector2(2.38419e-07, -0.250001)
 scale = Vector2(0.109375, 0.207031)
 texture = ExtResource("2_uevlj")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]

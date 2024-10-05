@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://br7b7ao0pn4rr"]
 
-[ext_resource type="Script" path="res://scenes/player/gun/gun.gd" id="1_tv8xg"]
-[ext_resource type="Texture2D" uid="uid://by7hcie0au88s" path="res://scenes/player/gun/gun.webp" id="2_cotgs"]
-[ext_resource type="PackedScene" uid="uid://fvifpd00chk8" path="res://scenes/player/gun/bullet.tscn" id="2_yj2hu"]
+[ext_resource type="Script" path="res://scenes/gun/gun.gd" id="1_tv8xg"]
+[ext_resource type="Texture2D" uid="uid://by7hcie0au88s" path="res://scenes/gun/gun.webp" id="2_cotgs"]
+[ext_resource type="PackedScene" uid="uid://fvifpd00chk8" path="res://scenes/gun/bullet.tscn" id="2_yj2hu"]
 
 [node name="Gun" type="Node2D" node_paths=PackedStringArray("muzzle_position")]
 script = ExtResource("1_tv8xg")
