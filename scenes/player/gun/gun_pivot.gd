@@ -14,9 +14,16 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	set_mouse_pointing_input()
 	rotate_to_mouse(mouse_pointing_input)
+	
+		#is looking right
+	if mouse_pointing_input.x < 0:
+		upper_body_sprite.flip_v = true
+	elif mouse_pointing_input.x > 0: 
+		upper_body_sprite.flip_v = false
+	
 	if Input.is_action_just_pressed("shoot"):
 		gun.shoot_bullet(mouse_pointing_input)
-	pass
+	
 
 func set_mouse_pointing_input() -> void:
 	var mouse_pos = get_global_mouse_position()

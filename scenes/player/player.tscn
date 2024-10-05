@@ -15,26 +15,28 @@ platform_wall_layers = 4
 script = ExtResource("1_y4k5w")
 lower_body_sprite = NodePath("LowerBody")
 
-[node name="UpperBody" type="Sprite2D" parent="."]
-position = Vector2(0, -32)
-scale = Vector2(0.94, 0.5)
-texture = ExtResource("1_mu45x")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jr7co")
 
-[node name="GunPivot" type="Node2D" parent="UpperBody" node_paths=PackedStringArray("gun", "upper_body_sprite")]
-position = Vector2(0, -1.90735e-06)
-scale = Vector2(2, 2)
+[node name="GunPivot" type="Node2D" parent="." node_paths=PackedStringArray("gun", "upper_body_sprite")]
+position = Vector2(-1.42109e-14, -29)
+rotation = 1.5708
+scale = Vector2(1, 0.532)
 script = ExtResource("4_tvvnj")
 gun = NodePath("Gun")
-upper_body_sprite = NodePath("..")
+upper_body_sprite = NodePath("../UpperBody")
 
-[node name="Gun" parent="UpperBody/GunPivot" instance=ExtResource("2_sf2fd")]
+[node name="Gun" parent="GunPivot" instance=ExtResource("2_sf2fd")]
 position = Vector2(24, -2)
+
+[node name="UpperBody" type="Sprite2D" parent="."]
+position = Vector2(0, -32)
+rotation = 1.5708
+scale = Vector2(0.5, 0.266)
+texture = ExtResource("1_mu45x")
 
 [node name="LowerBody" type="Sprite2D" parent="."]
 position = Vector2(0, 32)
 rotation = 1.5708
 scale = Vector2(0.5, 0.266)
 texture = ExtResource("1_mu45x")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_jr7co")
