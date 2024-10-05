@@ -36,23 +36,24 @@ func floor_jump() -> void:
 
 func wall_slide() -> void:
 	velocity.y = min(velocity.y, wall_slide_speed)
+	velocity.x = 0
 
 func run(direction: float) -> void:
-	#if direction != Vector2.LEFT or direction != Vector2.RIGHT:
-		#assert("Direction should be either left or right when running")
 	velocity.x = direction * max_speed
+	print ("run velocity x: " + str(velocity.x))
+
 
 func in_air_movement(direction: float, delta: float) -> void:
-	#if direction != Vector2.LEFT or direction != Vector2.RIGHT:
-		#assert("Direction should be either left or right when in the air")
+	print("in air movement")
+	print ("old velocity x: " + str(velocity.x))
 	velocity.x = clamp(velocity.x + direction * in_air_acceleration * delta, -max_speed, max_speed)
+	print ("new velocity x: " + str(velocity.x))
 
 func apply_in_air_idle(delta: float):
 	velocity.x = move_toward(velocity.x, 0, in_air_resistance * delta)
 
 func apply_idle(delta: float):
 	velocity.x = move_toward(velocity.x, 0, floor_resistance * delta)
-
 
 func apply_move(character_body: CharacterBody2D):
 	character_body.velocity = velocity
