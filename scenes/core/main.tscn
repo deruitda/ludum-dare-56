@@ -1,20 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://3tbnum67fnc7"]
+[gd_scene load_steps=6 format=3 uid="uid://3tbnum67fnc7"]
 
 [ext_resource type="PackedScene" uid="uid://56t0wxwth7ya" path="res://scenes/core/ui.tscn" id="1_7wot7"]
 [ext_resource type="PackedScene" uid="uid://dva4inhwc7dta" path="res://scenes/core/world.tscn" id="2_6cr2y"]
-[ext_resource type="PackedScene" uid="uid://cwaxfr5h3o4rx" path="res://scenes/levels/termite_extermination.tscn" id="3_ia4r3"]
-[ext_resource type="PackedScene" uid="uid://4k8n61opbif5" path="res://scenes/ui/game_timer.tscn" id="4_qetpn"]
+[ext_resource type="Script" path="res://scenes/core/ui.gd" id="2_ho8lm"]
+[ext_resource type="PackedScene" uid="uid://blk02h2fepm4b" path="res://scenes/core/start_menu.tscn" id="3_dmdf0"]
+[ext_resource type="Script" path="res://scenes/core/world.gd" id="4_6guud"]
 
 [node name="Main" type="Node2D"]
 
 [node name="Ui" parent="." instance=ExtResource("1_7wot7")]
+script = ExtResource("2_ho8lm")
+
+[node name="StartMenu" parent="Ui" instance=ExtResource("3_dmdf0")]
 
 [node name="World" parent="." instance=ExtResource("2_6cr2y")]
-
-[node name="TermiteExtermination2" parent="World" instance=ExtResource("3_ia4r3")]
-position = Vector2(1164, 155)
+script = ExtResource("4_6guud")
 
 [node name="Camera2D" type="Camera2D" parent="World"]
 position = Vector2(575, -328)
-
-[node name="GameTimer" parent="." instance=ExtResource("4_qetpn")]
