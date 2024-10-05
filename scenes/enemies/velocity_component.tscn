@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqa4jle60cl0a"]
+
+[ext_resource type="Script" path="res://scenes/enemies/velocity_component.gd" id="1_0mqbk"]
+
+[node name="VelocityComponent" type="Node"]
+script = ExtResource("1_0mqbk")
+max_speed = null
+acceleration = null

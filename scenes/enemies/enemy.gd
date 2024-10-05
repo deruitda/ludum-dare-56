@@ -3,8 +3,6 @@ extends CharacterBody2D
 
 @export var gravity: float = 2000.0 
 func _ready() -> void:
-	if not is_on_floor():
-		velocity.y += gravity * delta
 	pass # Replace with function body.
 
 

@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://c7jfu2tx6lfqc"]
+[gd_scene load_steps=5 format=3 uid="uid://c7jfu2tx6lfqc"]
 
 [ext_resource type="PackedScene" uid="uid://cofh4isrtksv4" path="res://scenes/player/player.tscn" id="1_t5ocu"]
 [ext_resource type="PackedScene" uid="uid://cwaxfr5h3o4rx" path="res://scenes/levels/termite_extermination.tscn" id="2_tadp2"]
+[ext_resource type="PackedScene" uid="uid://nuahsfm77qjp" path="res://scenes/enemies/larvae.tscn" id="3_vyx2e"]
+
+[sub_resource type="Environment" id="Environment_o5l6v"]
+ambient_light_color = Color(1, 1, 1, 1)
 
 [node name="Root" type="Node2D"]
 position = Vector2(-10, 10)
@@ -13,6 +17,13 @@ position = Vector2(-10, 10)
 [node name="Player" parent="World" instance=ExtResource("1_t5ocu")]
 position = Vector2(414, -301)
 
+[node name="Larvae" parent="World" instance=ExtResource("3_vyx2e")]
+position = Vector2(975, -251)
+gravity = 2000.0
+
 [node name="Camera2D" type="Camera2D" parent="World"]
 position = Vector2(706, -424)
 zoom = Vector2(0.8, 0.8)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World/Camera2D"]
+environment = SubResource("Environment_o5l6v")
