@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cvomdrhobefdw"
-path="res://.godot/imported/spawn_alate.png-6b2fa5ff43c3bd1d602328b8cc3a02da.ctex"
+uid="uid://rxlhdnijwdj1"
+path="res://.godot/imported/spawn_termite_alate.png-fc1a4d5322d6ba46cc46d7b6fcd9c88f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/spawns/spawn_alate.png"
-dest_files=["res://.godot/imported/spawn_alate.png-6b2fa5ff43c3bd1d602328b8cc3a02da.ctex"]
+source_file="res://assets/sprites/spawns/spawn_termite_alate.png"
+dest_files=["res://.godot/imported/spawn_termite_alate.png-fc1a4d5322d6ba46cc46d7b6fcd9c88f.ctex"]
 
 [params]
 
