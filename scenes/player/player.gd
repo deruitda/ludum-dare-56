@@ -15,6 +15,9 @@ class_name Player
 @onready var wall_grace_timer = 0.0  # Timer for wall grace period
 @export var wall_grace_period: float = 0.2
 
+func _ready() -> void:
+	PlayerManager.set_player(self)
+
 func _process(delta: float) -> void:
 	if is_dead:
 		queue_free()

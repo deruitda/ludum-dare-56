@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dr11u6cvyfhi0"]
+
+[ext_resource type="Script" path="res://scenes/entity_composition/path_finder.gd" id="1_cpdid"]
+
+[node name="PathFinder" type="Node2D"]
+script = ExtResource("1_cpdid")

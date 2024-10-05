@@ -3,6 +3,7 @@ class_name VelocityComponent
 
 @export var gravity: float = 2000.0 
 @export var max_speed: float = 1000.0
+@export var fly_speed: float = 300.0
 @export var in_air_acceleration: float = 1800.0
 @export var in_air_resistance: float = 300.0
 @export var jump_velocity: float = 1200.0
@@ -60,8 +61,8 @@ func do_character_move(character_body: CharacterBody2D):
 func do_area_move(area: Area2D):
 	area.position = area.position + velocity
 
-func apply_fly(direction: Vector2, delta: float) -> void:
-	velocity += direction * delta * max_speed
+func apply_fly(direction: Vector2) -> void:
+	velocity = direction * fly_speed
 
 func apply_gravity(delta: float) -> void:
 	velocity.y += gravity * delta
