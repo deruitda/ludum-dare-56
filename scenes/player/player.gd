@@ -1,8 +1,11 @@
 extends CharacterBody2D
+class_name Player
+
+@export var lower_body_sprite: Sprite2D
 
 @export var gravity: float = 2000.0 
 @export var max_speed: float = 1000.0
-@export var acceleration: float = 600.0
+@export var in_air_acceleration: float = 1800.0
 
 @export var jump_velocity: float = 1200.0
 @export var wall_jump_velocity: float = 1500.0
@@ -54,13 +57,19 @@ func _physics_process(delta: float) -> void:
 		if is_on_floor():
 			velocity.x = direction_input * max_speed
 		else:
-			velocity.x = clamp(velocity.x + direction_input * acceleration * delta, -max_speed, max_speed)
+			velocity.x = clamp(velocity.x + direction_input * in_air_acceleration * delta, -max_speed, max_speed)
 	elif is_on_floor():
 		velocity.x = 0
 	else:
 		# Apply air resistance to slow down slightly when no input is given
 		velocity.x = move_toward(velocity.x, 0, air_resistance * delta)
 	
+	#is looking right
+	if direction_input < 0:
+		lower_body_sprite.flip_v = true
+	elif direction_input > 0: 
+		lower_body_sprite.flip_v = false
+		
 	move_and_slide()
 	
 
@@ -75,11 +84,6 @@ func set_is_wall_sliding_input() -> void:
 		is_wall_sliding = true
 	else:
 		is_wall_sliding = false
-	
-	
-		
-		
-	
 
 func set_is_jumping_inputs() -> void:
 	if Input.is_action_just_pressed("jump"):
