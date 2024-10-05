@@ -11,14 +11,14 @@ config_version=5
 [application]
 
 config/name="ludum-dare-56"
-run/main_scene="res://andrew_scene.tscn"
+run/main_scene="res://scenes/core/main.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
-StatEditorBus="*res://stat_editor_bus.gd"
 SignalBus="*res://globals/signal_bus.gd"
+StatEditorBus="*res://stat_editor_bus.gd"
 BulletSpawner="*res://globals/bullet_spawner.gd"
 
 [input]
