@@ -45,6 +45,8 @@ func _physics_process(delta: float) -> void:
 			velocity.x = direction_input * max_speed
 		else:
 			velocity.x = clamp(velocity.x + direction_input * acceleration * delta, -max_speed, max_speed)
+	elif is_on_floor():
+		velocity.x = 0
 	else:
 		# Apply air resistance to slow down slightly when no input is given
 		velocity.x = move_toward(velocity.x, 0, air_resistance * delta)
@@ -57,7 +59,7 @@ func get_is_pointing_to_wall():
 	return (get_wall_normal().x > 0 and direction_input > 0) or (get_wall_normal().x < 0 and direction_input > 0)
 
 func set_is_wall_sliding_input() -> void:
-	if is_floor_jumping || is_wall_jumping:
+	if is_floor_jumping || is_wall_jumping || is_on_floor():
 		is_wall_sliding = false
 	elif is_on_wall() and get_is_pointing_to_wall():
 		is_wall_sliding = true
