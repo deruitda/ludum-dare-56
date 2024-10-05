@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cofh4isrtksv4" path="res://scenes/player/player.tscn" id="1_t5ocu"]
 [ext_resource type="PackedScene" uid="uid://cwaxfr5h3o4rx" path="res://scenes/levels/termite_extermination.tscn" id="2_tadp2"]
-[ext_resource type="PackedScene" uid="uid://nuahsfm77qjp" path="res://scenes/enemies/larvae.tscn" id="3_vyx2e"]
+[ext_resource type="PackedScene" uid="uid://nuahsfm77qjp" path="res://scenes/enemies/termite_larvae.tscn" id="3_vyx2e"]
 
 [sub_resource type="Environment" id="Environment_o5l6v"]
 ambient_light_color = Color(1, 1, 1, 1)
@@ -19,7 +19,6 @@ position = Vector2(414, -301)
 
 [node name="Larvae" parent="World" instance=ExtResource("3_vyx2e")]
 position = Vector2(975, -251)
-gravity = 2000.0
 
 [node name="Camera2D" type="Camera2D" parent="World"]
 position = Vector2(706, -424)

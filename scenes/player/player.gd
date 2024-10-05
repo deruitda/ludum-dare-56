@@ -35,22 +35,22 @@ func _physics_process(delta: float) -> void:
 		var wall_jumping_direction = Vector2.LEFT
 		if get_wall_normal().x > 0:
 			wall_jumping_direction = Vector2.RIGHT
-		velocity_component.wall_jump(wall_jumping_direction)
+		velocity_component.apply_wall_jump(wall_jumping_direction)
 	elif is_floor_jumping:
-		velocity_component.floor_jump()
+		velocity_component.apply_floor_jump()
 	elif is_wall_sliding:
-		velocity_component.wall_slide()
+		velocity_component.apply_wall_slide()
 	elif direction_input:
 		if is_on_floor():
-			velocity_component.run(direction_input)
+			velocity_component.apply_run(left_right_input)
 		else:
-			velocity_component.in_air_movement(direction_input, delta)
+			velocity_component.apply_in_air_movement(direction_input, delta)
 	elif is_on_floor():
 		velocity_component.apply_idle(delta)
 	else:
 		velocity_component.apply_in_air_idle(delta)
 	
-	velocity_component.apply_move(self)
+	velocity_component.do_move(self)
 	
 	#is looking right
 	if left_right_input == Vector2.LEFT:

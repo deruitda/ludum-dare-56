@@ -21,7 +21,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func wall_jump(direction: Vector2) -> void:
+func apply_wall_jump(direction: Vector2) -> void:
 	if direction == Vector2.RIGHT:
 		velocity.x = wall_jump_velocity
 	elif direction == Vector2.LEFT:
@@ -31,17 +31,20 @@ func wall_jump(direction: Vector2) -> void:
 	velocity.y = -jump_velocity
 	
 	# Determine wall side and apply horizontal force
-func floor_jump() -> void:
+func apply_floor_jump() -> void:
 	velocity.y = -jump_velocity
 
-func wall_slide() -> void:
+func apply_wall_slide() -> void:
 	velocity.y = min(velocity.y, wall_slide_speed)
 	velocity.x = 0
 
-func run(direction: float) -> void:
-	velocity.x = direction * max_speed
+func apply_run(direction: Vector2) -> void:
+	if direction == Vector2.RIGHT || direction == Vector2.LEFT:
+		velocity.x = direction.x * max_speed
+	else:
+		assert("Direction should be either left or right when wall jumping")
 
-func in_air_movement(direction: float, delta: float) -> void:
+func apply_in_air_movement(direction: float, delta: float) -> void:
 	velocity.x = clamp(velocity.x + direction * in_air_acceleration * delta, -max_speed, max_speed)
 
 func apply_in_air_idle(delta: float):
@@ -50,7 +53,7 @@ func apply_in_air_idle(delta: float):
 func apply_idle(delta: float):
 	velocity.x = move_toward(velocity.x, 0, floor_resistance * delta)
 
-func apply_move(character_body: CharacterBody2D):
+func do_move(character_body: CharacterBody2D):
 	character_body.velocity = velocity
 	character_body.move_and_slide()
 

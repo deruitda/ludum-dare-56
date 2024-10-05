@@ -21,3 +21,11 @@ func handle_bullet_collision(bullet: Bullet):
 	health_component.apply_damage(bullet.damage_per_bullet)
 	hit_by_bullet.emit(bullet)
 	pass
+
+func _on_area_entered(area: Area2D) -> void:
+	var bullet_layer = 6
+	
+	if area.get_collision_layer_value(bullet_layer):
+		var bullet = area as Bullet
+		handle_bullet_collision(bullet)
+	pass # Replace with function body.
