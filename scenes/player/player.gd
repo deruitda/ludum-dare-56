@@ -20,6 +20,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if is_dead:
+		PlayerManager.remove_current_player()
 		queue_free()
 	pass
 	

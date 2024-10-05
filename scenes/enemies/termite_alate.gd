@@ -3,10 +3,10 @@ extends CharacterBody2D
 @onready var is_dead: bool = false
 @export var velocity_component: VelocityComponent
 @export var path_finder: PathFinder
+@export var gun: Gun
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -24,4 +24,11 @@ func _physics_process(delta: float) -> void:
 
 func _on_health_component_died() -> void:
 	is_dead = true
+	pass # Replace with function body.
+
+
+func _on_shooting_timer_timeout() -> void:
+	if PlayerManager.current_player:
+		var direction = path_finder.get_direction_to_node(PlayerManager.current_player)
+		gun.shoot_bullet(direction)
 	pass # Replace with function body.

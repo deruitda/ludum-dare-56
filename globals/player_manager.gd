@@ -9,6 +9,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
+func remove_current_player() -> void: 
+	current_player = null
+
 func set_player(new_player: Player) -> void:
 	current_player = new_player
 	

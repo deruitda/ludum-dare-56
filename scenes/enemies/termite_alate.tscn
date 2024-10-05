@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bbumsja2jwtyt"]
+[gd_scene load_steps=11 format=3 uid="uid://bbumsja2jwtyt"]
 
 [ext_resource type="Script" path="res://scenes/enemies/termite_alate.gd" id="1_p2glw"]
 [ext_resource type="Shape2D" uid="uid://bvv6wfe5a5vmo" path="res://scenes/enemies/termite_alate_shape.tres" id="2_4kggq"]
@@ -7,13 +7,17 @@
 [ext_resource type="Script" path="res://scenes/entity_composition/hurt_box.gd" id="3_13q4d"]
 [ext_resource type="Script" path="res://scenes/entity_composition/health_component.gd" id="4_g3oxt"]
 [ext_resource type="Script" path="res://scenes/entity_composition/path_finder.gd" id="7_nwrww"]
+[ext_resource type="Script" path="res://scenes/gun/muzzle.gd" id="8_5fx63"]
+[ext_resource type="Script" path="res://scenes/gun/gun.gd" id="8_vhxxv"]
+[ext_resource type="PackedScene" uid="uid://bx84510ke5gvq" path="res://scenes/bullet_emitter/bullet_emitter_bullet.tscn" id="9_y8w60"]
 
-[node name="TermiteAlate" type="CharacterBody2D" node_paths=PackedStringArray("velocity_component", "path_finder")]
+[node name="TermiteAlate" type="CharacterBody2D" node_paths=PackedStringArray("velocity_component", "path_finder", "gun")]
 collision_layer = 8
 collision_mask = 15
 script = ExtResource("1_p2glw")
 velocity_component = NodePath("VelocityComponent")
 path_finder = NodePath("PathFinder")
+gun = NodePath("Gun")
 
 [node name="VelocityComponent" parent="." instance=ExtResource("2_kiu7a")]
 fly_speed = 20.0
@@ -41,5 +45,17 @@ script = ExtResource("4_g3oxt")
 [node name="PathFinder" type="Node2D" parent="."]
 script = ExtResource("7_nwrww")
 
+[node name="Gun" type="Node2D" parent="." node_paths=PackedStringArray("muzzle")]
+script = ExtResource("8_vhxxv")
+muzzle = NodePath("Muzzle")
+bullet_packed_scene = ExtResource("9_y8w60")
+
+[node name="Muzzle" type="Node2D" parent="Gun"]
+script = ExtResource("8_5fx63")
+
+[node name="ShootingTimer" type="Timer" parent="Gun/Muzzle"]
+autostart = true
+
 [connection signal="area_entered" from="HurtBox" to="HurtBox" method="_on_area_entered"]
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
+[connection signal="timeout" from="Gun/Muzzle/ShootingTimer" to="." method="_on_shooting_timer_timeout"]

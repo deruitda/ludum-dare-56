@@ -15,7 +15,6 @@ func _process(delta: float) -> void:
 func can_handle_taking_damage() -> bool:
 	return not health_component.is_dead()
 
-
 func handle_bullet_collision(bullet: Bullet):
 	if not health_component.is_invulnerable():
 		health_component.apply_damage(bullet.damage_per_bullet)
