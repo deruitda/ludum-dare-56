@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://nuahsfm77qjp"]
+[gd_scene load_steps=10 format=3 uid="uid://nuahsfm77qjp"]
 
 [ext_resource type="PackedScene" uid="uid://dqgxt6ms0uyu8" path="res://scenes/entity_composition/health_component.tscn" id="1_38jc2"]
 [ext_resource type="Script" path="res://scenes/enemies/termite_larvae.gd" id="1_l1k41"]
 [ext_resource type="Texture2D" uid="uid://co01gstpumt0c" path="res://icon.svg" id="2_7u467"]
 [ext_resource type="PackedScene" uid="uid://can23048py54m" path="res://scenes/entity_composition/hurt_box.tscn" id="3_dfm05"]
+[ext_resource type="PackedScene" uid="uid://b6xwdcloo2sce" path="res://scenes/bullet_emitter/bullet_emitter.tscn" id="5_6upq0"]
 [ext_resource type="Script" path="res://scenes/entity_composition/velocity_component.gd" id="5_b7uhe"]
+[ext_resource type="PackedScene" uid="uid://bx84510ke5gvq" path="res://scenes/bullet_emitter/bullet_emitter_bullet.tscn" id="6_dtkt4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bqby1"]
 size = Vector2(64, 64)
@@ -38,6 +40,9 @@ health_component = NodePath("../HealthComponent")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 visible = false
 shape = SubResource("RectangleShape2D_rdvc8")
+
+[node name="BulletEmitter" parent="." instance=ExtResource("5_6upq0")]
+bullet_packed_scene = ExtResource("6_dtkt4")
 
 [node name="VelocityComponent" type="Node" parent="."]
 script = ExtResource("5_b7uhe")

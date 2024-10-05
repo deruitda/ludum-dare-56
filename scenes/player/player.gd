@@ -15,7 +15,12 @@ class_name Player
 
 func _physics_process(delta: float) -> void:
 	# Apply gravity if the player is not on the floor
-
+ # Update wall grace timer
+	if is_on_wall():
+		wall_grace_timer = 0.0  # Reset the timer if on the wall
+	else:
+		wall_grace_timer += delta
+		
 	if not is_on_floor():
 		velocity_component.apply_gravity(delta)
 	
@@ -50,7 +55,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity_component.apply_in_air_idle(delta)
 	
-	velocity_component.do_move(self)
+	velocity_component.do_character_move(self)
 	
 	#is looking right
 	if left_right_input == Vector2.LEFT:

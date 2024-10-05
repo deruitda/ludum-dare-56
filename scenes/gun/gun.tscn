@@ -1,18 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://br7b7ao0pn4rr"]
+[gd_scene load_steps=5 format=3 uid="uid://br7b7ao0pn4rr"]
 
 [ext_resource type="Script" path="res://scenes/gun/gun.gd" id="1_tv8xg"]
-[ext_resource type="Texture2D" uid="uid://by7hcie0au88s" path="res://scenes/gun/gun.webp" id="2_cotgs"]
+[ext_resource type="Texture2D" uid="uid://by7hcie0au88s" path="res://scenes/player/sprites/gun.webp" id="2_cotgs"]
 [ext_resource type="PackedScene" uid="uid://fvifpd00chk8" path="res://scenes/gun/bullet.tscn" id="2_yj2hu"]
+[ext_resource type="PackedScene" uid="uid://b7ev8rk7l185t" path="res://scenes/gun/muzzle.tscn" id="4_5fmvv"]
 
-[node name="Gun" type="Node2D" node_paths=PackedStringArray("muzzle_position")]
+[node name="Gun" type="Node2D" node_paths=PackedStringArray("muzzle")]
 script = ExtResource("1_tv8xg")
+muzzle = NodePath("Muzzle")
 bullet_packed_scene = ExtResource("2_yj2hu")
-muzzle_position = NodePath("MuzzlePosition")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.0691177, 0.0829177)
 texture = ExtResource("2_cotgs")
 flip_h = true
 
-[node name="MuzzlePosition" type="Node2D" parent="."]
+[node name="Muzzle" parent="." instance=ExtResource("4_5fmvv")]
 position = Vector2(22, 0)

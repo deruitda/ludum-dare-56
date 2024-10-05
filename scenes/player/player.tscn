@@ -36,7 +36,6 @@ texture = ExtResource("1_mu45x")
 [node name="HealthComponent" parent="." instance=ExtResource("3_e2fg7")]
 
 [node name="VelocityComponent" parent="." instance=ExtResource("4_nqq8h")]
-max_speed = 1000.0
 
 [node name="GunPivot" type="Node2D" parent="." node_paths=PackedStringArray("gun", "upper_body_sprite")]
 position = Vector2(-1.42109e-14, -29)

@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://fvifpd00chk8"]
+[gd_scene load_steps=5 format=3 uid="uid://fvifpd00chk8"]
 
 [ext_resource type="Script" path="res://scenes/gun/bullet.gd" id="1_cdvcq"]
 [ext_resource type="Texture2D" uid="uid://co01gstpumt0c" path="res://icon.svg" id="2_uevlj"]
+[ext_resource type="Script" path="res://scenes/entity_composition/velocity_component.gd" id="3_b8gob"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qj0nb"]
 
@@ -18,6 +19,10 @@ debug_color = Color(0.954637, 0.0558831, 0.516777, 0.42)
 position = Vector2(2.38419e-07, -0.250001)
 scale = Vector2(0.109375, 0.207031)
 texture = ExtResource("2_uevlj")
+
+[node name="VelocityComponent" type="Node" parent="."]
+script = ExtResource("3_b8gob")
+max_speed = 3000.0
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
