@@ -9,50 +9,43 @@ metadata/_edit_horizontal_guides_ = [98.0]
 metadata/_edit_vertical_guides_ = [600.0]
 
 [node name="TimerBackground" type="Panel" parent="."]
-offset_left = 300.0
-offset_top = 1.0
-offset_right = 300.0
-offset_bottom = 1.0
+offset_left = 494.0
+offset_top = 29.0
+offset_right = 709.0
+offset_bottom = 69.0
 
 [node name="GameTime" type="Label" parent="TimerBackground"]
 layout_mode = 0
-offset_left = 202.0
-offset_top = 16.0
-offset_right = 392.0
-offset_bottom = 39.0
-text = "0
+offset_left = 10.0
+offset_top = 8.0
+offset_right = 200.0
+offset_bottom = 31.0
+text = "
 "
-horizontal_alignment = 1
 script = ExtResource("1_kc8fq")
 
 [node name="HPBackground" type="Panel" parent="."]
-offset_left = 50.0
-offset_top = 5.0
-offset_right = 50.0
-offset_bottom = 5.0
+offset_left = 56.0
+offset_top = 11.0
+offset_right = 121.0
+offset_bottom = 85.0
 
 [node name="HP" type="Label" parent="HPBackground"]
 layout_mode = 0
-offset_left = 22.0
-offset_top = 7.0
-offset_right = 64.0
-offset_bottom = 35.0
+offset_left = 13.0
+offset_top = 25.0
+offset_right = 55.0
+offset_bottom = 53.0
 text = "3"
 horizontal_alignment = 1
 script = ExtResource("2_83q50")
 
 [node name="KillCountBackground" type="Panel" parent="."]
-offset_left = 548.0
-offset_top = 3.0
-offset_right = 548.0
-offset_bottom = 3.0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="KillCount" type="Label" parent="KillCountBackground"]
 layout_mode = 0
-offset_left = 566.0
-offset_top = 11.0
-offset_right = 606.0
-offset_bottom = 34.0
-text = "0"
-horizontal_alignment = 1
+offset_right = 40.0
+offset_bottom = 23.0
 script = ExtResource("3_cgw1v")
