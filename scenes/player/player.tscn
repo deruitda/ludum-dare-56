@@ -1,6 +1,7 @@
 [gd_scene load_steps=25 format=3 uid="uid://cofh4isrtksv4"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_y4k5w"]
+[ext_resource type="Shape2D" uid="uid://cc3bsg65yxgm0" path="res://scenes/player/player_shape.tres" id="2_n3d0r"]
 [ext_resource type="PackedScene" uid="uid://br7b7ao0pn4rr" path="res://scenes/gun/gun.tscn" id="2_sf2fd"]
 [ext_resource type="PackedScene" uid="uid://dqgxt6ms0uyu8" path="res://scenes/entity_composition/health_component.tscn" id="3_e2fg7"]
 [ext_resource type="PackedScene" uid="uid://bqa4jle60cl0a" path="res://scenes/entity_composition/velocity_component.tscn" id="4_nqq8h"]
@@ -10,10 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://brvnyb15boofo" path="res://assets/sprites/rex/rex-lower-idle.png" id="8_7mji7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jr7co"]
-size = Vector2(34, 128)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0jd5d"]
-size = Vector2(34, 127)
+size = Vector2(28, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_otroh"]
 atlas = ExtResource("7_3q747")
@@ -70,27 +68,27 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_urkj7"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6qgd"]
 atlas = ExtResource("8_7mji7")
 region = Rect2(0, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kbup0"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_cti2v"]
 atlas = ExtResource("8_7mji7")
 region = Rect2(64, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4pymi"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_6nw2v"]
 atlas = ExtResource("8_7mji7")
 region = Rect2(128, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_a3obl"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ffrb1"]
 atlas = ExtResource("8_7mji7")
 region = Rect2(192, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bkg1t"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_evg8x"]
 atlas = ExtResource("8_7mji7")
 region = Rect2(256, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8knnt"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_yeonk"]
 atlas = ExtResource("8_7mji7")
 region = Rect2(320, 0, 64, 64)
 
@@ -98,22 +96,22 @@ region = Rect2(320, 0, 64, 64)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_urkj7")
+"texture": SubResource("AtlasTexture_g6qgd")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_kbup0")
+"texture": SubResource("AtlasTexture_cti2v")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4pymi")
+"texture": SubResource("AtlasTexture_6nw2v")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_a3obl")
+"texture": SubResource("AtlasTexture_ffrb1")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_bkg1t")
+"texture": SubResource("AtlasTexture_evg8x")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8knnt")
+"texture": SubResource("AtlasTexture_yeonk")
 }],
 "loop": true,
 "name": &"idle",
@@ -125,10 +123,11 @@ collision_mask = 6
 platform_floor_layers = 4294967294
 platform_wall_layers = 4
 script = ExtResource("1_y4k5w")
-lower_body_sprite = NodePath("LowerBody")
+lower_body_sprite = NodePath("Body/LowerBody")
 velocity_component = NodePath("VelocityComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_jr7co")
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_e2fg7")]
@@ -137,17 +136,6 @@ seconds_of_invulnerability_after_damage = 5.0
 
 [node name="VelocityComponent" parent="." instance=ExtResource("4_nqq8h")]
 
-[node name="GunPivot" type="Node2D" parent="." node_paths=PackedStringArray("gun", "upper_body_sprite")]
-position = Vector2(-1.42109e-14, -29)
-rotation = 1.5708
-scale = Vector2(1, 0.532)
-script = ExtResource("4_tvvnj")
-gun = NodePath("Gun")
-upper_body_sprite = NodePath("../UpperBody")
-
-[node name="Gun" parent="GunPivot" instance=ExtResource("2_sf2fd")]
-position = Vector2(24, -2)
-
 [node name="HurtBox" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
 collision_layer = 16
 collision_mask = 64
@@ -155,21 +143,30 @@ script = ExtResource("7_6ogm0")
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2(0, -0.5)
-shape = SubResource("RectangleShape2D_0jd5d")
+position = Vector2(-1, 0)
+shape = ExtResource("2_n3d0r")
 
-[node name="UpperBody" type="AnimatedSprite2D" parent="."]
-position = Vector2(-3, -6)
+[node name="Body" type="Node2D" parent="."]
+position = Vector2(-5, 0)
+
+[node name="UpperBody" type="AnimatedSprite2D" parent="Body"]
 sprite_frames = SubResource("SpriteFrames_c4bdg")
-animation = &"running"
+animation = &"idle"
 autoplay = "idle"
 
-[node name="LowerBody" type="AnimatedSprite2D" parent="."]
-position = Vector2(-3, -6)
+[node name="LowerBody" type="AnimatedSprite2D" parent="Body"]
 sprite_frames = SubResource("SpriteFrames_n4ibw")
 animation = &"idle"
 autoplay = "idle"
 frame_progress = 0.866298
+
+[node name="GunPivot" type="Node2D" parent="." node_paths=PackedStringArray("gun", "upper_body_sprite")]
+rotation = 1.5708
+script = ExtResource("4_tvvnj")
+gun = NodePath("Gun")
+upper_body_sprite = NodePath("../Body/UpperBody")
+
+[node name="Gun" parent="GunPivot" instance=ExtResource("2_sf2fd")]
 
 [connection signal="damage_applied" from="HealthComponent" to="." method="_on_damage_applied"]
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]
