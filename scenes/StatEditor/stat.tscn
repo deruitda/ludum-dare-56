@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://owqwtun8vogl"]
+
+[ext_resource type="Script" path="res://scenes/StatEditor/stat.gd" id="1_wg268"]
+
+[node name="HBoxContainer" type="HBoxContainer"]
+offset_right = 218.0
+offset_bottom = 70.0
+scale = Vector2(0.987067, 1)
+script = ExtResource("1_wg268")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Run Speed: "
+
+[node name="Value" type="Label" parent="."]
+layout_mode = 2
+text = "16"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer"]
+custom_minimum_size = Vector2(100, 1)
+layout_mode = 2
+
+[connection signal="changed" from="VBoxContainer/HSlider" to="." method="_on_h_slider_changed"]

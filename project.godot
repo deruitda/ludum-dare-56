@@ -15,6 +15,10 @@ run/main_scene="res://andrew_scene.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+StatEditorBus="*res://stat_editor_bus.gd"
+
 [input]
 
 move_left={

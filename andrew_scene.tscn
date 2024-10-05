@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cwaxfr5h3o4rx" path="res://scenes/levels/termite_extermination.tscn" id="2_tadp2"]
 
 [node name="AndrewScene" type="Node2D"]
+position = Vector2(-10, 10)
 
 [node name="TermiteExtermination2" parent="." instance=ExtResource("2_tadp2")]
 
