@@ -39,6 +39,7 @@ texture = ExtResource("1_mu45x")
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_e2fg7")]
 max_health = 3
+seconds_of_invulnerability_after_damage = 5.0
 
 [node name="VelocityComponent" parent="." instance=ExtResource("4_nqq8h")]
 
