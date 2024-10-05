@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c7jfu2tx6lfqc"]
 
-[ext_resource type="PackedScene" uid="uid://cofh4isrtksv4" path="res://player.tscn" id="1_t5ocu"]
+[ext_resource type="PackedScene" uid="uid://cofh4isrtksv4" path="res://scenes/player/player.tscn" id="1_t5ocu"]
 [ext_resource type="PackedScene" uid="uid://cwaxfr5h3o4rx" path="res://scenes/levels/termite_extermination.tscn" id="2_tadp2"]
 
 [node name="AndrewScene" type="Node2D"]
