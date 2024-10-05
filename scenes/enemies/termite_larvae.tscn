@@ -1,13 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://nuahsfm77qjp"]
+[gd_scene load_steps=8 format=3 uid="uid://nuahsfm77qjp"]
 
-[ext_resource type="PackedScene" uid="uid://dqgxt6ms0uyu8" path="res://scenes/enemies/health_component.tscn" id="1_38jc2"]
+[ext_resource type="PackedScene" uid="uid://dqgxt6ms0uyu8" path="res://scenes/entity_composition/health_component.tscn" id="1_38jc2"]
 [ext_resource type="Script" path="res://scenes/enemies/termite_larvae.gd" id="1_l1k41"]
 [ext_resource type="Texture2D" uid="uid://co01gstpumt0c" path="res://icon.svg" id="2_7u467"]
-[ext_resource type="PackedScene" uid="uid://can23048py54m" path="res://scenes/enemies/hurt_box.tscn" id="3_dfm05"]
-[ext_resource type="Script" path="res://scenes/enemies/velocity_component.gd" id="5_b7uhe"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qdokf"]
-size = Vector2(63, 63)
+[ext_resource type="PackedScene" uid="uid://can23048py54m" path="res://scenes/entity_composition/hurt_box.tscn" id="3_dfm05"]
+[ext_resource type="Script" path="res://scenes/entity_composition/velocity_component.gd" id="5_b7uhe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bqby1"]
 size = Vector2(64, 64)
@@ -15,28 +12,23 @@ size = Vector2(64, 64)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rdvc8"]
 size = Vector2(64, 64)
 
-[node name="TermiteLarvae" type="CharacterBody2D" node_paths=PackedStringArray("velocity_component")]
+[node name="TermiteLarvae" type="CharacterBody2D" node_paths=PackedStringArray("velocity_component", "toggle_direction_timer")]
 collision_layer = 8
 collision_mask = 15
-platform_floor_layers = 4294967282
-platform_wall_layers = 4
+platform_floor_layers = 4294967240
+platform_wall_layers = 6
 script = ExtResource("1_l1k41")
 velocity_component = NodePath("VelocityComponent")
+toggle_direction_timer = NodePath("VelocityComponent/DefaultToggleDirectionTimer")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 0.5)
-shape = SubResource("RectangleShape2D_qdokf")
-debug_color = Color(0, 0.356863, 0.129412, 0.419608)
-
-[node name="HealthComponent" parent="." instance=ExtResource("1_38jc2")]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_bqby1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_7u467")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-shape = SubResource("RectangleShape2D_bqby1")
+[node name="HealthComponent" parent="." instance=ExtResource("1_38jc2")]
 
 [node name="HurtBox" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_dfm05")]
 collision_layer = 16
@@ -44,6 +36,7 @@ collision_mask = 32
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+visible = false
 shape = SubResource("RectangleShape2D_rdvc8")
 
 [node name="VelocityComponent" type="Node" parent="."]
@@ -51,8 +44,8 @@ script = ExtResource("5_b7uhe")
 max_speed = 200.0
 wall_slide_speed = 0.0
 
-[node name="ToggleDirectionTimer" type="Timer" parent="VelocityComponent"]
+[node name="DefaultToggleDirectionTimer" type="Timer" parent="VelocityComponent"]
+wait_time = 5.0
 
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]
 [connection signal="hit_by_bullet" from="HurtBox" to="." method="_on_hurt_box_hit_by_bullet"]
-[connection signal="timeout" from="VelocityComponent/ToggleDirectionTimer" to="." method="_on_toggle_direction_timer_timeout"]
