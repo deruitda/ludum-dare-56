@@ -7,7 +7,7 @@ class_name Player
 @onready var is_wall_jumping: bool = false
 @onready var is_wall_sliding: bool = false
 
-@onready var is_dead: bool = true
+@onready var is_dead: bool = false
 
 @export var lower_body_sprite: Sprite2D
 @export var velocity_component: VelocityComponent
@@ -15,9 +15,15 @@ class_name Player
 @onready var wall_grace_timer = 0.0  # Timer for wall grace period
 @export var wall_grace_period: float = 0.2
 
-
+func _process(delta: float) -> void:
+	if is_dead:
+		queue_free()
+	pass
+	
 
 func _physics_process(delta: float) -> void:
+	if is_dead:
+		return
 	# Apply gravity if the player is not on the floor
  # Update wall grace timer
 	if is_on_wall():
@@ -95,7 +101,6 @@ func set_is_jumping_inputs() -> void:
 func _on_died() -> void:
 	print("you died")
 	is_dead = true
-	queue_free()
 	pass # Replace with function body.
 
 
