@@ -28,9 +28,11 @@ func _handle_hit_hurt_box():
 	has_hit_something = true
 
 func _on_area_entered(area: Area2D) -> void:
+	print("on area entered")
 	_handle_hit_hurt_box()
 	pass # Replace with function body.
 
 func _on_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
+	print("on area entered")
 	_handle_hit_environment()
 	pass # Replace with function body.

@@ -66,8 +66,8 @@ func _physics_process(delta: float) -> void:
 
 func get_is_pointing_to_wall():
 	var return_val = (get_wall_normal().x < 0 and direction_input > 0) or (get_wall_normal().x > 0 and direction_input < 0)
-	print(str(return_val))
 	return return_val
+
 func set_is_wall_sliding_input() -> void:
 	if is_floor_jumping || is_wall_jumping || is_on_floor():
 		is_wall_sliding = false

@@ -19,12 +19,17 @@ func _process(delta: float) -> void:
 	pass
 
 func create_bullets() -> void:
-	var angle_of_bullets = 360.0 / float(number_of_bullets)
-	var current_bullet_direction = Vector2(cos(angle_of_bullets), sin(angle_of_bullets))
-	for i in number_of_bullets:
+	var angle_of_bullets = 360.0 / float(number_of_bullets)  # Divide 360 degrees by the number of bullets
+	
+	for i in range(number_of_bullets):
+		# Calculate the current angle for this bullet (convert degrees to radians)
+		var current_angle = deg_to_rad(i * angle_of_bullets)
+		
+		# Calculate the direction based on the angle
+		var current_bullet_direction = Vector2(cos(current_angle), sin(current_angle))
+		
+		# Create the bullet at the muzzle with the calculated direction
 		muzzle.create_bullet(bullet_packed_scene, current_bullet_direction)
-		current_bullet_direction += Vector2(cos(angle_of_bullets), sin(angle_of_bullets))
-
 func _on_bullet_emit_timer() ->void:
 	create_bullets()
 	bullet_emit_timer.start()

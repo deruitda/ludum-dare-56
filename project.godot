@@ -52,8 +52,10 @@ shoot={
 2d_physics/layer_2="Floor"
 2d_physics/layer_3="Wall"
 2d_physics/layer_4="Enemy"
-2d_physics/layer_5="HurtBox"
-2d_physics/layer_6="Bullet"
+2d_physics/layer_5="PlayerHurtBox"
+2d_physics/layer_6="PlayerBullet"
+2d_physics/layer_7="EnemyBullet"
+2d_physics/layer_8="EnemyHurtBox"
 SignalBus="*res://globals/signal_bus.gd"
 
 [rendering]
