@@ -5,7 +5,7 @@ extends CharacterBody2D
 @export var jump_velocity: float = 1200.0
 @export var gravity: float = 2000.0 
 @export var wall_jump_velocity: float = 1500.0
-@export var wall_slide_speed: float = 200.0
+@export var wall_slide_speed: float = 50.0
 @export var air_resistance: float = 300.0
 
 @onready var is_floor_jumping: bool = false
@@ -56,7 +56,7 @@ func _physics_process(delta: float) -> void:
 
 
 func get_is_pointing_to_wall():
-	return (get_wall_normal().x > 0 and direction_input > 0) or (get_wall_normal().x < 0 and direction_input > 0)
+	return (get_wall_normal().x < 0 and direction_input > 0) or (get_wall_normal().x > 0 and direction_input < 0)
 
 func set_is_wall_sliding_input() -> void:
 	if is_floor_jumping || is_wall_jumping || is_on_floor():
