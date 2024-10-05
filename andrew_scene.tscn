@@ -3,14 +3,16 @@
 [ext_resource type="PackedScene" uid="uid://cofh4isrtksv4" path="res://scenes/player/player.tscn" id="1_t5ocu"]
 [ext_resource type="PackedScene" uid="uid://cwaxfr5h3o4rx" path="res://scenes/levels/termite_extermination.tscn" id="2_tadp2"]
 
-[node name="AndrewScene" type="Node2D"]
+[node name="Root" type="Node2D"]
 position = Vector2(-10, 10)
 
-[node name="TermiteExtermination2" parent="." instance=ExtResource("2_tadp2")]
+[node name="World" type="Node2D" parent="."]
 
-[node name="Player" parent="." instance=ExtResource("1_t5ocu")]
+[node name="TermiteExtermination2" parent="World" instance=ExtResource("2_tadp2")]
+
+[node name="Player" parent="World" instance=ExtResource("1_t5ocu")]
 position = Vector2(414, -301)
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="World"]
 position = Vector2(706, -424)
 zoom = Vector2(0.8, 0.8)

@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://co01gstpumt0c" path="res://icon.svg" id="1_mu45x"]
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_y4k5w"]
 [ext_resource type="PackedScene" uid="uid://br7b7ao0pn4rr" path="res://scenes/player/gun/gun.tscn" id="2_sf2fd"]
-[ext_resource type="Script" path="res://scenes/player/GunPivot.gd" id="4_tvvnj"]
+[ext_resource type="Script" path="res://scenes/player/gun/gun_pivot.gd" id="4_tvvnj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jr7co"]
 size = Vector2(120, 128)
@@ -20,10 +20,12 @@ position = Vector2(0, -32)
 scale = Vector2(0.94, 0.5)
 texture = ExtResource("1_mu45x")
 
-[node name="GunPivot" type="Node2D" parent="UpperBody"]
+[node name="GunPivot" type="Node2D" parent="UpperBody" node_paths=PackedStringArray("gun", "upper_body_sprite")]
 position = Vector2(0, -1.90735e-06)
 scale = Vector2(2, 2)
 script = ExtResource("4_tvvnj")
+gun = NodePath("Gun")
+upper_body_sprite = NodePath("..")
 
 [node name="Gun" parent="UpperBody/GunPivot" instance=ExtResource("2_sf2fd")]
 position = Vector2(24, -2)
