@@ -40,14 +40,9 @@ func wall_slide() -> void:
 
 func run(direction: float) -> void:
 	velocity.x = direction * max_speed
-	print ("run velocity x: " + str(velocity.x))
-
 
 func in_air_movement(direction: float, delta: float) -> void:
-	print("in air movement")
-	print ("old velocity x: " + str(velocity.x))
 	velocity.x = clamp(velocity.x + direction * in_air_acceleration * delta, -max_speed, max_speed)
-	print ("new velocity x: " + str(velocity.x))
 
 func apply_in_air_idle(delta: float):
 	velocity.x = move_toward(velocity.x, 0, in_air_resistance * delta)
