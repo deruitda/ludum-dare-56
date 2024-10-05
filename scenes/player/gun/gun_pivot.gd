@@ -15,7 +15,7 @@ func _process(delta: float) -> void:
 	set_mouse_pointing_input()
 	rotate_to_mouse(mouse_pointing_input)
 	if Input.is_action_just_pressed("shoot"):
-		gun.shoot_bullet()
+		gun.shoot_bullet(mouse_pointing_input)
 	pass
 
 func set_mouse_pointing_input() -> void:
