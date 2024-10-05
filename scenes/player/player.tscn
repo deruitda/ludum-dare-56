@@ -38,6 +38,7 @@ scale = Vector2(0.5, 0.266)
 texture = ExtResource("1_mu45x")
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_e2fg7")]
+max_health = 3
 
 [node name="VelocityComponent" parent="." instance=ExtResource("4_nqq8h")]
 
@@ -61,3 +62,7 @@ health_component = NodePath("../HealthComponent")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_0jd5d")
+
+[connection signal="damage_applied" from="HealthComponent" to="." method="_on_damage_applied"]
+[connection signal="died" from="HealthComponent" to="." method="_on_died"]
+[connection signal="area_entered" from="HurtBox" to="HurtBox" method="_on_area_entered"]
