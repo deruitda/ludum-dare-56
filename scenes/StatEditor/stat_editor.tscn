@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://u4gcui4wf314"]
+
+[ext_resource type="PackedScene" uid="uid://owqwtun8vogl" path="res://scenes/StatEditor/stat.tscn" id="1_qipjl"]
+
+[node name="StatEditor" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="HBoxContainer" parent="." instance=ExtResource("1_qipjl")]
+layout_mode = 0
+attribute_name = "player_speed"
+label_text = "Player Speed"

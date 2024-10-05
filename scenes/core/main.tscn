@@ -12,6 +12,7 @@
 [node name="World" parent="." instance=ExtResource("2_6cr2y")]
 
 [node name="TermiteExtermination2" parent="World" instance=ExtResource("3_ia4r3")]
+position = Vector2(1164, 155)
 
 [node name="Camera2D" type="Camera2D" parent="World"]
 position = Vector2(575, -328)
