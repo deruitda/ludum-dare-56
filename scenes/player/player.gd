@@ -1,21 +1,24 @@
 extends CharacterBody2D
 
+@export var gravity: float = 2000.0 
 @export var max_speed: float = 1000.0
 @export var acceleration: float = 600.0
+
 @export var jump_velocity: float = 1200.0
-@export var gravity: float = 2000.0 
 @export var wall_jump_velocity: float = 1500.0
+
 @export var wall_slide_speed: float = 50.0
+
 @export var air_resistance: float = 300.0
+@export var wall_grace_period: float = 0.2
 
 @onready var is_floor_jumping: bool = false
 @onready var is_wall_jumping: bool = false
 @onready var is_wall_sliding: bool = false
 
-
-
 @onready var direction_input: float = 0.0
 
+@onready var wall_grace_timer = 0.0  # Timer for wall grace period
 
 func _physics_process(delta: float) -> void:
 	# Apply gravity if the player is not on the floor.
@@ -23,6 +26,13 @@ func _physics_process(delta: float) -> void:
 		velocity.y += gravity * delta
 	
 	direction_input = Input.get_axis("move_left", "move_right")
+	
+	 # Update wall grace timer
+	if is_on_wall():
+		wall_grace_timer = 0.0  # Reset the timer if on the wall
+	else:
+		wall_grace_timer += delta
+		
 	set_is_jumping_inputs()
 	set_is_wall_sliding_input()
 	
@@ -65,6 +75,8 @@ func set_is_wall_sliding_input() -> void:
 		is_wall_sliding = true
 	else:
 		is_wall_sliding = false
+	
+	
 		
 		
 	
@@ -74,7 +86,7 @@ func set_is_jumping_inputs() -> void:
 		if is_on_floor():
 			is_floor_jumping = true
 		
-		elif is_on_wall():
+		elif is_on_wall() or wall_grace_timer <= wall_grace_period:
 			is_wall_jumping = true
 	else:
 		is_floor_jumping = false
