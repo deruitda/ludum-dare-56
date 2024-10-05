@@ -9,7 +9,7 @@ class_name Player
 
 @onready var is_dead: bool = false
 
-@export var lower_body_sprite: Sprite2D
+@export var lower_body_sprite: AnimatedSprite2D
 @export var velocity_component: VelocityComponent
 
 @onready var wall_grace_timer = 0.0  # Timer for wall grace period
@@ -73,9 +73,9 @@ func _physics_process(delta: float) -> void:
 	
 	#is looking right
 	if left_right_input == Vector2.LEFT:
-		lower_body_sprite.flip_v = true
+		lower_body_sprite.flip_h = true
 	elif left_right_input == Vector2.RIGHT:
-		lower_body_sprite.flip_v = false
+		lower_body_sprite.flip_h = false
 
 
 func get_is_pointing_to_wall():
