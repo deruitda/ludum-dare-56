@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://nuahsfm77qjp"]
+[gd_scene load_steps=9 format=3 uid="uid://nuahsfm77qjp"]
 
 [ext_resource type="PackedScene" uid="uid://dqgxt6ms0uyu8" path="res://scenes/entity_composition/health_component.tscn" id="1_38jc2"]
 [ext_resource type="Script" path="res://scenes/enemies/termite_larvae.gd" id="1_l1k41"]
 [ext_resource type="Texture2D" uid="uid://co01gstpumt0c" path="res://icon.svg" id="2_7u467"]
 [ext_resource type="PackedScene" uid="uid://can23048py54m" path="res://scenes/entity_composition/hurt_box.tscn" id="3_dfm05"]
+[ext_resource type="PackedScene" uid="uid://b6xwdcloo2sce" path="res://scenes/bullet_emitter/bullet_emitter.tscn" id="5_6upq0"]
 [ext_resource type="Script" path="res://scenes/entity_composition/velocity_component.gd" id="5_b7uhe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bqby1"]
@@ -31,13 +32,15 @@ texture = ExtResource("2_7u467")
 [node name="HealthComponent" parent="." instance=ExtResource("1_38jc2")]
 
 [node name="HurtBox" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_dfm05")]
-collision_layer = 16
+collision_layer = 128
 collision_mask = 32
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 visible = false
 shape = SubResource("RectangleShape2D_rdvc8")
+
+[node name="BulletEmitter" parent="." instance=ExtResource("5_6upq0")]
 
 [node name="VelocityComponent" type="Node" parent="."]
 script = ExtResource("5_b7uhe")
@@ -48,4 +51,3 @@ wall_slide_speed = 0.0
 wait_time = 5.0
 
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]
-[connection signal="hit_by_bullet" from="HurtBox" to="." method="_on_hurt_box_hit_by_bullet"]

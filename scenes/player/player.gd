@@ -7,15 +7,30 @@ class_name Player
 @onready var is_wall_jumping: bool = false
 @onready var is_wall_sliding: bool = false
 
+@onready var is_dead: bool = false
+
 @export var lower_body_sprite: Sprite2D
 @export var velocity_component: VelocityComponent
 
 @onready var wall_grace_timer = 0.0  # Timer for wall grace period
 @export var wall_grace_period: float = 0.2
 
-func _physics_process(delta: float) -> void:
-	# Apply gravity if the player is not on the floor
+func _process(delta: float) -> void:
+	if is_dead:
+		queue_free()
+	pass
+	
 
+func _physics_process(delta: float) -> void:
+	if is_dead:
+		return
+	# Apply gravity if the player is not on the floor
+ # Update wall grace timer
+	if is_on_wall():
+		wall_grace_timer = 0.0  # Reset the timer if on the wall
+	else:
+		wall_grace_timer += delta
+		
 	if not is_on_floor():
 		velocity_component.apply_gravity(delta)
 	
@@ -50,7 +65,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity_component.apply_in_air_idle(delta)
 	
-	velocity_component.do_move(self)
+	velocity_component.do_character_move(self)
 	
 	#is looking right
 	if left_right_input == Vector2.LEFT:
@@ -61,8 +76,8 @@ func _physics_process(delta: float) -> void:
 
 func get_is_pointing_to_wall():
 	var return_val = (get_wall_normal().x < 0 and direction_input > 0) or (get_wall_normal().x > 0 and direction_input < 0)
-	print(str(return_val))
 	return return_val
+
 func set_is_wall_sliding_input() -> void:
 	if is_floor_jumping || is_wall_jumping || is_on_floor():
 		is_wall_sliding = false
@@ -81,3 +96,14 @@ func set_is_jumping_inputs() -> void:
 	else:
 		is_floor_jumping = false
 		is_wall_jumping = false
+
+
+func _on_died() -> void:
+	print("you died")
+	is_dead = true
+	pass # Replace with function body.
+
+
+func _on_damage_applied() -> void:
+	print("damage")
+	pass # Replace with function body.

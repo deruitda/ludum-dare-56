@@ -15,8 +15,6 @@ func set_direction(new_direction: Vector2):
 	direction = new_direction.normalized()
 
 func _physics_process(delta: float) -> void:
-	if has_been_destroyed:
-		print("has been destroyed")
 	if has_hit_something and not has_been_destroyed:
 		has_been_destroyed = true
 		queue_free()

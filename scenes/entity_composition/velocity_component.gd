@@ -53,9 +53,15 @@ func apply_in_air_idle(delta: float):
 func apply_idle(delta: float):
 	velocity.x = move_toward(velocity.x, 0, floor_resistance * delta)
 
-func do_move(character_body: CharacterBody2D):
+func do_character_move(character_body: CharacterBody2D):
 	character_body.velocity = velocity
 	character_body.move_and_slide()
+	
+func do_area_move(area: Area2D):
+	area.position = area.position + velocity
+
+func apply_fly(direction: Vector2, delta: float) -> void:
+	velocity += direction * delta * max_speed
 
 func apply_gravity(delta: float) -> void:
 	velocity.y += gravity * delta
