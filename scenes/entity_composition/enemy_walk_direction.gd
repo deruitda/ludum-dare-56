@@ -8,6 +8,7 @@ class_name EnemyWalkDirection
 
 @onready var toggle_cooldown_timer: Timer = $ToggleCooldownTimer
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	
@@ -32,6 +33,7 @@ func toggle_current_direction() -> void:
 		return
 	
 	toggle_cooldown_timer.start()
+	
 	
 
 func set_current_direction(new_current_direction: Vector2) -> void:

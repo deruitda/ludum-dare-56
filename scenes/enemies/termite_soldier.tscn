@@ -90,6 +90,7 @@ script = ExtResource("3_c4ldb")
 
 [node name="VelocityComponent" type="Node" parent="."]
 script = ExtResource("5_oj13s")
+max_speed = 300.0
 
 [node name="EnemyWalkDirection" parent="." instance=ExtResource("6_l5wsd")]
 

@@ -1,13 +1,10 @@
 extends CharacterBody2D
 class_name TermiteLarvae
 
-
 @export var velocity_component: VelocityComponent
 @export var toggle_direction_timer: Timer
 @onready var enemy_walk_direction: Node = $EnemyWalkDirection
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
-
-
 
 func _ready() -> void:
 	set_current_direction()
@@ -28,6 +25,7 @@ func _physics_process(delta: float) -> void:
 		
 	if (is_on_wall() and is_on_floor()) || (is_on_wall() and is_on_ceiling()):
 		enemy_walk_direction.toggle_current_direction()
+		toggle_direction_timer.start()
 	
 	if enemy_walk_direction.is_running():
 		velocity_component.apply_run(enemy_walk_direction.current_direction, delta)
