@@ -22,6 +22,7 @@ func _physics_process(delta: float) -> void:
 
 func start_death() -> void:
 	is_dead = true
+	$AudioManager.play_enemy_death_audio()
 	gun.disable()
 	animSprite.animation_finished.connect(anim_finished)
 	animSprite.play("death")

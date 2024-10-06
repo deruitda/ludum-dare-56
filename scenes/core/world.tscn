@@ -1,8 +1,8 @@
 [gd_scene load_steps=3 format=3 uid="uid://dva4inhwc7dta"]
 
 [ext_resource type="Script" path="res://scenes/core/world.gd" id="1_it8km"]
-[ext_resource type="PackedScene" uid="uid://cwaxfr5h3o4rx" path="res://scenes/levels/termite_extermination.tscn" id="2_b16em"]
+[ext_resource type="PackedScene" uid="uid://bxk6i6v2kkfv7" path="res://scenes/levels/Wesleytermite_extermination.tscn" id="2_lomkk"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_it8km")
-current_level = ExtResource("2_b16em")
+current_level = ExtResource("2_lomkk")
