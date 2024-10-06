@@ -26,15 +26,19 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	if is_on_wall() and (is_on_ceiling() || is_on_floor()):
 		enemy_walk_direction.toggle_current_direction()
-	elif is_on_wall():
+	
+	if is_on_wall():
 		velocity_component.apply_move(enemy_walk_direction.current_direction, delta)
 	elif not is_on_wall():
 		var wall_direction = Vector2.RIGHT
 		if enemy_walk_direction.current_direction == Vector2.DOWN:
 			wall_direction = Vector2.LEFT
 		velocity_component.apply_move(wall_direction, delta)
+		print('not on wall')
+		
 	
-	
+	else: 
+		print("nope")
 	velocity_component.do_character_move(self)
 	
 	pass

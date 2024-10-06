@@ -56,7 +56,6 @@ func apply_idle(delta: float):
 	velocity.x = move_toward(velocity.x, 0, floor_resistance * delta)
 
 func do_character_move(character_body: CharacterBody2D):
-	print("current velocity", str(velocity))
 	character_body.velocity = velocity
 	character_body.move_and_slide()
 

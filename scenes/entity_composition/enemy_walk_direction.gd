@@ -26,9 +26,9 @@ func toggle_current_direction() -> void:
 	elif current_direction == Vector2.LEFT: 
 		current_direction = Vector2.RIGHT
 	elif current_direction == Vector2.UP:
-		current_direction == Vector2.DOWN
+		current_direction = Vector2.DOWN
 	elif current_direction == Vector2.DOWN:
-		current_direction == Vector2.UP
+		current_direction = Vector2.UP
 	else:
 		return
 	
