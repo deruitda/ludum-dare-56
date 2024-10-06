@@ -3,5 +3,6 @@
 [ext_resource type="Script" path="res://scenes/core/follow_cam.gd" id="1_3iu3r"]
 
 [node name="FollowCam" type="Camera2D"]
+position = Vector2(4, -8)
 script = ExtResource("1_3iu3r")
 weight = 0.298
