@@ -11,13 +11,16 @@ class_name TermiteSoldier
 @export var wall_is_right: bool = true
 @export var start_walking_up: bool = true
 
+@onready var _rage_speed: float = 600.0
+@onready var _walk_speed: float = 300.0
+
 func _ready() -> void:
 	if start_walking_up:
 		enemy_walk_direction.set_current_direction(Vector2.UP)
 	else:
 		enemy_walk_direction.set_current_direction(Vector2.DOWN)
 	
-	rotation = deg_to_rad(-90)	
+	rotation = deg_to_rad(-90)
 	if not wall_is_right:
 		animated_sprite_2d.flip_v = true
 	
@@ -36,8 +39,10 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	if player_is_in_rage_view():
 		is_raging = true
+		velocity_component.max_speed = _rage_speed
 	else:
 		is_raging = false
+		velocity_component.max_speed = _walk_speed
 	
 	if is_on_wall() and (is_on_ceiling() || is_on_floor()):
 		enemy_walk_direction.toggle_current_direction()
