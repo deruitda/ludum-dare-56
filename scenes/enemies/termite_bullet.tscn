@@ -7,7 +7,7 @@
 
 [node name="TermiteBullet" type="Area2D"]
 collision_layer = 64
-collision_mask = 16
+collision_mask = 22
 script = ExtResource("1_8evh1")
 speed = 200.0
 

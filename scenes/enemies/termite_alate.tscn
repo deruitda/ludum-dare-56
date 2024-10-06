@@ -1,4 +1,3 @@
-[gd_scene load_steps=35 format=3 uid="uid://bbumsja2jwtyt"]
 [gd_scene load_steps=37 format=3 uid="uid://bbumsja2jwtyt"]
 
 [ext_resource type="Script" path="res://scenes/enemies/termite_alate.gd" id="1_p2glw"]
