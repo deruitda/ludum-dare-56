@@ -37,8 +37,8 @@ func _process(delta: float) -> void:
 		animated_sprite_2d.flip_h = true
 		rage_ray.rotation = deg_to_rad(90)
 	
-	if is_dying and animated_sprite_2d.animation != "dying":
-		animated_sprite_2d.play("dying")
+	if is_dying:
+		return
 	elif animated_sprite_2d.animation == "walking" and is_raging:
 		animated_sprite_2d.play("raging")
 	elif animated_sprite_2d.animation == "raging" and not is_raging:
@@ -91,13 +91,16 @@ func handle_apply_movement(delta: float) -> void:
 		velocity_component.apply_move(wall_direction, delta)
 
 func _on_health_component_died() -> void:
-	is_dying = true
+	start_death()
 	pass # Replace with function body.
+	
+	
+func start_death():
+	is_dying = true
+	$BugAudio.play_enemy_death_audio()
+	animated_sprite_2d.play("dying")
+	animated_sprite_2d.animation_finished.connect(finish_death)
 
-func handle_death() -> void:
+func finish_death() -> void:
 	queue_free()
-
-func _on_animated_sprite_2d_animation_finished() -> void:
-	if animated_sprite_2d.animation == "dying":
-		handle_death()
 	pass # Replace with function body.

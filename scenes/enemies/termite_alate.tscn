@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bbumsja2jwtyt"]
+[gd_scene load_steps=37 format=3 uid="uid://bbumsja2jwtyt"]
 
 [ext_resource type="Script" path="res://scenes/enemies/termite_alate.gd" id="1_p2glw"]
 [ext_resource type="Shape2D" uid="uid://bvv6wfe5a5vmo" path="res://scenes/enemies/termite_alate_shape.tres" id="2_4kggq"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://vii0t4fmvtyy" path="res://assets/sprites/termite-alate/termite-alate-flying.png" id="10_jueev"]
 [ext_resource type="Texture2D" uid="uid://d2oftqmh87xeq" path="res://assets/sprites/termite-alate/termite-alate-squish.png" id="11_qp25x"]
 [ext_resource type="PackedScene" uid="uid://clwybwx42qmpu" path="res://scenes/core/despawner.tscn" id="13_5uqx0"]
+[ext_resource type="PackedScene" uid="uid://c1rh7amfumorl" path="res://scenes/core/bug_audio.tscn" id="14_efgrq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_087kx"]
 atlas = ExtResource("10_asot3")
@@ -228,6 +229,8 @@ animation = &"idle"
 autoplay = "idle"
 
 [node name="Despawner" parent="." instance=ExtResource("13_5uqx0")]
+
+[node name="AudioManager" parent="." instance=ExtResource("14_efgrq")]
 
 [connection signal="area_entered" from="HurtBox" to="HurtBox" method="_on_area_entered"]
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]

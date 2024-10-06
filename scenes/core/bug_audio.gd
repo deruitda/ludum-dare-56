@@ -10,11 +10,8 @@ const BugDeathAudio = [
 	"res://assets/Audio/SFX/BugDeath5.wav"
 ]
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	SignalBus.enemy_died.connect(_play_enemy_death_audio)
 	
-func _play_enemy_death_audio(name: String):
+func play_enemy_death_audio():
 	var rand_death = BugDeathAudio.pick_random()
 	audio_stream_player_2d.stream = load(rand_death)
 	audio_stream_player_2d.play()
