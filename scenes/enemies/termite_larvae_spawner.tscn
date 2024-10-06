@@ -1,8 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://c3g5a3xfhtd4p"]
+[gd_scene load_steps=13 format=3 uid="uid://c3g5a3xfhtd4p"]
 
 [ext_resource type="PackedScene" uid="uid://csbns784pk2av" path="res://scenes/enemies/spawn_point.tscn" id="1_5dkbs"]
 [ext_resource type="Texture2D" uid="uid://qwwnc0xotr4o" path="res://assets/sprites/spawns/spawn_base.png" id="1_54vvr"]
-[ext_resource type="Script" path="res://scenes/enemies/termite_larvae_spawner.gd" id="1_rmjpb"]
 [ext_resource type="PackedScene" uid="uid://nuahsfm77qjp" path="res://scenes/enemies/termite_larvae.tscn" id="2_hrru3"]
 [ext_resource type="Texture2D" uid="uid://cu7xkye1jeyyt" path="res://assets/sprites/spawns/spawn_termite_larvae.png" id="2_wylgj"]
 
@@ -69,11 +68,11 @@ animations = [{
 }]
 
 [node name="TermiteLarvaeSpawner" type="Node2D"]
-script = ExtResource("1_rmjpb")
 
-[node name="Spawner" parent="." node_paths=PackedStringArray("timer") instance=ExtResource("1_5dkbs")]
+[node name="Spawner" parent="." node_paths=PackedStringArray("timer", "animSprite") instance=ExtResource("1_5dkbs")]
 scene = ExtResource("2_hrru3")
 timer = NodePath("../SpawnTimer")
+animSprite = NodePath("../AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_vm2m7")
