@@ -188,7 +188,7 @@ gun = NodePath("Gun")
 
 [node name="VelocityComponent" parent="." instance=ExtResource("2_kiu7a")]
 gravity = 1000.0
-fly_speed = 20.0
+max_speed = 300.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = ExtResource("2_4kggq")
