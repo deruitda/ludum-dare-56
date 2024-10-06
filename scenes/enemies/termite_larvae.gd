@@ -24,7 +24,7 @@ func _physics_process(delta: float) -> void:
 		
 	if is_on_wall() and is_on_floor():
 		toggle_current_direction()
-	velocity_component.apply_run(current_direction)
+	velocity_component.apply_run(current_direction, delta)
 	velocity_component.do_character_move(self)
 	
 	pass

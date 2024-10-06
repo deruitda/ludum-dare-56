@@ -61,9 +61,10 @@ func apply_idle(delta: float):
 func do_character_move(character_body: CharacterBody2D):
 	character_body.velocity = velocity
 	character_body.move_and_slide()
-	
-func do_area_move(area: Area2D):
-	area.position = area.position + velocity
+
+func do_rigid_body_move(rigid_body: RigidBody2D):
+	rigid_body.velocity = velocity
+	rigid_body.move_and_slide()
 
 func apply_fly(direction: Vector2) -> void:
 	velocity = direction * fly_speed
