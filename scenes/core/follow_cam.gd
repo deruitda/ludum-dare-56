@@ -6,4 +6,3 @@ extends Camera2D
 
 func _process(delta: float) -> void:
 	global_position.y = lerp(global_position.y, follow_target.global_position.y + cam_y_offset, weight)
-	print(global_position)

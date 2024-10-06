@@ -29,15 +29,38 @@ func _process(delta: float) -> void:
 	if is_dead:
 		PlayerManager.remove_current_player()
 		queue_free()
-		
+	
+	var left_right_input = get_left_right_input()
+	#is looking right
+	if is_on_wall() or is_wall_sliding:
+		if get_wall_normal().x < 0:
+			print("go left")
+			lower_body_sprite.flip_h = true
+		else:
+			print ("go right")
+			lower_body_sprite.flip_h = false
+	else:
+		if left_right_input == Vector2.LEFT:
+			print ("go not on wall left")
+			lower_body_sprite.flip_h = true
+		elif left_right_input == Vector2.RIGHT:
+			print ("go not on wall right")
+			
+			lower_body_sprite.flip_h = false
+	
 	if is_running and lower_body_sprite.animation != "running":
 		print("is running")
 		lower_body_sprite.play("running")
 	elif is_idle and lower_body_sprite.animation != "idle":
-		print("is idle")
+		print("idle")
 		
 		lower_body_sprite.play("idle")
-	pass
+	elif is_wall_sliding and lower_body_sprite.animation != "wall_sliding":
+		print("wall sliding")
+		lower_body_sprite.play("wall_sliding")
+	elif is_in_air and not is_on_wall() and lower_body_sprite.animation != "jump":
+		print("jump")
+		lower_body_sprite.play("jump")
 	
 
 func _physics_process(delta: float) -> void:
@@ -49,16 +72,13 @@ func _physics_process(delta: float) -> void:
 	
 	set_actions(delta)
 	set_states()
-	
-	var left_right_input = Vector2.ZERO
-	if direction_input > 0:
-		left_right_input = Vector2.RIGHT
-	elif direction_input < 0:
-		left_right_input = Vector2.LEFT
+	var left_right_input = get_left_right_input()
 	
 	
 	if not is_on_floor():
 		velocity_component.apply_gravity(delta)
+	elif not is_wall_jumping and not is_floor_jumping:
+		velocity_component.apply_is_on_ground()
 	
 	if is_wall_jumping:
 		var wall_jumping_direction = Vector2.LEFT
@@ -81,11 +101,6 @@ func _physics_process(delta: float) -> void:
 	
 	velocity_component.do_character_move(self)
 	
-	#is looking right
-	if left_right_input == Vector2.LEFT:
-		lower_body_sprite.flip_h = true
-	elif left_right_input == Vector2.RIGHT:
-		lower_body_sprite.flip_h = false
 
 
 func get_is_pointing_to_wall():
@@ -133,6 +148,14 @@ func set_states() -> void:
 	else:
 		is_idle = false
 
+func get_left_right_input() -> Vector2: 
+	var left_right_input = Vector2.ZERO
+	if direction_input > 0:
+		left_right_input = Vector2.RIGHT
+	elif direction_input < 0:
+		left_right_input = Vector2.LEFT
+	
+	return left_right_input
 
 func _on_died() -> void:
 	print("you died")

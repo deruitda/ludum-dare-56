@@ -52,6 +52,9 @@ func apply_in_air_movement(direction: float, delta: float) -> void:
 func apply_in_air_idle(delta: float):
 	velocity.x = move_toward(velocity.x, 0, in_air_resistance * delta)
 
+func apply_is_on_ground() -> void:
+	velocity.y = 0
+
 func apply_idle(delta: float):
 	velocity.x = move_toward(velocity.x, 0, floor_resistance * delta)
 
