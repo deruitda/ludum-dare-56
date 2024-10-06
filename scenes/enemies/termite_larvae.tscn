@@ -1,12 +1,13 @@
-[gd_scene load_steps=26 format=3 uid="uid://nuahsfm77qjp"]
+[gd_scene load_steps=28 format=3 uid="uid://nuahsfm77qjp"]
 
 [ext_resource type="PackedScene" uid="uid://dqgxt6ms0uyu8" path="res://scenes/entity_composition/health_component.tscn" id="1_38jc2"]
 [ext_resource type="Script" path="res://scenes/enemies/termite_larvae.gd" id="1_l1k41"]
 [ext_resource type="PackedScene" uid="uid://can23048py54m" path="res://scenes/entity_composition/hurt_box.tscn" id="3_dfm05"]
 [ext_resource type="Script" path="res://scenes/entity_composition/velocity_component.gd" id="5_b7uhe"]
 [ext_resource type="Texture2D" uid="uid://wc4vc15cxwf4" path="res://assets/sprites/termite-larvae/termite-larvae-crawl-sheet.png" id="6_0w3vn"]
-[ext_resource type="PackedScene" uid="uid://w8btqivawm2i" path="res://scenes/entity_composition/enemy_walk_direction.tscn" id="7_nyc36"]
 [ext_resource type="Texture2D" uid="uid://cedkfkhy1lcit" path="res://assets/sprites/termite-larvae/termite-larvae-squish-sheet.png" id="6_3b56k"]
+[ext_resource type="PackedScene" uid="uid://clwybwx42qmpu" path="res://scenes/core/despawner.tscn" id="7_dq5ch"]
+[ext_resource type="PackedScene" uid="uid://w8btqivawm2i" path="res://scenes/entity_composition/enemy_walk_direction.tscn" id="7_nyc36"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bqby1"]
 size = Vector2(54, 21)
@@ -173,6 +174,8 @@ sprite_frames = SubResource("SpriteFrames_4wioa")
 animation = &"death"
 autoplay = "crawl"
 
+[node name="Despawner" parent="." instance=ExtResource("7_dq5ch")]
+
 [node name="EnemyWalkDirection" parent="." instance=ExtResource("7_nyc36")]
 
 [node name="DefaultToggleDirectionTimer" type="Timer" parent="EnemyWalkDirection"]
@@ -180,4 +183,5 @@ wait_time = 8.0
 autostart = true
 
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]
+[connection signal="despawn" from="Despawner" to="." method="finish_death"]
 [connection signal="timeout" from="EnemyWalkDirection/DefaultToggleDirectionTimer" to="." method="_on_toggle_direction_timer_timeout"]
