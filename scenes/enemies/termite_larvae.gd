@@ -62,3 +62,7 @@ func finish_death() -> void:
 func _on_toggle_direction_timer_timeout() -> void:
 	enemy_walk_direction.toggle_current_direction()
 	pass # Replace with function body.
+
+
+func _on_edge_detector_on_hanging_off_ground() -> void:
+	enemy_walk_direction.toggle_current_direction()

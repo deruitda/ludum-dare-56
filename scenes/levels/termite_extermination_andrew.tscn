@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bbumsja2jwtyt" path="res://scenes/enemies/termite_alate.tscn" id="7_xgg5m"]
 
 [node name="TermiteExtermination" type="Node2D"]
+position = Vector2(51, -117)
 
 [node name="FollowCam" parent="." node_paths=PackedStringArray("follow_target") instance=ExtResource("1_o2pw8")]
 position = Vector2(794, -448)
