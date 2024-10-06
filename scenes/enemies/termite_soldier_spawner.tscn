@@ -68,7 +68,7 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="TermiteLarvaeSpawner" type="Node2D"]
+[node name="TermiteSoldierSpawner" type="Node2D"]
 script = ExtResource("1_2csjt")
 
 [node name="Spawner" parent="." node_paths=PackedStringArray("timer", "animSprite") instance=ExtResource("1_fpvfl")]

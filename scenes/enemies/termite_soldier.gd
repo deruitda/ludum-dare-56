@@ -11,29 +11,24 @@ class_name TermiteSoldier
 @export var wall_is_right: bool = true
 @export var start_walking_up: bool = true
 
-@onready var _rage_speed: float = 600.0
-@onready var _walk_speed: float = 300.0
+@onready var _rage_speed: float = 500.0
+@onready var _walk_speed: float = 200.0
 
 @onready var is_dying: bool = false
 
 func _ready() -> void:
 	if start_walking_up:
-		enemy_walk_direction.set_current_direction(Vector2.UP)
+		enemy_walk_direction.set_current_direction(Vector2.LEFT)
 	else:
-		enemy_walk_direction.set_current_direction(Vector2.DOWN)
-	
-	rotation = deg_to_rad(-90)
-	if not wall_is_right:
-		animated_sprite_2d.flip_v = true
+		enemy_walk_direction.set_current_direction(Vector2.RIGHT)
 	
 	
 func _process(delta: float) -> void:
-	if enemy_walk_direction.current_direction == Vector2.ZERO:
-		set_current_direction()
-	elif enemy_walk_direction.current_direction == Vector2.UP:
+	
+	if enemy_walk_direction.current_direction == Vector2.RIGHT:
 		animated_sprite_2d.flip_h = false
 		rage_ray.rotation = deg_to_rad(-90)
-	elif enemy_walk_direction.current_direction == Vector2.DOWN:
+	elif enemy_walk_direction.current_direction == Vector2.LEFT:
 		animated_sprite_2d.flip_h = true
 		rage_ray.rotation = deg_to_rad(90)
 	
@@ -46,9 +41,12 @@ func _process(delta: float) -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
+	
 	if is_dying:
+		velocity_component.set_rotation(0.0)
 		velocity_component.apply_gravity(delta)
 	else:
+		velocity_component.set_rotation(rotation)
 		handle_apply_movement(delta)
 	velocity_component.do_character_move(self)
 	
@@ -79,17 +77,17 @@ func handle_apply_movement(delta: float) -> void:
 		is_raging = false
 		velocity_component.max_speed = _walk_speed
 	
-	if is_on_wall() and (is_on_ceiling() || is_on_floor()):
-		enemy_walk_direction.toggle_current_direction()
 	
-	if is_on_wall():
-		velocity_component.apply_move(enemy_walk_direction.current_direction, delta)
-	elif not is_on_wall():
-		var wall_direction = Vector2.RIGHT
-		if not wall_is_right:
-			wall_direction = Vector2.LEFT
-		velocity_component.apply_move(wall_direction, delta)
-
+	if not is_on_floor() and not is_on_wall() and not is_on_ceiling():
+		velocity_component.apply_gravity(delta)
+		
+	if (is_on_wall() and is_on_floor()) || (is_on_wall() and is_on_ceiling()):
+		enemy_walk_direction.toggle_current_direction()
+		toggle_direction_timer.start()
+	
+	velocity_component.apply_move(enemy_walk_direction.current_direction, delta)
+	velocity_component.do_character_move(self)
+	
 func _on_health_component_died() -> void:
 	start_death()
 	pass # Replace with function body.

@@ -18,7 +18,7 @@ func _on_spawn_timer_timeout() -> void:
 func _on_anim_finished() -> void:
 	print(animSprite.animation)
 	if animSprite.animation == "spawn":
-		SignalBus.spawn_enemy.emit(scene, global_position)
+		SignalBus.spawn_enemy.emit(scene, global_position, global_rotation)
 		animSprite.play("idle")
 
 func is_player_in_range() -> bool:

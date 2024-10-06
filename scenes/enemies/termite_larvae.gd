@@ -38,12 +38,8 @@ func _physics_process(delta: float) -> void:
 	
 	pass
 func set_current_direction() -> void:
-	
 	if is_on_floor() or is_on_ceiling():
 		enemy_walk_direction.current_direction = Vector2.LEFT
-	elif is_on_wall():
-		enemy_walk_direction.current_direction = Vector2.UP
-	pass # Replace with function body.
 	
 func _on_died() -> void:
 	start_death()
@@ -56,8 +52,6 @@ func start_death() -> void:
 	
 func finish_death() -> void:
 	queue_free()
-
-
 
 func _on_toggle_direction_timer_timeout() -> void:
 	enemy_walk_direction.toggle_current_direction()
