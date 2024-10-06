@@ -30,9 +30,12 @@ func _process(delta: float) -> void:
 		PlayerManager.remove_current_player()
 		queue_free()
 		
-	if is_running:
+	if is_running and lower_body_sprite.animation != "running":
+		print("is running")
 		lower_body_sprite.play("running")
-	else:
+	elif is_idle and lower_body_sprite.animation != "idle":
+		print("is idle")
+		
 		lower_body_sprite.play("idle")
 	pass
 	
@@ -56,23 +59,24 @@ func _physics_process(delta: float) -> void:
 	
 	if not is_on_floor():
 		velocity_component.apply_gravity(delta)
+	
 	if is_wall_jumping:
 		var wall_jumping_direction = Vector2.LEFT
 		if get_wall_normal().x > 0:
 			wall_jumping_direction = Vector2.RIGHT
 		velocity_component.apply_wall_jump(wall_jumping_direction)
-	if is_floor_jumping:
+	elif is_floor_jumping:
 		#is floor jumping
 		velocity_component.apply_floor_jump()
-	if is_wall_sliding:
+	elif is_wall_sliding:
 		#is wall sliding
 		velocity_component.apply_wall_slide()
-	if is_running:
+	elif is_running:
 		velocity_component.apply_run(left_right_input)
-	if is_in_air:
+	elif is_in_air:
 		velocity_component.apply_in_air_movement(direction_input, delta)
 	
-	if is_idle:
+	elif is_idle:
 		velocity_component.apply_idle(delta)
 	
 	velocity_component.do_character_move(self)
