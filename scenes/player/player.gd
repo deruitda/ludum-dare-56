@@ -79,6 +79,8 @@ func _physics_process(delta: float) -> void:
 		velocity_component.apply_gravity(delta)
 	elif not is_wall_jumping and not is_floor_jumping:
 		velocity_component.apply_is_on_ground()
+	if is_on_ceiling():
+		velocity_component.apply_is_on_cieling()
 	
 	if is_wall_jumping:
 		var wall_jumping_direction = Vector2.LEFT

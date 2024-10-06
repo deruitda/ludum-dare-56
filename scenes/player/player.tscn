@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://dtxb5812xnpp2" path="res://assets/sprites/rex/rex-lower-wall.png" id="10_jr1rn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jr7co"]
-size = Vector2(28, 64)
+size = Vector2(23, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_otroh"]
 atlas = ExtResource("7_3q747")
@@ -378,7 +378,7 @@ lower_body_sprite = NodePath("Body/LowerBody")
 velocity_component = NodePath("VelocityComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 0)
+position = Vector2(-3.5, 0)
 shape = SubResource("RectangleShape2D_jr7co")
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_e2fg7")]
@@ -394,7 +394,7 @@ script = ExtResource("7_6ogm0")
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2(-1, 0)
+position = Vector2(-3.5, 0)
 shape = ExtResource("2_n3d0r")
 
 [node name="Body" type="Node2D" parent="."]

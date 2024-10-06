@@ -70,3 +70,6 @@ func apply_fly(direction: Vector2) -> void:
 
 func apply_gravity(delta: float) -> void:
 	velocity.y += gravity * delta
+	
+func apply_is_on_cieling() -> void:
+	velocity.y = 0
