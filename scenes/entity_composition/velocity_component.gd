@@ -3,8 +3,9 @@ class_name VelocityComponent
 
 @export var gravity: float = 2000.0 
 @export var max_speed: float = 1000.0
+@export var running_acceleration = 3000.0
 @export var fly_speed: float = 300.0
-@export var in_air_acceleration: float = 1800.0
+@export var in_air_acceleration: float = 3000.0
 @export var in_air_resistance: float = 300.0
 @export var jump_velocity: float = 1200.0
 @export var wall_jump_velocity: float = 1500.0
@@ -39,9 +40,9 @@ func apply_wall_slide() -> void:
 	velocity.y = min(velocity.y, wall_slide_speed)
 	velocity.x = 0
 
-func apply_run(direction: Vector2) -> void:
+func apply_run(direction: Vector2, delta: float) -> void:
 	if direction == Vector2.RIGHT || direction == Vector2.LEFT:
-		velocity.x = direction.x * max_speed
+		velocity.x = clamp(velocity.x + (direction.x * running_acceleration * delta), -max_speed, max_speed)
 	else:
 		assert("Direction should be either left or right when wall jumping")
 

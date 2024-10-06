@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://cofh4isrtksv4"]
+[gd_scene load_steps=53 format=3 uid="uid://cofh4isrtksv4"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_y4k5w"]
 [ext_resource type="Shape2D" uid="uid://cc3bsg65yxgm0" path="res://scenes/player/player_shape.tres" id="2_n3d0r"]
@@ -67,26 +67,6 @@ animations = [{
 [sub_resource type="AtlasTexture" id="AtlasTexture_812st"]
 atlas = ExtResource("8_7mji7")
 region = Rect2(0, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yc7mc"]
-atlas = ExtResource("8_7mji7")
-region = Rect2(64, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dbggt"]
-atlas = ExtResource("8_7mji7")
-region = Rect2(128, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_eshj7"]
-atlas = ExtResource("8_7mji7")
-region = Rect2(192, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0sjdv"]
-atlas = ExtResource("8_7mji7")
-region = Rect2(256, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ehl2h"]
-atlas = ExtResource("8_7mji7")
-region = Rect2(320, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sm1xg"]
 atlas = ExtResource("7_p20d2")
@@ -221,21 +201,6 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_812st")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yc7mc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dbggt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_eshj7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0sjdv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ehl2h")
 }],
 "loop": true,
 "name": &"idle",
@@ -381,7 +346,7 @@ autoplay = "idle"
 
 [node name="LowerBody" type="AnimatedSprite2D" parent="Body"]
 sprite_frames = SubResource("SpriteFrames_n4ibw")
-animation = &"running"
+animation = &"idle"
 autoplay = "running"
 
 [node name="GunPivot" type="Node2D" parent="." node_paths=PackedStringArray("gun", "upper_body_sprite")]

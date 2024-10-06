@@ -72,7 +72,7 @@ func _physics_process(delta: float) -> void:
 		#is wall sliding
 		velocity_component.apply_wall_slide()
 	elif is_running:
-		velocity_component.apply_run(left_right_input)
+		velocity_component.apply_run(left_right_input, delta)
 	elif is_in_air:
 		velocity_component.apply_in_air_movement(direction_input, delta)
 	
