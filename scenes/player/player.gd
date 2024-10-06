@@ -1,6 +1,9 @@
 extends CharacterBody2D
 class_name Player
 
+@onready var gun_pivot: GunPivot = $GunPivot
+@onready var gun: Gun = $GunPivot/Gun
+
 #inputs
 @onready var direction_input: float = 0.0
 
@@ -28,7 +31,7 @@ func _process(delta: float) -> void:
 	if is_dead:
 		PlayerManager.remove_current_player()
 		queue_free()
-		
+	
 	handle_sprite_orientation()
 	handle_lower_body_sprite_animation()
 
@@ -38,7 +41,9 @@ func _physics_process(delta: float) -> void:
 		return
 	
 	direction_input = Input.get_axis("move_left", "move_right")
-	
+	gun_pivot.rotate_toward_position(get_global_mouse_position())
+	if Input.is_action_pressed("shoot"):
+		gun.shoot_bullet()
 	
 	set_actions(delta)
 	set_states()
@@ -67,7 +72,6 @@ func _physics_process(delta: float) -> void:
 		velocity_component.apply_move(left_right_input, delta)
 	elif is_in_air:
 		velocity_component.apply_in_air_movement(direction_input, delta)
-	
 	elif is_idle:
 		velocity_component.apply_idle(delta)
 	
