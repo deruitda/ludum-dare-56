@@ -16,7 +16,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if enemy_walk_direction.current_direction == Vector2.ZERO:
 		set_current_direction()
-	
 	elif enemy_walk_direction.current_direction == Vector2.UP:
 		animated_sprite_2d.flip_h = false
 	elif enemy_walk_direction.current_direction == Vector2.DOWN:
@@ -34,11 +33,6 @@ func _physics_process(delta: float) -> void:
 		if enemy_walk_direction.current_direction == Vector2.DOWN:
 			wall_direction = Vector2.LEFT
 		velocity_component.apply_move(wall_direction, delta)
-		print('not on wall')
-		
-	
-	else: 
-		print("nope")
 	velocity_component.do_character_move(self)
 	
 	pass
