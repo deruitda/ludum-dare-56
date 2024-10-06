@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://nuahsfm77qjp"]
+[gd_scene load_steps=30 format=3 uid="uid://nuahsfm77qjp"]
 
 [ext_resource type="PackedScene" uid="uid://dqgxt6ms0uyu8" path="res://scenes/entity_composition/health_component.tscn" id="1_38jc2"]
 [ext_resource type="Script" path="res://scenes/enemies/termite_larvae.gd" id="1_l1k41"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://clwybwx42qmpu" path="res://scenes/core/despawner.tscn" id="7_dq5ch"]
 [ext_resource type="PackedScene" uid="uid://w8btqivawm2i" path="res://scenes/entity_composition/enemy_walk_direction.tscn" id="7_nyc36"]
 [ext_resource type="PackedScene" uid="uid://c1rh7amfumorl" path="res://scenes/core/bug_audio.tscn" id="9_llf8h"]
+[ext_resource type="Script" path="res://scenes/entity_composition/edge_detector.gd" id="10_wsf42"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bqby1"]
 size = Vector2(54, 21)
@@ -185,6 +186,22 @@ autostart = true
 
 [node name="BugAudio" parent="." instance=ExtResource("9_llf8h")]
 
+[node name="EdgeDetector" type="Node2D" parent="." node_paths=PackedStringArray("left_ray_cast", "right_ray_cast")]
+script = ExtResource("10_wsf42")
+left_ray_cast = NodePath("LeftRayCast")
+right_ray_cast = NodePath("RightRayCast")
+
+[node name="LeftRayCast" type="RayCast2D" parent="EdgeDetector"]
+position = Vector2(-32, 10)
+collision_mask = 262
+collide_with_areas = true
+
+[node name="RightRayCast" type="RayCast2D" parent="EdgeDetector"]
+position = Vector2(21, 12)
+collision_mask = 262
+collide_with_areas = true
+
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]
 [connection signal="despawn" from="Despawner" to="." method="finish_death"]
 [connection signal="timeout" from="EnemyWalkDirection/DefaultToggleDirectionTimer" to="." method="_on_toggle_direction_timer_timeout"]
+[connection signal="on_hanging_off_ground" from="EdgeDetector" to="." method="_on_edge_detector_on_hanging_off_ground"]

@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bbumsja2jwtyt" path="res://scenes/enemies/termite_alate.tscn" id="7_xgg5m"]
 
 [node name="TermiteExtermination" type="Node2D"]
+position = Vector2(51, -117)
 
 [node name="FollowCam" parent="." node_paths=PackedStringArray("follow_target") instance=ExtResource("1_o2pw8")]
 position = Vector2(794, -448)
@@ -36,7 +37,7 @@ position = Vector2(1511, -325)
 rotation = -1.5708
 
 [node name="TermiteSoldier2" parent="." instance=ExtResource("6_0qe46")]
-position = Vector2(84, -455)
+position = Vector2(301, -480)
 rotation = -1.5708
 wall_is_right = false
 
