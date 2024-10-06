@@ -19,6 +19,7 @@ func _physics_process(delta: float) -> void:
 
 func start_death() -> void:
 	is_dead = true
+	SignalBus.enemy_died.emit("alate")
 	gun.disable()
 	animSprite.animation_finished.connect(anim_finished)
 	animSprite.play("death")
