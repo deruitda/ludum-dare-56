@@ -31,9 +31,10 @@ func _process(delta: float) -> void:
 	if is_dead:
 		PlayerManager.remove_current_player()
 		queue_free()
-	
-	handle_sprite_orientation()
-	handle_lower_body_sprite_animation()
+	else:
+		
+		handle_sprite_orientation()
+		handle_lower_body_sprite_animation()
 
 
 func _physics_process(delta: float) -> void:
