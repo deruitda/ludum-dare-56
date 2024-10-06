@@ -101,7 +101,7 @@ func _physics_process(delta: float) -> void:
 	elif is_idle:
 		velocity_component.apply_idle(delta)
 	
-	velocity_component.do_move(self)
+	velocity_component.do_character_move(self)
 	
 
 
