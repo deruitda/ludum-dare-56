@@ -7,16 +7,20 @@ class_name TermiteSoldier
 @onready var toggle_direction_timer: Timer = $EnemyWalkDirection/ToggleDirectionTimer
 
 func _ready() -> void:
-	enemy_walk_direction.set_current_direction(Vector2.UP)
+	if rotation == 90:
+		enemy_walk_direction.set_current_direction(Vector2.DOWN)
+	else:
+		enemy_walk_direction.set_current_direction(Vector2.UP)
+		
 	
 func _process(delta: float) -> void:
 	if enemy_walk_direction.current_direction == Vector2.ZERO:
 		set_current_direction()
 	
 	elif enemy_walk_direction.current_direction == Vector2.UP:
-		animated_sprite_2d.flip_h = true
-	elif enemy_walk_direction.current_direction == Vector2.DOWN:
 		animated_sprite_2d.flip_h = false
+	elif enemy_walk_direction.current_direction == Vector2.DOWN:
+		animated_sprite_2d.flip_h = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:

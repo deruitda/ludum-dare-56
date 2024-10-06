@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=4 uid="uid://csqtrpv7g20vc"]
+[gd_scene load_steps=9 format=4 uid="uid://csqtrpv7g20vc"]
 
 [ext_resource type="PackedScene" uid="uid://ck6yxuie4bs3n" path="res://scenes/core/follow_cam.tscn" id="1_o2pw8"]
 [ext_resource type="PackedScene" uid="uid://cofh4isrtksv4" path="res://scenes/player/player.tscn" id="2_lvxv5"]
 [ext_resource type="Texture2D" uid="uid://cyfxjev184uv2" path="res://assets/sprites/tiles/tile-sprite-sheet.png" id="3_cxror"]
 [ext_resource type="PackedScene" uid="uid://c3g5a3xfhtd4p" path="res://scenes/enemies/termite_larvae_spawner.tscn" id="4_86hrt"]
 [ext_resource type="PackedScene" uid="uid://nuahsfm77qjp" path="res://scenes/enemies/termite_larvae.tscn" id="5_2jaao"]
+[ext_resource type="PackedScene" uid="uid://peddybhwcvq6" path="res://scenes/enemies/termite_soldier.tscn" id="6_0qe46"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_08vl4"]
 texture = ExtResource("3_cxror")
@@ -56,3 +57,7 @@ position = Vector2(828, -95)
 
 [node name="TermiteLarvae" parent="." instance=ExtResource("5_2jaao")]
 position = Vector2(1023, -81)
+
+[node name="TermiteSoldier" parent="." instance=ExtResource("6_0qe46")]
+position = Vector2(1511, -325)
+rotation = -1.5708
