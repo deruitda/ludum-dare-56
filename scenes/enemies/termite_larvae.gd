@@ -27,10 +27,7 @@ func _physics_process(delta: float) -> void:
 		enemy_walk_direction.toggle_current_direction()
 		toggle_direction_timer.start()
 	
-	if enemy_walk_direction.is_running():
-		velocity_component.apply_run(enemy_walk_direction.current_direction, delta)
-	elif not enemy_walk_direction.is_running():
-		velocity_component.apply_climb(enemy_walk_direction.current_direction, delta)
+	velocity_component.apply_move(enemy_walk_direction.current_direction, delta)
 	velocity_component.do_character_move(self)
 	
 	pass
@@ -41,6 +38,7 @@ func set_current_direction() -> void:
 	elif is_on_wall():
 		enemy_walk_direction.current_direction = Vector2.UP
 	pass # Replace with function body.
+	
 func _on_died() -> void:
 	queue_free()
 

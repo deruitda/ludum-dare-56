@@ -14,24 +14,22 @@ func _process(delta: float) -> void:
 		set_current_direction()
 	
 	elif enemy_walk_direction.current_direction == Vector2.UP:
-		rotation = deg_to_rad(-90)
+		animated_sprite_2d.flip_h = true
 	elif enemy_walk_direction.current_direction == Vector2.DOWN:
-		rotation = deg_to_rad(90)
-	
+		animated_sprite_2d.flip_h = false
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	if is_on_wall() and (is_on_ceiling() || is_on_floor()):
 		enemy_walk_direction.toggle_current_direction()
 	elif is_on_wall():
-		velocity_component.apply_climb(enemy_walk_direction.current_direction, delta)
+		velocity_component.apply_move(enemy_walk_direction.current_direction, delta)
 	elif not is_on_wall():
 		var wall_direction = Vector2.RIGHT
 		if enemy_walk_direction.current_direction == Vector2.DOWN:
 			wall_direction = Vector2.LEFT
-		velocity_component.apply_run(wall_direction, delta)
-		print("tryna walk. wall normal: " + str(get_wall_normal()))
-	else:
-		print("NO")
+		velocity_component.apply_move(wall_direction, delta)
+	
 	
 	velocity_component.do_character_move(self)
 	
