@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var velocity_component: VelocityComponent
 @export var path_finder: PathFinder
 @export var gun: Gun
+@export var gun_pivot: GunPivot
 @onready var animSprite = $AnimatedSprite2D
 	
 func _physics_process(delta: float) -> void:
@@ -39,6 +40,7 @@ func _on_health_component_died() -> void:
 func _on_shooting_timer_timeout() -> void:
 	if PlayerManager.current_player:
 		var direction = path_finder.get_direction_to_node(PlayerManager.current_player)
-		gun.shoot_bullet(direction)
+		gun_pivot.rotate_toward_direction(direction)
+		gun.shoot_bullet()
 		#animSprite.play("attack") -- this animation needs to be fixed so that the insect still flaps its wings
 	pass # Replace with function body.

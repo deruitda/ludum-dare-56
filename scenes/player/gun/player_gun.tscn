@@ -1,8 +1,8 @@
 [gd_scene load_steps=21 format=3 uid="uid://br7b7ao0pn4rr"]
 
-[ext_resource type="Script" path="res://scenes/gun/gun.gd" id="1_tv8xg"]
-[ext_resource type="PackedScene" uid="uid://fvifpd00chk8" path="res://scenes/gun/bullet.tscn" id="2_yj2hu"]
-[ext_resource type="PackedScene" uid="uid://b7ev8rk7l185t" path="res://scenes/gun/muzzle.tscn" id="4_5fmvv"]
+[ext_resource type="Script" path="res://scenes/player/gun/gun.gd" id="1_tv8xg"]
+[ext_resource type="PackedScene" uid="uid://fvifpd00chk8" path="res://scenes/player/gun/bullet.tscn" id="2_yj2hu"]
+[ext_resource type="PackedScene" uid="uid://b7ev8rk7l185t" path="res://scenes/player/gun/muzzle.tscn" id="4_5fmvv"]
 [ext_resource type="Texture2D" uid="uid://c1smsdcvkmp4f" path="res://assets/sprites/gun/gun-sheet.png" id="4_jqxav"]
 [ext_resource type="Texture2D" uid="uid://cojhnl06ykq5s" path="res://assets/sprites/gun/gun-shooting-Sheet.png" id="5_cy42n"]
 [ext_resource type="AudioStream" uid="uid://djpo4tm7cjpox" path="res://assets/Audio/SFX/GunPopStereo.wav" id="6_ib0q8"]
@@ -111,10 +111,13 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Gun" type="Node2D" node_paths=PackedStringArray("muzzle")]
+[node name="PlayerGun" type="Node2D" node_paths=PackedStringArray("muzzle", "shooting_cooldown", "animated_sprite_2d", "gun_shooting_audio")]
 script = ExtResource("1_tv8xg")
 muzzle = NodePath("Muzzle")
 bullet_packed_scene = ExtResource("2_yj2hu")
+shooting_cooldown = NodePath("ShootingCooldown")
+animated_sprite_2d = NodePath("AnimatedSprite2D")
+gun_shooting_audio = NodePath("AudioStreamPlayer2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(13, 2)

@@ -1,8 +1,8 @@
 extends CharacterBody2D
 class_name Player
 
-@onready var gun_pivot: GunPivot = $GunPivot
-@onready var gun: Gun = $GunPivot/Gun
+@export var gun_pivot: GunPivot
+@export var gun: Gun 
 
 #inputs
 @onready var direction_input: float = 0.0

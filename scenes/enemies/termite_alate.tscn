@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bbumsja2jwtyt"]
+[gd_scene load_steps=35 format=3 uid="uid://bbumsja2jwtyt"]
 
 [ext_resource type="Script" path="res://scenes/enemies/termite_alate.gd" id="1_p2glw"]
 [ext_resource type="Shape2D" uid="uid://bvv6wfe5a5vmo" path="res://scenes/enemies/termite_alate_shape.tres" id="2_4kggq"]
@@ -6,11 +6,10 @@
 [ext_resource type="Script" path="res://scenes/entity_composition/hurt_box.gd" id="3_13q4d"]
 [ext_resource type="Script" path="res://scenes/entity_composition/health_component.gd" id="4_g3oxt"]
 [ext_resource type="Script" path="res://scenes/entity_composition/path_finder.gd" id="7_nwrww"]
-[ext_resource type="Script" path="res://scenes/gun/muzzle.gd" id="8_5fx63"]
-[ext_resource type="Script" path="res://scenes/gun/gun.gd" id="8_vhxxv"]
-[ext_resource type="PackedScene" uid="uid://bx84510ke5gvq" path="res://scenes/bullet_emitter/bullet_emitter_bullet.tscn" id="9_y8w60"]
 [ext_resource type="Texture2D" uid="uid://xhesh61ymbpt" path="res://assets/sprites/termite-alate/termite-alate-attack.png" id="10_asot3"]
+[ext_resource type="Script" path="res://scenes/player/gun/gun_pivot.gd" id="10_ce1cc"]
 [ext_resource type="Texture2D" uid="uid://vii0t4fmvtyy" path="res://assets/sprites/termite-alate/termite-alate-flying.png" id="10_jueev"]
+[ext_resource type="PackedScene" uid="uid://peqv0lhlucot" path="res://scenes/enemies/termite_gun.tscn" id="11_e5u8d"]
 [ext_resource type="Texture2D" uid="uid://d2oftqmh87xeq" path="res://assets/sprites/termite-alate/termite-alate-squish.png" id="11_qp25x"]
 [ext_resource type="PackedScene" uid="uid://clwybwx42qmpu" path="res://scenes/core/despawner.tscn" id="13_5uqx0"]
 
@@ -179,13 +178,13 @@ animations = [{
 "speed": 15.0
 }]
 
-[node name="TermiteAlate" type="CharacterBody2D" node_paths=PackedStringArray("velocity_component", "path_finder", "gun")]
+[node name="TermiteAlate" type="CharacterBody2D" node_paths=PackedStringArray("velocity_component", "path_finder", "gun_pivot")]
 collision_layer = 8
-collision_mask = 15
+collision_mask = 6
 script = ExtResource("1_p2glw")
 velocity_component = NodePath("VelocityComponent")
 path_finder = NodePath("PathFinder")
-gun = NodePath("Gun")
+gun_pivot = NodePath("GunPivot")
 
 [node name="VelocityComponent" parent="." instance=ExtResource("2_kiu7a")]
 gravity = 1000.0
@@ -209,26 +208,21 @@ script = ExtResource("4_g3oxt")
 [node name="PathFinder" type="Node2D" parent="."]
 script = ExtResource("7_nwrww")
 
-[node name="Gun" type="Node2D" parent="." node_paths=PackedStringArray("muzzle")]
-script = ExtResource("8_vhxxv")
-muzzle = NodePath("Muzzle")
-bullet_packed_scene = ExtResource("9_y8w60")
-
-[node name="Muzzle" type="Node2D" parent="Gun"]
-script = ExtResource("8_5fx63")
-
-[node name="ShootingTimer" type="Timer" parent="Gun/Muzzle"]
-autostart = true
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Gun"]
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_17uiq")
 animation = &"idle"
 autoplay = "idle"
 
+[node name="GunPivot" type="Node2D" parent="."]
+script = ExtResource("10_ce1cc")
+
+[node name="TermiteGun" parent="GunPivot" node_paths=PackedStringArray("shooting_cooldown") instance=ExtResource("11_e5u8d")]
+shooting_cooldown = NodePath("GunCooldown")
+
+[node name="GunCooldown" type="Timer" parent="GunPivot/TermiteGun"]
+
 [node name="Despawner" parent="." instance=ExtResource("13_5uqx0")]
+position = Vector2(-1, 24)
 
 [connection signal="area_entered" from="HurtBox" to="HurtBox" method="_on_area_entered"]
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
-[connection signal="timeout" from="Gun/Muzzle/ShootingTimer" to="." method="_on_shooting_timer_timeout"]
