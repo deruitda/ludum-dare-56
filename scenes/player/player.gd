@@ -34,32 +34,24 @@ func _process(delta: float) -> void:
 	#is looking right
 	if is_on_wall() or is_wall_sliding:
 		if get_wall_normal().x < 0:
-			print("go left")
 			lower_body_sprite.flip_h = true
 		else:
-			print ("go right")
 			lower_body_sprite.flip_h = false
 	else:
 		if left_right_input == Vector2.LEFT:
-			print ("go not on wall left")
 			lower_body_sprite.flip_h = true
 		elif left_right_input == Vector2.RIGHT:
-			print ("go not on wall right")
 			
 			lower_body_sprite.flip_h = false
 	
 	if is_running and lower_body_sprite.animation != "running":
-		print("is running")
 		lower_body_sprite.play("running")
 	elif is_idle and lower_body_sprite.animation != "idle":
-		print("idle")
 		
 		lower_body_sprite.play("idle")
 	elif is_wall_sliding and lower_body_sprite.animation != "wall_sliding":
-		print("wall sliding")
 		lower_body_sprite.play("wall_sliding")
 	elif is_in_air and not is_on_wall() and lower_body_sprite.animation != "jump":
-		print("jump")
 		lower_body_sprite.play("jump")
 	
 

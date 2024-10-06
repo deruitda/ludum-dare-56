@@ -6,7 +6,6 @@ func _ready() -> void:
 	$SpawnTimer.timeout.connect(_on_larvae_timer_timeout)
 
 func _process(delta: float) -> void:
-	print($AnimatedSprite2D.animation)
 	if $AnimatedSprite2D.animation == "spawn" && $AnimatedSprite2D.is_playing() == false:
 		$AnimatedSprite2D.play("idle")
 

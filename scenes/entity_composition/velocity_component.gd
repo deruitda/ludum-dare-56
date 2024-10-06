@@ -12,6 +12,7 @@ class_name VelocityComponent
 @export var wall_slide_speed: float = 50.0
 @export var floor_resistance: float = 8000.0
 
+
 @onready var velocity: Vector2
 
 # Called when the node enters the scene tree for the first time.
@@ -61,6 +62,12 @@ func apply_idle(delta: float):
 func do_character_move(character_body: CharacterBody2D):
 	character_body.velocity = velocity
 	character_body.move_and_slide()
+
+func apply_climb(direction: Vector2, delta: float) -> void:
+	if direction == Vector2.UP || direction == Vector2.DOWN:
+		velocity.y = clamp(velocity.y + (direction.y * running_acceleration * delta), -max_speed, max_speed)
+	else:
+		assert("Direction should be either up or down when climbing")
 
 func do_rigid_body_move(rigid_body: RigidBody2D):
 	rigid_body.velocity = velocity

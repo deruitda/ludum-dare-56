@@ -3,9 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://dqgxt6ms0uyu8" path="res://scenes/entity_composition/health_component.tscn" id="1_38jc2"]
 [ext_resource type="Script" path="res://scenes/enemies/termite_larvae.gd" id="1_l1k41"]
 [ext_resource type="PackedScene" uid="uid://can23048py54m" path="res://scenes/entity_composition/hurt_box.tscn" id="3_dfm05"]
-[ext_resource type="PackedScene" uid="uid://b6xwdcloo2sce" path="res://scenes/bullet_emitter/bullet_emitter.tscn" id="5_6upq0"]
 [ext_resource type="Script" path="res://scenes/entity_composition/velocity_component.gd" id="5_b7uhe"]
 [ext_resource type="Texture2D" uid="uid://wc4vc15cxwf4" path="res://assets/sprites/termite-larvae/termite-larvae-crawl-sheet.png" id="6_0w3vn"]
+[ext_resource type="PackedScene" uid="uid://w8btqivawm2i" path="res://scenes/entity_composition/enemy_walk_direction.tscn" id="7_nyc36"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bqby1"]
 size = Vector2(64, 64)
@@ -77,7 +77,7 @@ platform_floor_layers = 4294967240
 platform_wall_layers = 6
 script = ExtResource("1_l1k41")
 velocity_component = NodePath("VelocityComponent")
-toggle_direction_timer = NodePath("VelocityComponent/DefaultToggleDirectionTimer")
+toggle_direction_timer = NodePath("EnemyWalkDirection/DefaultToggleDirectionTimer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_bqby1")
@@ -93,15 +93,10 @@ health_component = NodePath("../HealthComponent")
 visible = false
 shape = SubResource("RectangleShape2D_rdvc8")
 
-[node name="BulletEmitter" parent="." instance=ExtResource("5_6upq0")]
-
 [node name="VelocityComponent" type="Node" parent="."]
 script = ExtResource("5_b7uhe")
 max_speed = 200.0
 wall_slide_speed = 0.0
-
-[node name="DefaultToggleDirectionTimer" type="Timer" parent="VelocityComponent"]
-wait_time = 5.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_4wioa")
@@ -109,4 +104,12 @@ animation = &"crawl"
 autoplay = "crawl"
 frame_progress = 0.682746
 
+[node name="EnemyWalkDirection" parent="." node_paths=PackedStringArray("toggle_current_direction_timer") instance=ExtResource("7_nyc36")]
+toggle_current_direction_timer = NodePath("DefaultToggleDirectionTimer")
+
+[node name="DefaultToggleDirectionTimer" type="Timer" parent="EnemyWalkDirection"]
+wait_time = 8.0
+autostart = true
+
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]
+[connection signal="timeout" from="EnemyWalkDirection/DefaultToggleDirectionTimer" to="." method="_on_toggle_direction_timer_timeout"]
