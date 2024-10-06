@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://csqtrpv7g20vc"]
+[gd_scene load_steps=10 format=4 uid="uid://csqtrpv7g20vc"]
 
 [ext_resource type="PackedScene" uid="uid://ck6yxuie4bs3n" path="res://scenes/core/follow_cam.tscn" id="1_o2pw8"]
 [ext_resource type="PackedScene" uid="uid://cofh4isrtksv4" path="res://scenes/player/player.tscn" id="2_lvxv5"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c3g5a3xfhtd4p" path="res://scenes/enemies/termite_larvae_spawner.tscn" id="4_86hrt"]
 [ext_resource type="PackedScene" uid="uid://nuahsfm77qjp" path="res://scenes/enemies/termite_larvae.tscn" id="5_2jaao"]
 [ext_resource type="PackedScene" uid="uid://peddybhwcvq6" path="res://scenes/enemies/termite_soldier.tscn" id="6_0qe46"]
+[ext_resource type="PackedScene" uid="uid://bbumsja2jwtyt" path="res://scenes/enemies/termite_alate.tscn" id="7_xgg5m"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_08vl4"]
 texture = ExtResource("3_cxror")
@@ -66,3 +67,6 @@ rotation = -1.5708
 position = Vector2(84, -455)
 rotation = -1.5708
 wall_is_right = false
+
+[node name="TermiteAlate" parent="." instance=ExtResource("7_xgg5m")]
+position = Vector2(1230, -577)

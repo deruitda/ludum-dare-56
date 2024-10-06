@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+class_name TermiteAlate
 @onready var is_dead: bool = false
 @export var velocity_component: VelocityComponent
 @export var path_finder: PathFinder
@@ -15,6 +15,8 @@ func _physics_process(delta: float) -> void:
 	elif PlayerManager.current_player:
 		var direction = path_finder.get_direction_to_node(PlayerManager.current_player)
 		velocity_component.apply_move(direction, delta)
+		gun_pivot.rotate_toward_direction(direction)
+		gun.shoot_bullet()
 		
 	velocity_component.do_character_move(self)
 

@@ -178,17 +178,18 @@ animations = [{
 "speed": 15.0
 }]
 
-[node name="TermiteAlate" type="CharacterBody2D" node_paths=PackedStringArray("velocity_component", "path_finder", "gun_pivot")]
+[node name="TermiteAlate" type="CharacterBody2D" node_paths=PackedStringArray("velocity_component", "path_finder", "gun", "gun_pivot")]
 collision_layer = 8
 collision_mask = 6
 script = ExtResource("1_p2glw")
 velocity_component = NodePath("VelocityComponent")
 path_finder = NodePath("PathFinder")
+gun = NodePath("GunPivot/TermiteGun")
 gun_pivot = NodePath("GunPivot")
 
 [node name="VelocityComponent" parent="." instance=ExtResource("2_kiu7a")]
 gravity = 1000.0
-max_speed = 300.0
+max_speed = 50.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = ExtResource("2_4kggq")
@@ -213,13 +214,11 @@ sprite_frames = SubResource("SpriteFrames_17uiq")
 animation = &"idle"
 autoplay = "idle"
 
-[node name="GunPivot" type="Node2D" parent="."]
+[node name="GunPivot" type="Node2D" parent="." node_paths=PackedStringArray("gun")]
 script = ExtResource("10_ce1cc")
+gun = NodePath("TermiteGun")
 
-[node name="TermiteGun" parent="GunPivot" node_paths=PackedStringArray("shooting_cooldown") instance=ExtResource("11_e5u8d")]
-shooting_cooldown = NodePath("GunCooldown")
-
-[node name="GunCooldown" type="Timer" parent="GunPivot/TermiteGun"]
+[node name="TermiteGun" parent="GunPivot" instance=ExtResource("11_e5u8d")]
 
 [node name="Despawner" parent="." instance=ExtResource("13_5uqx0")]
 position = Vector2(-1, 24)
