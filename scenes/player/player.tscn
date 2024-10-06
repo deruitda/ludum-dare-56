@@ -116,6 +116,11 @@ animations = [{
 "loop": true,
 "name": &"idle",
 "speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"running",
+"speed": 5.0
 }]
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("lower_body_sprite", "velocity_component")]
@@ -156,9 +161,8 @@ autoplay = "idle"
 
 [node name="LowerBody" type="AnimatedSprite2D" parent="Body"]
 sprite_frames = SubResource("SpriteFrames_n4ibw")
-animation = &"idle"
+animation = &"running"
 autoplay = "idle"
-frame_progress = 0.866298
 
 [node name="GunPivot" type="Node2D" parent="." node_paths=PackedStringArray("gun", "upper_body_sprite")]
 rotation = 1.5708
