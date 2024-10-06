@@ -3,21 +3,28 @@ class_name Bullet
 
 @export var speed: float = 3000
 @export var damage_per_bullet = 1
+@export var animSprite : AnimatedSprite2D
 
 @onready var direction: Vector2
 @onready var has_hit_something = false
 @onready var has_been_destroyed = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	animSprite.animation_finished.connect(_on_animation_finished)
+
+func _on_animation_finished() -> void:
+		if animSprite.animation == "explode":
+			print("freeing")
+			has_been_destroyed = true
+			queue_free()
 
 func set_direction(new_direction: Vector2):
 	direction = new_direction.normalized()
 
 func _physics_process(delta: float) -> void:
-	if has_hit_something and not has_been_destroyed:
-		has_been_destroyed = true
-		queue_free()
+	if has_hit_something and not animSprite.animation == "explode":
+		animSprite.play("explode")
+
 	elif not has_hit_something:
 		position = position + (direction * speed * delta)
 
