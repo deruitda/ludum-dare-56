@@ -2,8 +2,7 @@ extends Node2D
 class_name GunPivot
 
 @export var gun: Gun
-@export var upper_body_sprite: Sprite2D
-
+@export var upper_body_sprite: AnimatedSprite2D
 @onready var mouse_pointing_input: Vector2
 
 # Called when the node enters the scene tree for the first time.
@@ -17,9 +16,9 @@ func _process(delta: float) -> void:
 	
 		#is looking right
 	if mouse_pointing_input.x < 0:
-		upper_body_sprite.flip_v = true
+		upper_body_sprite.flip_h = true
 	elif mouse_pointing_input.x > 0: 
-		upper_body_sprite.flip_v = false
+		upper_body_sprite.flip_h = false
 	
 	if Input.is_action_just_pressed("shoot"):
 		gun.shoot_bullet(mouse_pointing_input)

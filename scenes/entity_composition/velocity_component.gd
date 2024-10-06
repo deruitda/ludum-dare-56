@@ -3,7 +3,9 @@ class_name VelocityComponent
 
 @export var gravity: float = 2000.0 
 @export var max_speed: float = 1000.0
-@export var in_air_acceleration: float = 1800.0
+@export var running_acceleration = 3000.0
+@export var fly_speed: float = 300.0
+@export var in_air_acceleration: float = 3000.0
 @export var in_air_resistance: float = 300.0
 @export var jump_velocity: float = 1200.0
 @export var wall_jump_velocity: float = 1500.0
@@ -38,9 +40,9 @@ func apply_wall_slide() -> void:
 	velocity.y = min(velocity.y, wall_slide_speed)
 	velocity.x = 0
 
-func apply_run(direction: Vector2) -> void:
+func apply_run(direction: Vector2, delta: float) -> void:
 	if direction == Vector2.RIGHT || direction == Vector2.LEFT:
-		velocity.x = direction.x * max_speed
+		velocity.x = clamp(velocity.x + (direction.x * running_acceleration * delta), -max_speed, max_speed)
 	else:
 		assert("Direction should be either left or right when wall jumping")
 
@@ -50,18 +52,25 @@ func apply_in_air_movement(direction: float, delta: float) -> void:
 func apply_in_air_idle(delta: float):
 	velocity.x = move_toward(velocity.x, 0, in_air_resistance * delta)
 
+func apply_is_on_ground() -> void:
+	velocity.y = 0
+
 func apply_idle(delta: float):
 	velocity.x = move_toward(velocity.x, 0, floor_resistance * delta)
 
 func do_character_move(character_body: CharacterBody2D):
 	character_body.velocity = velocity
 	character_body.move_and_slide()
-	
-func do_area_move(area: Area2D):
-	area.position = area.position + velocity
 
-func apply_fly(direction: Vector2, delta: float) -> void:
-	velocity += direction * delta * max_speed
+func do_rigid_body_move(rigid_body: RigidBody2D):
+	rigid_body.velocity = velocity
+	rigid_body.move_and_slide()
+
+func apply_fly(direction: Vector2) -> void:
+	velocity = direction * fly_speed
 
 func apply_gravity(delta: float) -> void:
 	velocity.y += gravity * delta
+	
+func apply_is_on_cieling() -> void:
+	velocity.y = 0
