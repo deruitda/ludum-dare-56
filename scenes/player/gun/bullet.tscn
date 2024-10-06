@@ -64,7 +64,7 @@ animations = [{
 
 [node name="Bullet" type="Area2D" node_paths=PackedStringArray("animSprite")]
 collision_layer = 32
-collision_mask = 134
+collision_mask = 390
 script = ExtResource("1_cdvcq")
 animSprite = NodePath("AnimatedSprite2D")
 

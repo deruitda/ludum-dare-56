@@ -21,8 +21,6 @@ class_name Player
 @export var lower_body_sprite: AnimatedSprite2D
 @export var velocity_component: VelocityComponent
 
-@onready var is_falling_through = false
-
 @onready var wall_grace_timer = 0.0  # Timer for wall grace period
 @export var wall_grace_period: float = 0.2
 
@@ -127,8 +125,6 @@ func set_states() -> void:
 	else:
 		is_idle = false
 		
-	set_fall_through_state()
-
 
 func handle_lower_body_sprite_animation()->void:
 	if is_running and lower_body_sprite.animation != "running":
@@ -170,35 +166,3 @@ func _on_died() -> void:
 func _on_damage_applied() -> void:
 	print("damage")
 	pass # Replace with function body.
-	
-func is_colliding_with_layer(layer: int) -> bool:
-	for i in range(get_slide_collision_count()):
-		var collision = get_slide_collision(i)
-		var collider = collision.get_collider()
-
-		if collider and collider is PhysicsBody2D:  # Ensure the collider is a physics body
-			if collider.get_collision_layer_bit(layer):
-				return true
-		elif collider is TileMap:  # If it's a TileMap, check the TileMap's layer or other properties
-			# Add specific checks for TileMap if needed
-			# TileMaps don't directly have collision layers like PhysicsBody2D
-			return true  # Or handle specific checks for TileMap here
-	return false
-	
-func set_fall_through_state() -> void:
-	pass
-	#if velocity_component.is_traveling_up || is_on_floor():
-		#fall_through()
-	#elif is_falling_through :
-		#cancel_fall_through()
-		#if is_colliding_with_layer(9):
-			#fall_through()
-
-func fall_through() -> void:
-	# set off for platform
-	is_falling_through = true
-	set_collision_mask_value(9, false)
-
-func cancel_fall_through() -> void:
-	is_falling_through = false
-	set_collision_mask_value(9, true)
