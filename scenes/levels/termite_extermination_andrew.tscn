@@ -61,3 +61,8 @@ position = Vector2(1023, -81)
 [node name="TermiteSoldier" parent="." instance=ExtResource("6_0qe46")]
 position = Vector2(1511, -325)
 rotation = -1.5708
+
+[node name="TermiteSoldier2" parent="." instance=ExtResource("6_0qe46")]
+position = Vector2(84, -455)
+rotation = -1.5708
+wall_is_right = false

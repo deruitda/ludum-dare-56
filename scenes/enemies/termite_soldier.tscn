@@ -148,7 +148,7 @@ max_speed = 300.0
 
 [node name="ToggleDirectionTimer" type="Timer" parent="EnemyWalkDirection"]
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
+[node name="RageRay" type="RayCast2D" parent="."]
 rotation = -1.5708
 target_position = Vector2(0, 500)
 collision_mask = 7
