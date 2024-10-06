@@ -15,8 +15,6 @@ class_name VelocityComponent
 
 @onready var velocity: Vector2
 
-signal is_traveling_up_change(new_is_traveling_up_value: bool)
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -60,19 +58,11 @@ func apply_idle(delta: float):
 
 func do_character_move(character_body: CharacterBody2D):
 	character_body.velocity = velocity
-	set_is_traveling_up(velocity)
 	character_body.move_and_slide()
 
 func do_rigid_body_move(rigid_body: RigidBody2D):
 	rigid_body.velocity = velocity
-	set_is_traveling_up(velocity)
 	rigid_body.move_and_slide()
-
-func set_is_traveling_up(velocity: Vector2) -> void:
-	var new_is_traveling_up = velocity.y < 0
-	if is_traveling_up != new_is_traveling_up:
-		is_traveling_up = new_is_traveling_up
-		is_traveling_up_change.emit(new_is_traveling_up)
 	
 	
 
