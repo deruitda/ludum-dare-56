@@ -1,22 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://peqv0lhlucot"]
+[gd_scene load_steps=5 format=3 uid="uid://peqv0lhlucot"]
 
 [ext_resource type="Script" path="res://scenes/player/gun/gun.gd" id="1_qwdtb"]
 [ext_resource type="PackedScene" uid="uid://daptjvsjukjef" path="res://scenes/enemies/termite_bullet.tscn" id="2_2wucn"]
 [ext_resource type="PackedScene" uid="uid://b7ev8rk7l185t" path="res://scenes/player/gun/muzzle.tscn" id="5_l0i6r"]
 [ext_resource type="AudioStream" uid="uid://djpo4tm7cjpox" path="res://assets/Audio/SFX/GunPopStereo.wav" id="6_1wrcd"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_1eo81"]
-
 [node name="TermiteGun" type="Node2D" node_paths=PackedStringArray("muzzle", "shooting_cooldown", "animated_sprite_2d", "gun_shooting_audio")]
 script = ExtResource("1_qwdtb")
 muzzle = NodePath("Muzzle")
 bullet_packed_scene = ExtResource("2_2wucn")
 shooting_cooldown = NodePath("ShootingCooldown")
-animated_sprite_2d = NodePath("AnimatedSprite2D")
+animated_sprite_2d = NodePath("")
 gun_shooting_audio = NodePath("AudioStreamPlayer2D")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_1eo81")
 
 [node name="Muzzle" parent="." instance=ExtResource("5_l0i6r")]
 
