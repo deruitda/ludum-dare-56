@@ -1,10 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://br7b7ao0pn4rr"]
+[gd_scene load_steps=21 format=3 uid="uid://br7b7ao0pn4rr"]
 
 [ext_resource type="Script" path="res://scenes/gun/gun.gd" id="1_tv8xg"]
 [ext_resource type="PackedScene" uid="uid://fvifpd00chk8" path="res://scenes/gun/bullet.tscn" id="2_yj2hu"]
 [ext_resource type="PackedScene" uid="uid://b7ev8rk7l185t" path="res://scenes/gun/muzzle.tscn" id="4_5fmvv"]
 [ext_resource type="Texture2D" uid="uid://c1smsdcvkmp4f" path="res://assets/sprites/gun/gun-sheet.png" id="4_jqxav"]
 [ext_resource type="Texture2D" uid="uid://cojhnl06ykq5s" path="res://assets/sprites/gun/gun-shooting-Sheet.png" id="5_cy42n"]
+[ext_resource type="AudioStream" uid="uid://djpo4tm7cjpox" path="res://assets/Audio/SFX/GunPopStereo.wav" id="6_ib0q8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0ndyi"]
 atlas = ExtResource("4_jqxav")
@@ -122,3 +123,6 @@ animation = &"shooting"
 
 [node name="Muzzle" parent="." instance=ExtResource("4_5fmvv")]
 position = Vector2(34, 1)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_ib0q8")

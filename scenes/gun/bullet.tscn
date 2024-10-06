@@ -1,28 +1,86 @@
-[gd_scene load_steps=5 format=3 uid="uid://fvifpd00chk8"]
+[gd_scene load_steps=13 format=3 uid="uid://fvifpd00chk8"]
 
 [ext_resource type="Script" path="res://scenes/gun/bullet.gd" id="1_cdvcq"]
-[ext_resource type="Texture2D" uid="uid://co01gstpumt0c" path="res://icon.svg" id="2_uevlj"]
+[ext_resource type="Texture2D" uid="uid://d2460tkkkq3o2" path="res://assets/sprites/bullet/bullet.png" id="2_8mgew"]
 [ext_resource type="Script" path="res://scenes/entity_composition/velocity_component.gd" id="3_b8gob"]
+[ext_resource type="Texture2D" uid="uid://dfxm52g6wslue" path="res://assets/sprites/bullet/bullet-explode-Sheet.png" id="4_4t5q7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qj0nb"]
 
-[node name="Bullet" type="Area2D"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_jnkpb"]
+atlas = ExtResource("4_4t5q7")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6sew7"]
+atlas = ExtResource("4_4t5q7")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lm6jg"]
+atlas = ExtResource("4_4t5q7")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hgd34"]
+atlas = ExtResource("4_4t5q7")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wfoth"]
+atlas = ExtResource("4_4t5q7")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jfuky"]
+atlas = ExtResource("2_8mgew")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6dfg8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jnkpb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6sew7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lm6jg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hgd34")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wfoth")
+}],
+"loop": false,
+"name": &"explode",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jfuky")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="Bullet" type="Area2D" node_paths=PackedStringArray("animSprite")]
 collision_layer = 32
 collision_mask = 134
 script = ExtResource("1_cdvcq")
+animSprite = NodePath("AnimatedSprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_qj0nb")
 debug_color = Color(0.954637, 0.0558831, 0.516777, 0.42)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(2.38419e-07, -0.250001)
-scale = Vector2(0.109375, 0.207031)
-texture = ExtResource("2_uevlj")
-
 [node name="VelocityComponent" type="Node" parent="."]
 script = ExtResource("3_b8gob")
 max_speed = 3000.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1, 3.08)
+sprite_frames = SubResource("SpriteFrames_6dfg8")
+animation = &"explode"
+autoplay = "idle"
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]

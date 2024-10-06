@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://nuahsfm77qjp"]
+[gd_scene load_steps=26 format=3 uid="uid://nuahsfm77qjp"]
 
 [ext_resource type="PackedScene" uid="uid://dqgxt6ms0uyu8" path="res://scenes/entity_composition/health_component.tscn" id="1_38jc2"]
 [ext_resource type="Script" path="res://scenes/enemies/termite_larvae.gd" id="1_l1k41"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scenes/entity_composition/velocity_component.gd" id="5_b7uhe"]
 [ext_resource type="Texture2D" uid="uid://wc4vc15cxwf4" path="res://assets/sprites/termite-larvae/termite-larvae-crawl-sheet.png" id="6_0w3vn"]
 [ext_resource type="PackedScene" uid="uid://w8btqivawm2i" path="res://scenes/entity_composition/enemy_walk_direction.tscn" id="7_nyc36"]
+[ext_resource type="Texture2D" uid="uid://cedkfkhy1lcit" path="res://assets/sprites/termite-larvae/termite-larvae-squish-sheet.png" id="6_3b56k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bqby1"]
 size = Vector2(54, 21)
@@ -41,6 +42,42 @@ region = Rect2(320, 0, 64, 64)
 atlas = ExtResource("6_0w3vn")
 region = Rect2(384, 0, 64, 64)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_p47c6"]
+atlas = ExtResource("6_3b56k")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s3pbh"]
+atlas = ExtResource("6_3b56k")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vwh08"]
+atlas = ExtResource("6_3b56k")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ggeb6"]
+atlas = ExtResource("6_3b56k")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jk4st"]
+atlas = ExtResource("6_3b56k")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u6uly"]
+atlas = ExtResource("6_3b56k")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fopoa"]
+atlas = ExtResource("6_3b56k")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1bm87"]
+atlas = ExtResource("6_3b56k")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qsmlc"]
+atlas = ExtResource("6_3b56k")
+region = Rect2(512, 0, 64, 64)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_4wioa"]
 animations = [{
 "frames": [{
@@ -68,6 +105,38 @@ animations = [{
 "loop": true,
 "name": &"crawl",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p47c6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s3pbh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vwh08")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ggeb6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jk4st")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u6uly")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fopoa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1bm87")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qsmlc")
+}],
+"loop": false,
+"name": &"death",
+"speed": 20.0
 }]
 
 [node name="TermiteLarvae" type="CharacterBody2D" node_paths=PackedStringArray("velocity_component", "toggle_direction_timer")]
@@ -101,9 +170,8 @@ wall_slide_speed = 0.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_4wioa")
-animation = &"crawl"
+animation = &"death"
 autoplay = "crawl"
-frame_progress = 0.682746
 
 [node name="EnemyWalkDirection" parent="." instance=ExtResource("7_nyc36")]
 
