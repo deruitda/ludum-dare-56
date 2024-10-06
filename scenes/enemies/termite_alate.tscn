@@ -1,8 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://bbumsja2jwtyt"]
+[gd_scene load_steps=35 format=3 uid="uid://bbumsja2jwtyt"]
 
 [ext_resource type="Script" path="res://scenes/enemies/termite_alate.gd" id="1_p2glw"]
 [ext_resource type="Shape2D" uid="uid://bvv6wfe5a5vmo" path="res://scenes/enemies/termite_alate_shape.tres" id="2_4kggq"]
-[ext_resource type="Texture2D" uid="uid://co01gstpumt0c" path="res://icon.svg" id="2_6auae"]
 [ext_resource type="PackedScene" uid="uid://bqa4jle60cl0a" path="res://scenes/entity_composition/velocity_component.tscn" id="2_kiu7a"]
 [ext_resource type="Script" path="res://scenes/entity_composition/hurt_box.gd" id="3_13q4d"]
 [ext_resource type="Script" path="res://scenes/entity_composition/health_component.gd" id="4_g3oxt"]
@@ -10,6 +9,174 @@
 [ext_resource type="Script" path="res://scenes/gun/muzzle.gd" id="8_5fx63"]
 [ext_resource type="Script" path="res://scenes/gun/gun.gd" id="8_vhxxv"]
 [ext_resource type="PackedScene" uid="uid://bx84510ke5gvq" path="res://scenes/bullet_emitter/bullet_emitter_bullet.tscn" id="9_y8w60"]
+[ext_resource type="Texture2D" uid="uid://xhesh61ymbpt" path="res://assets/sprites/termite-alate/termite-alate-attack.png" id="10_asot3"]
+[ext_resource type="Texture2D" uid="uid://vii0t4fmvtyy" path="res://assets/sprites/termite-alate/termite-alate-flying.png" id="10_jueev"]
+[ext_resource type="Texture2D" uid="uid://d2oftqmh87xeq" path="res://assets/sprites/termite-alate/termite-alate-squish.png" id="11_qp25x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_087kx"]
+atlas = ExtResource("10_asot3")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jkucr"]
+atlas = ExtResource("10_asot3")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ijwhe"]
+atlas = ExtResource("10_asot3")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5h7il"]
+atlas = ExtResource("10_asot3")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5f1sg"]
+atlas = ExtResource("11_qp25x")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b7ulb"]
+atlas = ExtResource("11_qp25x")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_apdtg"]
+atlas = ExtResource("11_qp25x")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uok3w"]
+atlas = ExtResource("11_qp25x")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ttrr"]
+atlas = ExtResource("11_qp25x")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_derh0"]
+atlas = ExtResource("11_qp25x")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nfebj"]
+atlas = ExtResource("11_qp25x")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jh8uu"]
+atlas = ExtResource("11_qp25x")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_36h0p"]
+atlas = ExtResource("11_qp25x")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b4aw3"]
+atlas = ExtResource("11_qp25x")
+region = Rect2(576, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0x15e"]
+atlas = ExtResource("11_qp25x")
+region = Rect2(640, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ij64"]
+atlas = ExtResource("11_qp25x")
+region = Rect2(704, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2emcn"]
+atlas = ExtResource("11_qp25x")
+region = Rect2(768, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fp6g3"]
+atlas = ExtResource("11_qp25x")
+region = Rect2(832, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k2yvo"]
+atlas = ExtResource("10_jueev")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i8aok"]
+atlas = ExtResource("10_jueev")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_57svx"]
+atlas = ExtResource("10_jueev")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_17uiq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_087kx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jkucr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ijwhe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5h7il")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5f1sg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b7ulb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_apdtg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uok3w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ttrr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_derh0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nfebj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jh8uu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_36h0p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b4aw3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0x15e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ij64")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2emcn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fp6g3")
+}],
+"loop": false,
+"name": &"death",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k2yvo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i8aok")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_57svx")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 15.0
+}]
 
 [node name="TermiteAlate" type="CharacterBody2D" node_paths=PackedStringArray("velocity_component", "path_finder", "gun")]
 collision_layer = 8
@@ -20,15 +187,11 @@ path_finder = NodePath("PathFinder")
 gun = NodePath("Gun")
 
 [node name="VelocityComponent" parent="." instance=ExtResource("2_kiu7a")]
+gravity = 1000.0
 fly_speed = 20.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = ExtResource("2_4kggq")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(2.00001, 3.8147e-06)
-scale = Vector2(0.382813, 0.40625)
-texture = ExtResource("2_6auae")
 
 [node name="HurtBox" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
 collision_layer = 128
@@ -55,6 +218,13 @@ script = ExtResource("8_5fx63")
 
 [node name="ShootingTimer" type="Timer" parent="Gun/Muzzle"]
 autostart = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Gun"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_17uiq")
+animation = &"idle"
+autoplay = "idle"
 
 [connection signal="area_entered" from="HurtBox" to="HurtBox" method="_on_area_entered"]
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]

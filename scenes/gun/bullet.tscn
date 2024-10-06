@@ -51,7 +51,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"explode",
-"speed": 30.0
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -72,16 +72,12 @@ animSprite = NodePath("AnimatedSprite2D")
 shape = SubResource("CapsuleShape2D_qj0nb")
 debug_color = Color(0.954637, 0.0558831, 0.516777, 0.42)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(2.38419e-07, -0.250001)
-scale = Vector2(0.109375, 0.207031)
-texture = ExtResource("2_8mgew")
-
 [node name="VelocityComponent" type="Node" parent="."]
 script = ExtResource("3_b8gob")
 max_speed = 3000.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1, 3.08)
 sprite_frames = SubResource("SpriteFrames_6dfg8")
 animation = &"explode"
 autoplay = "idle"

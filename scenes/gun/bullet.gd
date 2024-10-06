@@ -14,7 +14,6 @@ func _ready() -> void:
 
 func _on_animation_finished() -> void:
 		if animSprite.animation == "explode":
-			print("freeing")
 			has_been_destroyed = true
 			queue_free()
 
