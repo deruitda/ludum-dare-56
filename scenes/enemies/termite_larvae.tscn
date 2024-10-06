@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://nuahsfm77qjp"]
+[gd_scene load_steps=28 format=3 uid="uid://nuahsfm77qjp"]
 
 [ext_resource type="PackedScene" uid="uid://dqgxt6ms0uyu8" path="res://scenes/entity_composition/health_component.tscn" id="1_38jc2"]
 [ext_resource type="Script" path="res://scenes/enemies/termite_larvae.gd" id="1_l1k41"]
@@ -7,12 +7,13 @@
 [ext_resource type="Texture2D" uid="uid://wc4vc15cxwf4" path="res://assets/sprites/termite-larvae/termite-larvae-crawl-sheet.png" id="6_0w3vn"]
 [ext_resource type="Texture2D" uid="uid://cedkfkhy1lcit" path="res://assets/sprites/termite-larvae/termite-larvae-squish-sheet.png" id="6_3b56k"]
 [ext_resource type="PackedScene" uid="uid://clwybwx42qmpu" path="res://scenes/core/despawner.tscn" id="7_dq5ch"]
+[ext_resource type="PackedScene" uid="uid://w8btqivawm2i" path="res://scenes/entity_composition/enemy_walk_direction.tscn" id="7_nyc36"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bqby1"]
-size = Vector2(64, 64)
+size = Vector2(54, 21)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rdvc8"]
-size = Vector2(64, 64)
+size = Vector2(54, 21)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vi5to"]
 atlas = ExtResource("6_0w3vn")
@@ -142,13 +143,14 @@ animations = [{
 [node name="TermiteLarvae" type="CharacterBody2D" node_paths=PackedStringArray("velocity_component", "toggle_direction_timer")]
 collision_layer = 8
 collision_mask = 15
-platform_floor_layers = 4294967240
-platform_wall_layers = 6
+platform_floor_layers = 4294967042
+platform_wall_layers = 4
 script = ExtResource("1_l1k41")
 velocity_component = NodePath("VelocityComponent")
-toggle_direction_timer = NodePath("VelocityComponent/DefaultToggleDirectionTimer")
+toggle_direction_timer = NodePath("EnemyWalkDirection/DefaultToggleDirectionTimer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-5, 0.5)
 shape = SubResource("RectangleShape2D_bqby1")
 
 [node name="HealthComponent" parent="." instance=ExtResource("1_38jc2")]
@@ -159,16 +161,13 @@ collision_mask = 32
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-visible = false
+position = Vector2(-5, 0.5)
 shape = SubResource("RectangleShape2D_rdvc8")
 
 [node name="VelocityComponent" type="Node" parent="."]
 script = ExtResource("5_b7uhe")
 max_speed = 200.0
 wall_slide_speed = 0.0
-
-[node name="DefaultToggleDirectionTimer" type="Timer" parent="VelocityComponent"]
-wait_time = 5.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_4wioa")
@@ -177,5 +176,12 @@ autoplay = "crawl"
 
 [node name="Despawner" parent="." instance=ExtResource("7_dq5ch")]
 
+[node name="EnemyWalkDirection" parent="." instance=ExtResource("7_nyc36")]
+
+[node name="DefaultToggleDirectionTimer" type="Timer" parent="EnemyWalkDirection"]
+wait_time = 8.0
+autostart = true
+
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]
 [connection signal="despawn" from="Despawner" to="." method="finish_death"]
+[connection signal="timeout" from="EnemyWalkDirection/DefaultToggleDirectionTimer" to="." method="_on_toggle_direction_timer_timeout"]

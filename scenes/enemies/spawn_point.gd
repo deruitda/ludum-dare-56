@@ -29,9 +29,8 @@ func is_player_in_range() -> bool:
 		
 	var distance = player.global_position.distance_to(self.global_position)
 	
-	print("spawn distance" + str(distance))
-	
 	if distance < spawn_range:
+		print("spawning distance " + str(distance))
 		return true
 		
 	return false

@@ -1,0 +1,155 @@
+[gd_scene load_steps=23 format=3 uid="uid://peddybhwcvq6"]
+
+[ext_resource type="Texture2D" uid="uid://ot2ucdq3fya3" path="res://assets/sprites/termite-soldier/termite-soldier-patrol.png" id="1_il6v4"]
+[ext_resource type="Script" path="res://scenes/enemies/termite_soldier.gd" id="1_u5irw"]
+[ext_resource type="Script" path="res://scenes/entity_composition/hurt_box.gd" id="2_7rswj"]
+[ext_resource type="Texture2D" uid="uid://uwgpraqtna11" path="res://assets/sprites/termite-soldier/termite-soldier-aggro.png" id="2_dvut8"]
+[ext_resource type="Script" path="res://scenes/entity_composition/health_component.gd" id="3_c4ldb"]
+[ext_resource type="Script" path="res://scenes/entity_composition/velocity_component.gd" id="5_oj13s"]
+[ext_resource type="PackedScene" uid="uid://w8btqivawm2i" path="res://scenes/entity_composition/enemy_walk_direction.tscn" id="6_l5wsd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rkyvp"]
+size = Vector2(62, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0gy5s"]
+atlas = ExtResource("2_dvut8")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4l573"]
+atlas = ExtResource("2_dvut8")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w4wh7"]
+atlas = ExtResource("2_dvut8")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6drh2"]
+atlas = ExtResource("2_dvut8")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qbhwi"]
+atlas = ExtResource("2_dvut8")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sunkg"]
+atlas = ExtResource("2_dvut8")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nchj0"]
+atlas = ExtResource("1_il6v4")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_duo2c"]
+atlas = ExtResource("1_il6v4")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mwirq"]
+atlas = ExtResource("1_il6v4")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ngox4"]
+atlas = ExtResource("1_il6v4")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rto37"]
+atlas = ExtResource("1_il6v4")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ofs82"]
+atlas = ExtResource("1_il6v4")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_37qoh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0gy5s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4l573")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w4wh7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6drh2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qbhwi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sunkg")
+}],
+"loop": true,
+"name": &"attacking",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nchj0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_duo2c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mwirq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ngox4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rto37")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ofs82")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v2h1t"]
+size = Vector2(51, 26)
+
+[node name="TermiteSoldier" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 15
+platform_floor_layers = 4294967042
+platform_wall_layers = 4
+script = ExtResource("1_u5irw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 3)
+shape = SubResource("RectangleShape2D_rkyvp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_37qoh")
+animation = &"attacking"
+autoplay = "walking"
+
+[node name="HurtBox" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
+collision_layer = 128
+collision_mask = 32
+script = ExtResource("2_7rswj")
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(-6.5, 3)
+shape = SubResource("RectangleShape2D_v2h1t")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("3_c4ldb")
+
+[node name="VelocityComponent" type="Node" parent="."]
+script = ExtResource("5_oj13s")
+max_speed = 300.0
+
+[node name="EnemyWalkDirection" parent="." instance=ExtResource("6_l5wsd")]
+
+[node name="ToggleDirectionTimer" type="Timer" parent="EnemyWalkDirection"]
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+rotation = -1.5708
+target_position = Vector2(0, 500)
+collision_mask = 7
+collide_with_areas = true

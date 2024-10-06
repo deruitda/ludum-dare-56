@@ -13,7 +13,7 @@ func _physics_process(delta: float) -> void:
 	
 	elif PlayerManager.current_player:
 		var direction = path_finder.get_direction_to_node(PlayerManager.current_player)
-		velocity_component.apply_fly(direction)
+		velocity_component.apply_move(direction, delta)
 		
 	velocity_component.do_character_move(self)
 

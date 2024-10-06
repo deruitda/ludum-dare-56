@@ -34,32 +34,24 @@ func _process(delta: float) -> void:
 	#is looking right
 	if is_on_wall() or is_wall_sliding:
 		if get_wall_normal().x < 0:
-			print("go left")
 			lower_body_sprite.flip_h = true
 		else:
-			print ("go right")
 			lower_body_sprite.flip_h = false
 	else:
 		if left_right_input == Vector2.LEFT:
-			print ("go not on wall left")
 			lower_body_sprite.flip_h = true
 		elif left_right_input == Vector2.RIGHT:
-			print ("go not on wall right")
 			
 			lower_body_sprite.flip_h = false
 	
 	if is_running and lower_body_sprite.animation != "running":
-		print("is running")
 		lower_body_sprite.play("running")
 	elif is_idle and lower_body_sprite.animation != "idle":
-		print("idle")
 		
 		lower_body_sprite.play("idle")
 	elif is_wall_sliding and lower_body_sprite.animation != "wall_sliding":
-		print("wall sliding")
 		lower_body_sprite.play("wall_sliding")
 	elif is_in_air and not is_on_wall() and lower_body_sprite.animation != "jump":
-		print("jump")
 		lower_body_sprite.play("jump")
 	
 
@@ -78,9 +70,9 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity_component.apply_gravity(delta)
 	elif not is_wall_jumping and not is_floor_jumping:
-		velocity_component.apply_is_on_ground()
+		velocity_component.apply_hit_ground()
 	if is_on_ceiling():
-		velocity_component.apply_is_on_cieling()
+		velocity_component.apply_hit_cieling()
 	
 	if is_wall_jumping:
 		var wall_jumping_direction = Vector2.LEFT
@@ -94,7 +86,7 @@ func _physics_process(delta: float) -> void:
 		#is wall sliding
 		velocity_component.apply_wall_slide()
 	elif is_running:
-		velocity_component.apply_run(left_right_input, delta)
+		velocity_component.apply_move(left_right_input, delta)
 	elif is_in_air:
 		velocity_component.apply_in_air_movement(direction_input, delta)
 	
