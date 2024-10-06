@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://3tbnum67fnc7"]
+[gd_scene load_steps=5 format=3 uid="uid://3tbnum67fnc7"]
 
 [ext_resource type="PackedScene" uid="uid://56t0wxwth7ya" path="res://scenes/core/ui.tscn" id="1_7wot7"]
 [ext_resource type="PackedScene" uid="uid://dva4inhwc7dta" path="res://scenes/core/world.tscn" id="2_6cr2y"]
 [ext_resource type="Script" path="res://scenes/core/ui.gd" id="2_ho8lm"]
-[ext_resource type="PackedScene" path="res://scenes/core/start_menu.tscn" id="3_dmdf0"]
-[ext_resource type="Script" path="res://scenes/core/world.gd" id="4_6guud"]
+[ext_resource type="PackedScene" uid="uid://blk02h2fepm4b" path="res://scenes/core/start_menu.tscn" id="3_dmdf0"]
 
 [node name="Main" type="Node2D"]
 
@@ -14,4 +13,3 @@ script = ExtResource("2_ho8lm")
 [node name="StartMenu" parent="Ui" instance=ExtResource("3_dmdf0")]
 
 [node name="World" parent="." instance=ExtResource("2_6cr2y")]
-script = ExtResource("4_6guud")

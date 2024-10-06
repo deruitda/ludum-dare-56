@@ -1,14 +1,15 @@
 extends Node2D
+class_name World
 
-@export var main_menu : PackedScene 
-
-
+@export var current_level : PackedScene
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	SignalBus.start_game.connect(on_load_level) # Replace with function body.
 
-
+func on_load_level() -> void:
+	add_child(current_level.instantiate())
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass

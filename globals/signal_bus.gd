@@ -11,3 +11,5 @@ signal start_game()
 signal create_bullet(bullet: Bullet)
 
 signal equip_item(new_texture)
+
+signal spawn_enemy(scene: PackedScene, location: Vector2)

@@ -1,0 +1,85 @@
+[gd_scene load_steps=14 format=3 uid="uid://c3g5a3xfhtd4p"]
+
+[ext_resource type="PackedScene" uid="uid://csbns784pk2av" path="res://scenes/enemies/spawn_point.tscn" id="1_5dkbs"]
+[ext_resource type="Texture2D" uid="uid://qwwnc0xotr4o" path="res://assets/sprites/spawns/spawn_base.png" id="1_54vvr"]
+[ext_resource type="Script" path="res://scenes/enemies/termite_larvae_spawner.gd" id="1_rmjpb"]
+[ext_resource type="PackedScene" uid="uid://nuahsfm77qjp" path="res://scenes/enemies/termite_larvae.tscn" id="2_hrru3"]
+[ext_resource type="Texture2D" uid="uid://cu7xkye1jeyyt" path="res://assets/sprites/spawns/spawn_termite_larvae.png" id="2_wylgj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lgyp3"]
+atlas = ExtResource("1_54vvr")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4h6fv"]
+atlas = ExtResource("2_wylgj")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7lrro"]
+atlas = ExtResource("2_wylgj")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ywqlw"]
+atlas = ExtResource("2_wylgj")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t2m7v"]
+atlas = ExtResource("2_wylgj")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vhd0s"]
+atlas = ExtResource("2_wylgj")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fvyxj"]
+atlas = ExtResource("2_wylgj")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vm2m7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lgyp3")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4h6fv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7lrro")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ywqlw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t2m7v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vhd0s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fvyxj")
+}],
+"loop": false,
+"name": &"spawn",
+"speed": 10.0
+}]
+
+[node name="TermiteLarvaeSpawner" type="Node2D"]
+script = ExtResource("1_rmjpb")
+
+[node name="Spawner" parent="." node_paths=PackedStringArray("timer") instance=ExtResource("1_5dkbs")]
+scene = ExtResource("2_hrru3")
+timer = NodePath("../SpawnTimer")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_vm2m7")
+animation = &"spawn"
+autoplay = "idle"
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
