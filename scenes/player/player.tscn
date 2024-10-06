@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://cofh4isrtksv4"]
+[gd_scene load_steps=66 format=3 uid="uid://cofh4isrtksv4"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_y4k5w"]
 [ext_resource type="Shape2D" uid="uid://cc3bsg65yxgm0" path="res://scenes/player/player_shape.tres" id="2_n3d0r"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://dtxb5812xnpp2" path="res://assets/sprites/rex/rex-lower-wall.png" id="10_jr1rn"]
 [ext_resource type="Script" path="res://scenes/entity_composition/flashing_component.gd" id="14_gqpvi"]
 [ext_resource type="Script" path="res://scenes/entity_composition/edge_detector.gd" id="14_vahgb"]
+[ext_resource type="PackedScene" uid="uid://c8nfyb168ghgg" path="res://scenes/core/player_audio.tscn" id="15_e48xh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jr7co"]
 size = Vector2(23, 64)
@@ -463,6 +464,8 @@ collision_mask = 258
 [node name="RayCast2D2" type="RayCast2D" parent="EdgeDetector"]
 position = Vector2(7.14286, 31.5476)
 collision_mask = 258
+
+[node name="PlayerAudio" parent="." instance=ExtResource("15_e48xh")]
 
 [connection signal="damage_applied" from="HealthComponent" to="." method="_on_damage_applied"]
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]

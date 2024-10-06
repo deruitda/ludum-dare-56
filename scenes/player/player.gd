@@ -32,11 +32,12 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if is_dead:
 		PlayerManager.remove_current_player()
-		queue_free()
+		#queue_free()
 	else:
 		
 		handle_sprite_orientation()
 		handle_lower_body_sprite_animation()
+
 
 func _physics_process(delta: float) -> void:
 	if is_dead:
@@ -162,8 +163,20 @@ func get_left_right_input() -> Vector2:
 
 func _on_died() -> void:
 	print("you died")
-	is_dead = true
+	start_death()
 	pass # Replace with function body.
+	
+	
+	
+func start_death() -> void:
+	is_dead = true
+	$PlayerAudio.play_player_death_audio()
+	$PlayerAudio.finished.connect(finish_death)
+	#animated_sprite_2d.animation_finished.connect(finish_death)
+	#animated_sprite_2d.play("death")
+	
+func finish_death() -> void:
+	queue_free()
 
 func _on_damage_applied() -> void:
 	print("damage")
