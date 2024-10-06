@@ -1,7 +1,6 @@
 extends CharacterBody2D
 class_name Player
 
-
 #inputs
 @onready var direction_input: float = 0.0
 
@@ -29,31 +28,10 @@ func _process(delta: float) -> void:
 	if is_dead:
 		PlayerManager.remove_current_player()
 		queue_free()
-	
-	var left_right_input = get_left_right_input()
-	#is looking right
-	if is_on_wall() or is_wall_sliding:
-		if get_wall_normal().x < 0:
-			lower_body_sprite.flip_h = true
-		else:
-			lower_body_sprite.flip_h = false
-	else:
-		if left_right_input == Vector2.LEFT:
-			lower_body_sprite.flip_h = true
-		elif left_right_input == Vector2.RIGHT:
-			
-			lower_body_sprite.flip_h = false
-	
-	if is_running and lower_body_sprite.animation != "running":
-		lower_body_sprite.play("running")
-	elif is_idle and lower_body_sprite.animation != "idle":
 		
-		lower_body_sprite.play("idle")
-	elif is_wall_sliding and lower_body_sprite.animation != "wall_sliding":
-		lower_body_sprite.play("wall_sliding")
-	elif is_in_air and not is_on_wall() and lower_body_sprite.animation != "jump":
-		lower_body_sprite.play("jump")
-	
+	handle_sprite_orientation()
+	handle_lower_body_sprite_animation()
+
 
 func _physics_process(delta: float) -> void:
 	if is_dead:
@@ -142,6 +120,29 @@ func set_states() -> void:
 	else:
 		is_idle = false
 
+func handle_lower_body_sprite_animation()->void:
+	if is_running and lower_body_sprite.animation != "running":
+		lower_body_sprite.play("running")
+	elif is_idle and lower_body_sprite.animation != "idle":
+		lower_body_sprite.play("idle")
+	elif is_wall_sliding and lower_body_sprite.animation != "wall_sliding":
+		lower_body_sprite.play("wall_sliding")
+	elif is_in_air and not is_on_wall() and lower_body_sprite.animation != "jump":
+		lower_body_sprite.play("jump")
+func handle_sprite_orientation()->void:
+	var left_right_input = get_left_right_input()
+	#is looking right
+	if is_on_wall() or is_wall_sliding:
+		if get_wall_normal().x < 0:
+			lower_body_sprite.flip_h = true
+		else:
+			lower_body_sprite.flip_h = false
+	else:
+		if left_right_input == Vector2.LEFT:
+			lower_body_sprite.flip_h = true
+		elif left_right_input == Vector2.RIGHT:
+			lower_body_sprite.flip_h = false
+
 func get_left_right_input() -> Vector2: 
 	var left_right_input = Vector2.ZERO
 	if direction_input > 0:
@@ -155,7 +156,6 @@ func _on_died() -> void:
 	print("you died")
 	is_dead = true
 	pass # Replace with function body.
-
 
 func _on_damage_applied() -> void:
 	print("damage")
