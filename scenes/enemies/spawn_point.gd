@@ -3,6 +3,7 @@ extends Node2D
 @export var scene : PackedScene
 @export var timer : Timer
 @export var animSprite : AnimatedSprite2D
+@export var spawn_range : int = 1000
 
 func _ready() -> void:
 	timer.timeout.connect(_on_spawn_timer_timeout)
@@ -11,10 +12,27 @@ func _ready() -> void:
 func _on_spawn_timer_timeout() -> void:
 	# play the 'spawn' animation, when that animation is complete it will trigger 
 	# the _on_anim_finished callback to spawn the enemy scene
-	animSprite.play("spawn")
+	if is_player_in_range():
+		animSprite.play("spawn")
 
 func _on_anim_finished() -> void:
 	print(animSprite.animation)
 	if animSprite.animation == "spawn":
 		SignalBus.spawn_enemy.emit(scene, global_position)
 		animSprite.play("idle")
+
+func is_player_in_range() -> bool:
+	var player = PlayerManager.current_player
+	
+	if !player:
+		return false
+		
+	var distance = player.global_position.distance_to(self.global_position)
+	
+	print("spawn distance" + str(distance))
+	
+	if distance < spawn_range:
+		return true
+		
+	return false
+	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bbumsja2jwtyt"]
+[gd_scene load_steps=36 format=3 uid="uid://bbumsja2jwtyt"]
 
 [ext_resource type="Script" path="res://scenes/enemies/termite_alate.gd" id="1_p2glw"]
 [ext_resource type="Shape2D" uid="uid://bvv6wfe5a5vmo" path="res://scenes/enemies/termite_alate_shape.tres" id="2_4kggq"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://xhesh61ymbpt" path="res://assets/sprites/termite-alate/termite-alate-attack.png" id="10_asot3"]
 [ext_resource type="Texture2D" uid="uid://vii0t4fmvtyy" path="res://assets/sprites/termite-alate/termite-alate-flying.png" id="10_jueev"]
 [ext_resource type="Texture2D" uid="uid://d2oftqmh87xeq" path="res://assets/sprites/termite-alate/termite-alate-squish.png" id="11_qp25x"]
+[ext_resource type="PackedScene" uid="uid://clwybwx42qmpu" path="res://scenes/core/despawner.tscn" id="13_5uqx0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_087kx"]
 atlas = ExtResource("10_asot3")
@@ -225,6 +226,8 @@ autostart = true
 sprite_frames = SubResource("SpriteFrames_17uiq")
 animation = &"idle"
 autoplay = "idle"
+
+[node name="Despawner" parent="." instance=ExtResource("13_5uqx0")]
 
 [connection signal="area_entered" from="HurtBox" to="HurtBox" method="_on_area_entered"]
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]

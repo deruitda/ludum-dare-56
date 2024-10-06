@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://nuahsfm77qjp"]
+[gd_scene load_steps=27 format=3 uid="uid://nuahsfm77qjp"]
 
 [ext_resource type="PackedScene" uid="uid://dqgxt6ms0uyu8" path="res://scenes/entity_composition/health_component.tscn" id="1_38jc2"]
 [ext_resource type="Script" path="res://scenes/enemies/termite_larvae.gd" id="1_l1k41"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scenes/entity_composition/velocity_component.gd" id="5_b7uhe"]
 [ext_resource type="Texture2D" uid="uid://wc4vc15cxwf4" path="res://assets/sprites/termite-larvae/termite-larvae-crawl-sheet.png" id="6_0w3vn"]
 [ext_resource type="Texture2D" uid="uid://cedkfkhy1lcit" path="res://assets/sprites/termite-larvae/termite-larvae-squish-sheet.png" id="6_3b56k"]
+[ext_resource type="PackedScene" uid="uid://clwybwx42qmpu" path="res://scenes/core/despawner.tscn" id="7_dq5ch"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bqby1"]
 size = Vector2(64, 64)
@@ -174,4 +175,7 @@ sprite_frames = SubResource("SpriteFrames_4wioa")
 animation = &"death"
 autoplay = "crawl"
 
+[node name="Despawner" parent="." instance=ExtResource("7_dq5ch")]
+
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]
+[connection signal="despawn" from="Despawner" to="." method="finish_death"]
