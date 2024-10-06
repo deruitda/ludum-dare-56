@@ -21,6 +21,11 @@ SignalBus="*res://globals/signal_bus.gd"
 StatEditorBus="*res://stat_editor_bus.gd"
 BulletSpawner="*res://globals/bullet_spawner.gd"
 
+[display]
+
+window/size/viewport_width=1600
+window/size/viewport_height=900
+
 [input]
 
 move_left={
