@@ -34,12 +34,18 @@ func _process(delta: float) -> void:
 	elif enemy_walk_direction.current_direction == Vector2.DOWN:
 		animated_sprite_2d.flip_h = true
 		rage_ray.rotation = deg_to_rad(90)
+	
+	if animated_sprite_2d.animation == "walking" and is_raging:
+		animated_sprite_2d.play("raging")
+	elif animated_sprite_2d.animation == "raging" and not is_raging:
+		animated_sprite_2d.play("walking")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	if player_is_in_rage_view():
 		is_raging = true
 		velocity_component.max_speed = _rage_speed
+		
 	else:
 		is_raging = false
 		velocity_component.max_speed = _walk_speed

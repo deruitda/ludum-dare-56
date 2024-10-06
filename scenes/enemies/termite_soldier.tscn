@@ -81,7 +81,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_sunkg")
 }],
 "loop": true,
-"name": &"attacking",
+"name": &"raging",
 "speed": 5.0
 }, {
 "frames": [{
@@ -124,7 +124,7 @@ shape = SubResource("RectangleShape2D_rkyvp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_37qoh")
-animation = &"attacking"
+animation = &"raging"
 autoplay = "walking"
 
 [node name="HurtBox" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
