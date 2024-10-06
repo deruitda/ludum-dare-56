@@ -5,9 +5,11 @@ extends Camera2D
 var min_y_pos: float = -450
 
 func _process(delta: float) -> void:
+	
+	if !follow_target:
+		return
+	
 	global_position.y = lerp(global_position.y, follow_target.global_position.y, weight)
 	
 	if global_position.y > min_y_pos:
 		global_position.y = min_y_pos
-	
-	print(global_position)
