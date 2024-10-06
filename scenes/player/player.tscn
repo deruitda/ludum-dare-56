@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://cofh4isrtksv4"]
+[gd_scene load_steps=63 format=3 uid="uid://cofh4isrtksv4"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_y4k5w"]
 [ext_resource type="Shape2D" uid="uid://cc3bsg65yxgm0" path="res://scenes/player/player_shape.tres" id="2_n3d0r"]
@@ -369,12 +369,27 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="GDScript" id="GDScript_qo3dw"]
+script/source = "extends AnimatedSprite2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("lower_body_sprite", "velocity_component")]
 scale = Vector2(1.68, 1.68)
 collision_mask = 6
 platform_floor_layers = 4294967294
 platform_wall_layers = 4
 script = ExtResource("1_y4k5w")
+wall_grace_period = null
 lower_body_sprite = NodePath("Body/LowerBody")
 velocity_component = NodePath("VelocityComponent")
 
@@ -414,12 +429,12 @@ autoplay = "idle"
 sprite_frames = SubResource("SpriteFrames_n4ibw")
 animation = &"wall_sliding"
 autoplay = "running"
+script = SubResource("GDScript_qo3dw")
 
-[node name="GunPivot" type="Node2D" parent="." node_paths=PackedStringArray("gun", "upper_body_sprite")]
+[node name="GunPivot" type="Node2D" parent="." node_paths=PackedStringArray("body_sprite")]
 rotation = 1.5708
 script = ExtResource("4_tvvnj")
-gun = NodePath("Gun")
-upper_body_sprite = NodePath("../Body/UpperBody")
+body_sprite = NodePath("../Body/UpperBody")
 
 [node name="Gun" parent="GunPivot" instance=ExtResource("2_sf2fd")]
 
