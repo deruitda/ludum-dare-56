@@ -38,7 +38,8 @@ sources/0 = SubResource("TileSetAtlasSource_08vl4")
 [node name="FollowCam" parent="." node_paths=PackedStringArray("follow_target") instance=ExtResource("1_jtnxx")]
 position = Vector2(794, -448)
 follow_target = NodePath("../Player")
-weight = 0.41
+weight = 0.023
+cam_y_offset = 58.94
 
 [node name="Player" parent="." instance=ExtResource("1_h4sor")]
 z_index = 1

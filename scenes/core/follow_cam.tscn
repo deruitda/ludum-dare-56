@@ -4,3 +4,4 @@
 
 [node name="FollowCam" type="Camera2D"]
 script = ExtResource("1_3iu3r")
+weight = 0.298
