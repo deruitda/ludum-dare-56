@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="ludum-dare-56"
-run/main_scene="res://scenes/core/main.tscn"
+run/main_scene="res://scenes/levels/termite_extermination_andrew.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -62,6 +62,7 @@ shoot={
 2d_physics/layer_6="PlayerBullet"
 2d_physics/layer_7="EnemyBullet"
 2d_physics/layer_8="EnemyHurtBox"
+2d_physics/layer_9="Platform"
 SignalBus="*res://globals/signal_bus.gd"
 
 [rendering]

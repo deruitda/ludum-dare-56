@@ -387,8 +387,9 @@ func _process(delta: float) -> void:
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("gun_pivot", "gun", "lower_body_sprite", "velocity_component")]
 scale = Vector2(1.68, 1.68)
 collision_mask = 6
+floor_block_on_wall = false
 platform_floor_layers = 4294967294
-platform_wall_layers = 4
+platform_wall_layers = 260
 script = ExtResource("1_y4k5w")
 gun_pivot = NodePath("GunPivot")
 gun = NodePath("GunPivot/PlayerGun")
@@ -398,6 +399,7 @@ velocity_component = NodePath("VelocityComponent")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-3.5, 0)
 shape = SubResource("RectangleShape2D_jr7co")
+one_way_collision = true
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_e2fg7")]
 max_health = 3
@@ -434,13 +436,11 @@ autoplay = "running"
 script = SubResource("GDScript_qo3dw")
 
 [node name="GunPivot" type="Node2D" parent="." node_paths=PackedStringArray("body_sprite", "gun")]
-scale = Vector2(1, 1)
 script = ExtResource("4_tvvnj")
 body_sprite = NodePath("../Body/UpperBody")
 gun = NodePath("PlayerGun")
 
 [node name="PlayerGun" parent="GunPivot" instance=ExtResource("2_sf2fd")]
-scale = Vector2(1, 1)
 
 [node name="FlashingComponent" type="Node" parent="." node_paths=PackedStringArray("flashable_body", "health_component")]
 script = ExtResource("14_gqpvi")
