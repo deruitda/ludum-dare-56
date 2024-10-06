@@ -9,7 +9,6 @@ func _ready() -> void:
 
 func on_load_level() -> void:
 	add_child(current_level.instantiate())
-	print("hei")
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

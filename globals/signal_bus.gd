@@ -4,6 +4,8 @@ signal player_hurt()
 
 signal player_kill()
 
+signal player_died()
+
 signal start_game()
 
 signal create_bullet(bullet: Bullet)
