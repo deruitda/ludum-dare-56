@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/bullet_emitter/bullet_emitter.gd" id="1_smaw3"]
 [ext_resource type="PackedScene" uid="uid://bx84510ke5gvq" path="res://scenes/bullet_emitter/bullet_emitter_bullet.tscn" id="2_pbsum"]
-[ext_resource type="PackedScene" uid="uid://b7ev8rk7l185t" path="res://scenes/gun/muzzle.tscn" id="2_x8dly"]
+[ext_resource type="PackedScene" uid="uid://b7ev8rk7l185t" path="res://scenes/player/gun/muzzle.tscn" id="2_x8dly"]
 
 [node name="BulletEmitter" type="Node2D" node_paths=PackedStringArray("bullet_emit_timer", "muzzle")]
 script = ExtResource("1_smaw3")

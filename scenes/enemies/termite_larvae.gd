@@ -50,6 +50,7 @@ func _on_died() -> void:
 	
 func start_death() -> void:
 	is_dead = true
+	$BugAudio.play_enemy_death_audio()
 	animated_sprite_2d.animation_finished.connect(finish_death)
 	animated_sprite_2d.play("death")
 	

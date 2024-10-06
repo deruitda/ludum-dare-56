@@ -1,7 +1,11 @@
 extends CharacterBody2D
 class_name Player
 
+@export var gun_pivot: GunPivot
+@export var gun: Gun 
 
+
+@export var edge_detector: EdgeDetector
 #inputs
 @onready var direction_input: float = 0.0
 
@@ -29,50 +33,32 @@ func _process(delta: float) -> void:
 	if is_dead:
 		PlayerManager.remove_current_player()
 		queue_free()
-	
-	var left_right_input = get_left_right_input()
-	#is looking right
-	if is_on_wall() or is_wall_sliding:
-		if get_wall_normal().x < 0:
-			lower_body_sprite.flip_h = true
-		else:
-			lower_body_sprite.flip_h = false
 	else:
-		if left_right_input == Vector2.LEFT:
-			lower_body_sprite.flip_h = true
-		elif left_right_input == Vector2.RIGHT:
-			
-			lower_body_sprite.flip_h = false
-	
-	if is_running and lower_body_sprite.animation != "running":
-		lower_body_sprite.play("running")
-	elif is_idle and lower_body_sprite.animation != "idle":
 		
-		lower_body_sprite.play("idle")
-	elif is_wall_sliding and lower_body_sprite.animation != "wall_sliding":
-		lower_body_sprite.play("wall_sliding")
-	elif is_in_air and not is_on_wall() and lower_body_sprite.animation != "jump":
-		lower_body_sprite.play("jump")
-	
+		handle_sprite_orientation()
+		handle_lower_body_sprite_animation()
 
 func _physics_process(delta: float) -> void:
 	if is_dead:
 		return
 	
 	direction_input = Input.get_axis("move_left", "move_right")
-	
+	gun_pivot.rotate_toward_position(get_global_mouse_position())
+	if Input.is_action_pressed("shoot"):
+		gun.shoot_bullet()
 	
 	set_actions(delta)
 	set_states()
+	
 	var left_right_input = get_left_right_input()
 	
-	
-	if not is_on_floor():
+	if is_on_ceiling():
+		velocity_component.apply_hit_cieling()
+		
+	if not get_is_on_floor():
 		velocity_component.apply_gravity(delta)
 	elif not is_wall_jumping and not is_floor_jumping:
 		velocity_component.apply_hit_ground()
-	if is_on_ceiling():
-		velocity_component.apply_hit_cieling()
 	
 	if is_wall_jumping:
 		var wall_jumping_direction = Vector2.LEFT
@@ -89,7 +75,6 @@ func _physics_process(delta: float) -> void:
 		velocity_component.apply_move(left_right_input, delta)
 	elif is_in_air:
 		velocity_component.apply_in_air_movement(direction_input, delta)
-	
 	elif is_idle:
 		velocity_component.apply_idle(delta)
 	
@@ -109,7 +94,7 @@ func set_actions(delta: float) -> void:
 		wall_grace_timer += delta
 	# Apply gravity if the player is not on the floor
 	
-	if is_floor_jumping || is_wall_jumping || is_on_floor():
+	if is_floor_jumping || is_wall_jumping || get_is_on_floor():
 		is_wall_sliding = false
 	elif is_on_wall() and get_is_pointing_to_wall():
 		is_wall_sliding = true
@@ -117,7 +102,7 @@ func set_actions(delta: float) -> void:
 		is_wall_sliding = false
 	#Jumping inputs
 	if Input.is_action_just_pressed("jump"):
-		if is_on_floor():
+		if get_is_on_floor():
 			is_floor_jumping = true
 		
 		elif is_on_wall() or wall_grace_timer <= wall_grace_period:
@@ -127,20 +112,44 @@ func set_actions(delta: float) -> void:
 		is_wall_jumping = false
 		
 func set_states() -> void:
-	if is_on_floor() and direction_input:
+	if get_is_on_floor() and direction_input and not is_on_ceiling():
 		is_running = true
 	else:
 		is_running = false
 	
-	if not is_on_floor() and not is_on_wall():
+	if is_on_ceiling() or (not get_is_on_floor() and not is_on_wall()):
 		is_in_air = true
 	else:
 		is_in_air = false
 	
-	if  is_on_floor() and not is_running:
+	if  get_is_on_floor() and not is_running:
 		is_idle = true
 	else:
 		is_idle = false
+		
+
+func handle_lower_body_sprite_animation()->void:
+	if is_running and lower_body_sprite.animation != "running":
+		lower_body_sprite.play("running")
+	elif is_idle and lower_body_sprite.animation != "idle":
+		lower_body_sprite.play("idle")
+	elif is_wall_sliding and lower_body_sprite.animation != "wall_sliding":
+		lower_body_sprite.play("wall_sliding")
+	elif is_in_air and not is_on_wall() and lower_body_sprite.animation != "jump":
+		lower_body_sprite.play("jump")
+func handle_sprite_orientation()->void:
+	var left_right_input = get_left_right_input()
+	#is looking right
+	if is_on_wall() or is_wall_sliding:
+		if get_wall_normal().x < 0:
+			lower_body_sprite.flip_h = true
+		else:
+			lower_body_sprite.flip_h = false
+	else:
+		if left_right_input == Vector2.LEFT:
+			lower_body_sprite.flip_h = true
+		elif left_right_input == Vector2.RIGHT:
+			lower_body_sprite.flip_h = false
 
 func get_left_right_input() -> Vector2: 
 	var left_right_input = Vector2.ZERO
@@ -156,7 +165,9 @@ func _on_died() -> void:
 	is_dead = true
 	pass # Replace with function body.
 
-
 func _on_damage_applied() -> void:
 	print("damage")
 	pass # Replace with function body.
+
+func get_is_on_floor() -> bool:
+	return is_on_floor() and edge_detector.is_touching_ground()

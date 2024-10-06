@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b7ev8rk7l185t"]
 
-[ext_resource type="Script" path="res://scenes/gun/muzzle.gd" id="1_pbeo7"]
+[ext_resource type="Script" path="res://scenes/player/gun/muzzle.gd" id="1_pbeo7"]
 
 [node name="BulletSpawner" type="Node2D"]
 script = ExtResource("1_pbeo7")

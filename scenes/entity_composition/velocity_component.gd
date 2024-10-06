@@ -11,6 +11,7 @@ class_name VelocityComponent
 @export var wall_slide_speed: float = 50.0
 @export var floor_resistance: float = 8000.0
 
+@export var is_traveling_up: bool = false
 
 @onready var velocity: Vector2
 
@@ -62,6 +63,8 @@ func do_character_move(character_body: CharacterBody2D):
 func do_rigid_body_move(rigid_body: RigidBody2D):
 	rigid_body.velocity = velocity
 	rigid_body.move_and_slide()
+	
+	
 
 func apply_gravity(delta: float) -> void:
 	velocity.y += gravity * delta

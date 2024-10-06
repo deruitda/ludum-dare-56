@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://bclfphejkk3rt"]
+
+[ext_resource type="Script" path="res://scenes/entity_composition/edge_detector.gd" id="1_vp6f5"]
+
+[node name="EdgeDetector" type="Node2D" node_paths=PackedStringArray("left_ray_cast", "right_ray_cast")]
+script = ExtResource("1_vp6f5")
+left_ray_cast = NodePath("LeftRayCast")
+right_ray_cast = NodePath("RightRayCast")
+
+[node name="LeftRayCast" type="RayCast2D" parent="."]
+position = Vector2(-32, 0)
+target_position = Vector2(0, 32)
+collision_mask = 262
+
+[node name="RightRayCast" type="RayCast2D" parent="."]
+position = Vector2(32, 0)
+target_position = Vector2(0, 32)

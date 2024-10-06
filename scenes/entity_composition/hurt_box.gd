@@ -4,6 +4,7 @@ class_name HurtBox
 @export var health_component: HealthComponent
 
 signal hit_by_bullet(bullet: Bullet)
+signal hit_by_enemy()
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -20,6 +21,14 @@ func handle_bullet_collision(bullet: Bullet):
 		health_component.apply_damage(bullet.damage_per_bullet)
 		hit_by_bullet.emit(bullet)
 
+func handle_enemy_collision():
+	if not health_component.is_invulnerable():
+		health_component.apply_damage(1)
+		hit_by_enemy.emit()
+
 func _on_area_entered(area: Area2D) -> void:
-	var bullet = area as Bullet
-	handle_bullet_collision(bullet)
+	if area is Bullet:
+		var bullet = area as Bullet
+		handle_bullet_collision(bullet)
+	else:
+		handle_enemy_collision()

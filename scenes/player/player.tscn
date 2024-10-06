@@ -1,17 +1,19 @@
-[gd_scene load_steps=62 format=3 uid="uid://cofh4isrtksv4"]
+[gd_scene load_steps=65 format=3 uid="uid://cofh4isrtksv4"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_y4k5w"]
 [ext_resource type="Shape2D" uid="uid://cc3bsg65yxgm0" path="res://scenes/player/player_shape.tres" id="2_n3d0r"]
-[ext_resource type="PackedScene" uid="uid://br7b7ao0pn4rr" path="res://scenes/gun/gun.tscn" id="2_sf2fd"]
+[ext_resource type="PackedScene" uid="uid://br7b7ao0pn4rr" path="res://scenes/player/gun/player_gun.tscn" id="2_sf2fd"]
 [ext_resource type="PackedScene" uid="uid://dqgxt6ms0uyu8" path="res://scenes/entity_composition/health_component.tscn" id="3_e2fg7"]
 [ext_resource type="PackedScene" uid="uid://bqa4jle60cl0a" path="res://scenes/entity_composition/velocity_component.tscn" id="4_nqq8h"]
-[ext_resource type="Script" path="res://scenes/gun/gun_pivot.gd" id="4_tvvnj"]
+[ext_resource type="Script" path="res://scenes/player/gun/gun_pivot.gd" id="4_tvvnj"]
 [ext_resource type="Texture2D" uid="uid://b1kk41ddlbhgu" path="res://assets/sprites/rex/rex-upper-idle.png" id="7_3q747"]
 [ext_resource type="Script" path="res://scenes/entity_composition/hurt_box.gd" id="7_6ogm0"]
 [ext_resource type="Texture2D" uid="uid://cbfvo400gwdl4" path="res://assets/sprites/rex/rex-lower-run.png" id="7_p20d2"]
 [ext_resource type="Texture2D" uid="uid://brvnyb15boofo" path="res://assets/sprites/rex/rex-lower-idle.png" id="8_7mji7"]
 [ext_resource type="Texture2D" uid="uid://b41yjf446te1j" path="res://assets/sprites/rex/rex-lower-jump.png" id="8_g12o4"]
 [ext_resource type="Texture2D" uid="uid://dtxb5812xnpp2" path="res://assets/sprites/rex/rex-lower-wall.png" id="10_jr1rn"]
+[ext_resource type="Script" path="res://scenes/entity_composition/flashing_component.gd" id="14_gqpvi"]
+[ext_resource type="Script" path="res://scenes/entity_composition/edge_detector.gd" id="14_vahgb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jr7co"]
 size = Vector2(23, 64)
@@ -369,32 +371,53 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("lower_body_sprite", "velocity_component")]
+[sub_resource type="GDScript" id="GDScript_qo3dw"]
+script/source = "extends AnimatedSprite2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("gun_pivot", "gun", "edge_detector", "lower_body_sprite", "velocity_component")]
 scale = Vector2(1.68, 1.68)
-collision_mask = 6
-platform_floor_layers = 4294967294
+collision_mask = 262
+floor_block_on_wall = false
+platform_floor_layers = 4278190338
 platform_wall_layers = 4
 script = ExtResource("1_y4k5w")
+gun_pivot = NodePath("GunPivot")
+gun = NodePath("GunPivot/PlayerGun")
+edge_detector = NodePath("EdgeDetector")
 lower_body_sprite = NodePath("Body/LowerBody")
 velocity_component = NodePath("VelocityComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-3.5, 0)
 shape = SubResource("RectangleShape2D_jr7co")
+one_way_collision = true
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_e2fg7")]
 max_health = 3
 seconds_of_invulnerability_after_damage = 5.0
 
 [node name="VelocityComponent" parent="." instance=ExtResource("4_nqq8h")]
-in_air_acceleration = 1000.0
-in_air_resistance = 1000.0
-wall_jump_velocity = 500.0
+gravity = 3000.0
+max_speed = 800.0
+acceleration = 30000.0
+in_air_resistance = 8000.0
+wall_jump_velocity = 800.0
 wall_slide_speed = 250.0
 
 [node name="HurtBox" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
 collision_layer = 16
-collision_mask = 64
+collision_mask = 192
 script = ExtResource("7_6ogm0")
 health_component = NodePath("../HealthComponent")
 
@@ -414,14 +437,32 @@ autoplay = "idle"
 sprite_frames = SubResource("SpriteFrames_n4ibw")
 animation = &"wall_sliding"
 autoplay = "running"
+script = SubResource("GDScript_qo3dw")
 
-[node name="GunPivot" type="Node2D" parent="." node_paths=PackedStringArray("gun", "upper_body_sprite")]
-rotation = 1.5708
+[node name="GunPivot" type="Node2D" parent="." node_paths=PackedStringArray("body_sprite", "gun")]
 script = ExtResource("4_tvvnj")
-gun = NodePath("Gun")
-upper_body_sprite = NodePath("../Body/UpperBody")
+body_sprite = NodePath("../Body/UpperBody")
+gun = NodePath("PlayerGun")
 
-[node name="Gun" parent="GunPivot" instance=ExtResource("2_sf2fd")]
+[node name="PlayerGun" parent="GunPivot" instance=ExtResource("2_sf2fd")]
+
+[node name="FlashingComponent" type="Node" parent="." node_paths=PackedStringArray("flashable_body", "health_component")]
+script = ExtResource("14_gqpvi")
+flashable_body = NodePath("..")
+health_component = NodePath("../HealthComponent")
+
+[node name="EdgeDetector" type="Node2D" parent="." node_paths=PackedStringArray("left_ray_cast", "right_ray_cast")]
+script = ExtResource("14_vahgb")
+left_ray_cast = NodePath("RayCast2D")
+right_ray_cast = NodePath("RayCast2D2")
+
+[node name="RayCast2D" type="RayCast2D" parent="EdgeDetector"]
+position = Vector2(-14.2857, 31.5476)
+collision_mask = 258
+
+[node name="RayCast2D2" type="RayCast2D" parent="EdgeDetector"]
+position = Vector2(7.14286, 31.5476)
+collision_mask = 258
 
 [connection signal="damage_applied" from="HealthComponent" to="." method="_on_damage_applied"]
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]

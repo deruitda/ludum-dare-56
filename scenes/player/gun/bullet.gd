@@ -10,10 +10,11 @@ class_name Bullet
 @onready var has_been_destroyed = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	animSprite.animation_finished.connect(_on_animation_finished)
+	if animSprite:
+		animSprite.animation_finished.connect(_on_animation_finished)
 
 func _on_animation_finished() -> void:
-		if animSprite.animation == "explode":
+		if animSprite and animSprite.animation == "explode":
 			has_been_destroyed = true
 			queue_free()
 
@@ -21,7 +22,7 @@ func set_direction(new_direction: Vector2):
 	direction = new_direction.normalized()
 
 func _physics_process(delta: float) -> void:
-	if has_hit_something and not animSprite.animation == "explode":
+	if has_hit_something and (animSprite and not animSprite.animation == "explode"):
 		animSprite.play("explode")
 
 	elif not has_hit_something:

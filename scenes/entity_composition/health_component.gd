@@ -10,6 +10,7 @@ class_name HealthComponent
 @onready var seconds_after_latest_damage: float = 0.0
 signal died
 signal damage_applied
+signal is_invulnurable_state_change(is_invulnerable_new_value: bool)
 
 func _ready() -> void:
 	current_health = max_health
@@ -19,6 +20,7 @@ func apply_damage(damage: int) -> void:
 	current_health -= damage
 	damage_applied.emit()
 	is_currently_invulnerable_after_damage = true
+	is_invulnurable_state_change.emit(is_currently_invulnerable_after_damage)
 	seconds_after_latest_damage = 0.0
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -26,6 +28,7 @@ func _process(delta: float) -> void:
 		seconds_after_latest_damage += delta
 		if seconds_after_latest_damage > seconds_of_invulnerability_after_damage:
 			is_currently_invulnerable_after_damage = false
+			is_invulnurable_state_change.emit(is_currently_invulnerable_after_damage)
 			seconds_after_latest_damage = 0.0
 		
 	
