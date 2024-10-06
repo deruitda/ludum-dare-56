@@ -27,7 +27,7 @@ func _physics_process(delta: float) -> void:
 		velocity_component.apply_gravity(delta)
 		
 	if (is_on_wall() and is_on_floor()) || (is_on_wall() and is_on_ceiling()):
-		enemy_walk_direction.rotate_walk_direction()
+		enemy_walk_direction.toggle_current_direction()
 	
 	if enemy_walk_direction.is_running():
 		velocity_component.apply_run(enemy_walk_direction.current_direction, delta)

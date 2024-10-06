@@ -104,8 +104,7 @@ animation = &"crawl"
 autoplay = "crawl"
 frame_progress = 0.682746
 
-[node name="EnemyWalkDirection" parent="." node_paths=PackedStringArray("toggle_current_direction_timer") instance=ExtResource("7_nyc36")]
-toggle_current_direction_timer = NodePath("DefaultToggleDirectionTimer")
+[node name="EnemyWalkDirection" parent="." instance=ExtResource("7_nyc36")]
 
 [node name="DefaultToggleDirectionTimer" type="Timer" parent="EnemyWalkDirection"]
 wait_time = 8.0

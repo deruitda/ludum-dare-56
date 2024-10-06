@@ -4,3 +4,6 @@
 
 [node name="EnemyWalkDirection" type="Node"]
 script = ExtResource("1_af64t")
+
+[node name="ToggleCooldownTimer" type="Timer" parent="."]
+one_shot = true

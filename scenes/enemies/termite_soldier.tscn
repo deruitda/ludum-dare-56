@@ -91,7 +91,6 @@ script = ExtResource("3_c4ldb")
 [node name="VelocityComponent" type="Node" parent="."]
 script = ExtResource("5_oj13s")
 
-[node name="EnemyWalkDirection" parent="." node_paths=PackedStringArray("toggle_current_direction_timer") instance=ExtResource("6_l5wsd")]
-toggle_current_direction_timer = NodePath("ToggleDirectionTimer")
+[node name="EnemyWalkDirection" parent="." instance=ExtResource("6_l5wsd")]
 
 [node name="ToggleDirectionTimer" type="Timer" parent="EnemyWalkDirection"]
