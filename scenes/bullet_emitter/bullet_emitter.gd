@@ -29,7 +29,7 @@ func create_bullets() -> void:
 		var current_bullet_direction = Vector2(cos(current_angle), sin(current_angle))
 		
 		# Create the bullet at the muzzle with the calculated direction
-		muzzle.create_bullet(bullet_packed_scene, current_bullet_direction)
+		muzzle.create_bullet(bullet_packed_scene)
 func _on_bullet_emit_timer() ->void:
 	create_bullets()
 	bullet_emit_timer.start()
