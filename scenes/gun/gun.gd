@@ -6,4 +6,5 @@ class_name Gun
 
 
 func shoot_bullet(direction: Vector2):
+	$AudioStreamPlayer2D.play()
 	muzzle.create_bullet(bullet_packed_scene, direction)
