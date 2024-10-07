@@ -45,5 +45,10 @@ func _on_end_walk_to_hole_timer_timeout() -> void:
 	wait_timer.timeout.disconnect(_on_end_walk_to_hole_timer_timeout)
 	
 	wait_timer.wait_time = IDLE_BEFORE_PUTTING_IN_HEADPHONES
-	
+	wait_timer.start()
+	wait_timer.timeout.connect(_on_idle_before_shrink_timeout)
 	pass
+	
+func _on_idle_before_shrink_timeout():
+	wait_timer.timeout.disconnect(_on_idle_before_shrink_timeout)
+	rex.set_is_shrinking(rex.scale)
