@@ -29,6 +29,8 @@ const attacks = [
 
 var last_attack : String
 
+signal queen_just_died
+
 func _physics_process(delta: float) -> void:
 	rotate_toward_player(delta)
 	
@@ -117,4 +119,5 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 
 func _on_health_component_died() -> void:
 	SignalBus.set_game_is_paused_state.emit(true)
+	queen_just_died.emit()
 	#queue_free()

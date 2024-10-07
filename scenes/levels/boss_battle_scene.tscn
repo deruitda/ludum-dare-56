@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=4 uid="uid://c5j7fkktvfgkp"]
+[gd_scene load_steps=10 format=4 uid="uid://c5j7fkktvfgkp"]
 
+[ext_resource type="Script" path="res://scenes/levels/boss_battle_scene.gd" id="1_555cq"]
 [ext_resource type="PackedScene" uid="uid://ck6yxuie4bs3n" path="res://scenes/core/follow_cam.tscn" id="1_g112b"]
 [ext_resource type="PackedScene" uid="uid://cofh4isrtksv4" path="res://scenes/player/player.tscn" id="2_svlwg"]
 [ext_resource type="TileSet" uid="uid://dhwky8od3ahak" path="res://assets/sprites/tiles/base_tileset.tres" id="3_ai5rj"]
@@ -11,6 +12,7 @@
 [sub_resource type="Environment" id="Environment_i55ik"]
 
 [node name="TermiteExtermination" type="Node2D"]
+script = ExtResource("1_555cq")
 
 [node name="FollowCam" parent="." node_paths=PackedStringArray("follow_target") instance=ExtResource("1_g112b")]
 position = Vector2(794, -448)
@@ -30,12 +32,8 @@ rendering_quadrant_size = 32
 
 [node name="EnemySpawner" parent="." instance=ExtResource("4_60ey6")]
 
-[node name="TermiteQueen" parent="." node_paths=PackedStringArray("emitters", "egg_muzzles") instance=ExtResource("5_5r62d")]
+[node name="TermiteQueen" parent="." instance=ExtResource("5_5r62d")]
 position = Vector2(834, -761)
-num_blast_waves = 12
-num_egg_waves = 5
-emitters = []
-egg_muzzles = []
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_i55ik")
@@ -109,3 +107,10 @@ wait_time = 8.0
 
 [node name="Node2D" type="Node2D" parent="Spawners/TermiteAlateSpawner3"]
 position = Vector2(-1, 95)
+
+[node name="CutSceneTimers" type="Node" parent="."]
+
+[node name="TimeBeforeExplosion" type="Timer" parent="CutSceneTimers"]
+wait_time = 3.0
+
+[connection signal="queen_just_died" from="TermiteQueen" to="." method="_on_termite_queen_queen_just_died"]

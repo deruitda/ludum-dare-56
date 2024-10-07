@@ -23,3 +23,6 @@ func _process(delta: float) -> void:
 	
 	if global_position.y > min_y_pos:
 		global_position.y = min_y_pos
+
+func switch_target(new_target: Node2D):
+	follow_target = new_target
