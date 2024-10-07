@@ -6,4 +6,5 @@
 script = ExtResource("1_af64t")
 
 [node name="ToggleCooldownTimer" type="Timer" parent="."]
+wait_time = 0.2
 one_shot = true
