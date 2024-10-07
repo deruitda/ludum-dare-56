@@ -69,7 +69,7 @@ animations = [{
 
 [node name="TermiteLarvaeSpawner" type="Node2D"]
 
-[node name="Spawner" parent="." node_paths=PackedStringArray("timer", "animSprite") instance=ExtResource("1_5dkbs")]
+[node name="SpawnPoint" parent="." node_paths=PackedStringArray("timer", "animSprite") instance=ExtResource("1_5dkbs")]
 scene = ExtResource("2_hrru3")
 timer = NodePath("../SpawnTimer")
 animSprite = NodePath("../AnimatedSprite2D")

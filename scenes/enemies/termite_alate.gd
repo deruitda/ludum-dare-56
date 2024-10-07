@@ -7,6 +7,7 @@ class_name TermiteAlate
 @export var gun_pivot: GunPivot
 @onready var animSprite = $AnimatedSprite2D
 @onready var hurt_box: HurtBox = $HurtBox
+@onready var spawn_point: SpawnPoint
 
 func _physics_process(delta: float) -> void:
 	
@@ -40,7 +41,7 @@ func anim_finished():
 		animSprite.play("idle")
 
 func _on_health_component_died() -> void:
-	SignalBus.enemy_died.emit()
+	SignalBus.enemy_died.emit(self)
 	start_death()
 
 func _on_shooting_timer_timeout() -> void:

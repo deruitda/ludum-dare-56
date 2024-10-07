@@ -71,7 +71,7 @@ animations = [{
 [node name="TermiteSoldierSpawner" type="Node2D"]
 script = ExtResource("1_2csjt")
 
-[node name="Spawner" parent="." node_paths=PackedStringArray("timer", "animSprite") instance=ExtResource("1_fpvfl")]
+[node name="SpawnPoint" parent="." node_paths=PackedStringArray("timer", "animSprite") instance=ExtResource("1_fpvfl")]
 scene = ExtResource("2_jcac0")
 timer = NodePath("../SpawnTimer")
 animSprite = NodePath("../AnimatedSprite2D")
@@ -82,5 +82,5 @@ animation = &"spawn"
 autoplay = "idle"
 
 [node name="SpawnTimer" type="Timer" parent="."]
-wait_time = 8.0
+wait_time = 2.0
 autostart = true

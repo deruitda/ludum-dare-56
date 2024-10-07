@@ -16,6 +16,8 @@ class_name TermiteSoldier
 
 @onready var is_dying: bool = false
 
+@onready var spawn_point: SpawnPoint
+
 func _ready() -> void:
 	if start_walking_up:
 		enemy_walk_direction.set_current_direction(Vector2.LEFT)
@@ -90,7 +92,7 @@ func handle_apply_movement(delta: float) -> void:
 	
 func _on_health_component_died() -> void:
 	start_death()
-	SignalBus.enemy_died.emit()
+	SignalBus.enemy_died.emit(self)
 
 	pass # Replace with function body.
 func start_death():
