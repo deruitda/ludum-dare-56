@@ -1,4 +1,5 @@
 extends Node2D
+class_name ThermiteQueen
 
 @onready var thorax: AnimatedSprite2D = $Model/Thorax
 @onready var termite_queen_gun = $GunPivot/TermiteQueenGun
@@ -121,3 +122,11 @@ func _on_health_component_died() -> void:
 	SignalBus.set_game_is_paused_state.emit(true)
 	queen_just_died.emit()
 	#queue_free()
+
+func do_explode() -> void:
+	thorax.play("explode")
+	thorax.animation_finished.connect(_on_thorax_animation_finish)
+	
+func _on_thorax_animation_finish():
+	thorax.animation_finished.disconnect(_on_thorax_animation_finish)
+	pass

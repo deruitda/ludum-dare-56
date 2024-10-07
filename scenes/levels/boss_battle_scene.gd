@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var follow_cam: Camera2D = $FollowCam
-@onready var termite_queen: Node2D = $TermiteQueen
+@onready var termite_queen: ThermiteQueen = $TermiteQueen
 
 @onready var time_before_explosion: Timer = $CutSceneTimers/TimeBeforeExplosion
 
@@ -22,5 +22,5 @@ func _on_termite_queen_queen_just_died() -> void:
 	pass # Replace with function body.
 
 func _on_time_before_explosion_timeout() -> void:
-	
+	termite_queen.do_explode()
 	pass
