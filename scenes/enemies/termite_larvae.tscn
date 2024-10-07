@@ -12,10 +12,10 @@
 [ext_resource type="Script" path="res://scenes/entity_composition/edge_detector.gd" id="10_wsf42"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bqby1"]
-size = Vector2(54, 21)
+size = Vector2(90, 30)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rdvc8"]
-size = Vector2(76, 30)
+size = Vector2(90, 30)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vi5to"]
 atlas = ExtResource("6_0w3vn")
@@ -152,7 +152,6 @@ velocity_component = NodePath("VelocityComponent")
 toggle_direction_timer = NodePath("EnemyWalkDirection/DefaultToggleDirectionTimer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-5, 0.5)
 shape = SubResource("RectangleShape2D_bqby1")
 
 [node name="HealthComponent" parent="." instance=ExtResource("1_38jc2")]
@@ -163,7 +162,6 @@ collision_mask = 1056
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2(-7, 2)
 shape = SubResource("RectangleShape2D_rdvc8")
 
 [node name="VelocityComponent" type="Node" parent="."]

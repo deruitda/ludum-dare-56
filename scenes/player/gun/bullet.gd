@@ -8,6 +8,7 @@ class_name Bullet
 @export var max_distance: float
 @onready var distance_traveled: float = 0.0
 
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
 @onready var direction: Vector2
 @onready var has_hit_something = false
@@ -43,9 +44,11 @@ func _physics_process(delta: float) -> void:
 
 func _handle_hit_environment():
 	has_hit_something = true
+	collision_shape_2d.disabled = true
 	
 func _handle_hit_hurt_box():
 	has_hit_something = true
+	collision_shape_2d.disabled = true
 
 func _on_area_entered(area: Area2D) -> void:
 	_handle_hit_hurt_box()
