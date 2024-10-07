@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://dy3on1nl7ilmj"]
+[gd_scene load_steps=7 format=4 uid="uid://dy3on1nl7ilmj"]
 
 [ext_resource type="PackedScene" uid="uid://ck6yxuie4bs3n" path="res://scenes/core/follow_cam.tscn" id="1_t8vae"]
 [ext_resource type="PackedScene" uid="uid://cofh4isrtksv4" path="res://scenes/player/player.tscn" id="2_c5jwf"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://b4shxvhahtanx" path="res://scenes/core/enemy_spawner.tscn" id="4_3vix5"]
 [ext_resource type="PackedScene" uid="uid://c0qk07leqlcqg" path="res://scenes/enemies/termite_soldier_spawner.tscn" id="6_j1q3m"]
 [ext_resource type="PackedScene" uid="uid://c3g5a3xfhtd4p" path="res://scenes/termite_larvae_spawner.tscn" id="6_pwvgx"]
-[ext_resource type="PackedScene" uid="uid://bmx1622nihm1q" path="res://scenes/enemies/termite_alate_spawner.tscn" id="7_0sqyf"]
 
 [node name="TermiteExtermination" type="Node2D"]
 
@@ -44,11 +43,3 @@ rotation = 1.5708
 timer = NodePath("Timer")
 
 [node name="Timer" type="Timer" parent="SoldierSpawn/TermiteSoldierSpawner"]
-
-[node name="TermiteAlateSpawner" parent="." node_paths=PackedStringArray("timer") instance=ExtResource("7_0sqyf")]
-position = Vector2(-77, -1296)
-timer = NodePath("Timer")
-total_amount_of_enemies_allowed_at_a_time = 5
-
-[node name="Timer" type="Timer" parent="TermiteAlateSpawner"]
-wait_time = 0.5
