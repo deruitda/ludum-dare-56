@@ -1,10 +1,13 @@
-[gd_scene load_steps=19 format=3 uid="uid://d2ky1qst3g810"]
+[gd_scene load_steps=20 format=3 uid="uid://d2ky1qst3g810"]
 
 [ext_resource type="Script" path="res://scenes/player/grenade/grenade.gd" id="1_7myjt"]
 [ext_resource type="Script" path="res://scenes/bullet_emitter/bullet_emitter.gd" id="3_cjexm"]
 [ext_resource type="Script" path="res://scenes/player/gun/muzzle.gd" id="4_7xd7w"]
 [ext_resource type="PackedScene" uid="uid://dodod3y6l7dws" path="res://scenes/player/grenade/grenade_bullet.tscn" id="4_olhd0"]
 [ext_resource type="Texture2D" uid="uid://b7bxohitr5rio" path="res://assets/sprites/grenade/grenade-explode.png" id="5_h64tu"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hiqca"]
+bounce = 0.3
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ln6pu"]
 
@@ -96,6 +99,7 @@ animations = [{
 [node name="Grenade" type="RigidBody2D"]
 collision_layer = 1024
 collision_mask = 262
+physics_material_override = SubResource("PhysicsMaterial_hiqca")
 contact_monitor = true
 max_contacts_reported = 1
 script = ExtResource("1_7myjt")

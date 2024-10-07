@@ -12,6 +12,8 @@ func _ready() -> void:
 	linear_velocity = initial_velocity
 	explosion_timer.start()
 	explosion_timer.timeout.connect(explode)
+	# This ensures CCD is enabled for high-speed collisions
+	set_continuous_collision_detection_mode(RigidBody2D.CCD_MODE_CAST_RAY)
 	pass # Replace with function body.
 
 
