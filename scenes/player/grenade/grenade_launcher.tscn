@@ -5,6 +5,7 @@
 [ext_resource type="Script" path="res://scenes/entity_composition/path_finder.gd" id="3_qb3sg"]
 
 [node name="GrenadeLauncher" type="Node2D"]
+position = Vector2(1, 0)
 script = ExtResource("1_0hig3")
 grenade_scene = ExtResource("2_gm8bk")
 

@@ -489,7 +489,17 @@ respawn_invulnerability_timer = NodePath("RespawnInvulnerabilityTimer")
 [node name="RespawnInvulnerabilityTimer" type="Timer" parent="RespawnComponent"]
 wait_time = 3.0
 
-[node name="GrenadeLauncher" parent="." instance=ExtResource("18_khoxa")]
+[node name="GrenadeLauncher" parent="." node_paths=PackedStringArray("progress_bar") instance=ExtResource("18_khoxa")]
+position = Vector2(1.19048, -0.595238)
+progress_bar = NodePath("../ProgressBar")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -13.0952
+offset_top = -41.0714
+offset_right = 26.9048
+offset_bottom = -1.07143
+scale = Vector2(0.50656, 0.0675333)
+show_percentage = false
 
 [connection signal="damage_applied" from="HealthComponent" to="." method="_on_damage_applied"]
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]

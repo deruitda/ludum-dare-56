@@ -8,25 +8,37 @@ extends Node2D
 @export var max_additional_velocity: float = 700.0  # Reasonable increase in speed when charged
 @export var max_charge_time: float = 1.0  # Maximum seconds to fully charge the grenade
 
+@export var progress_bar: ProgressBar  # Reference to the ProgressBar node
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass  # Replace with function body.
+	progress_bar.visible = false  # Hide the progress bar initially
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
 func charge_grenade(delta: float):
+	
+	# Show the progress bar when charging begins
+	if charging_amount == 0.0:
+		progress_bar.visible = true
+
 	# Increment the charging amount based on delta time, clamping it to the max charge time
-	charging_amount = clamp(charging_amount + (delta / max_charge_time), 0, 1.0)  
+	charging_amount = clamp(charging_amount + (delta / max_charge_time), 0, 1.0)
+
+	# Update the progress bar's value
+	progress_bar.value = charging_amount * progress_bar.max_value  # Set progress based on charge amount
 
 func launch_grenade_toward(position: Vector2) -> void:
 	var grenade = grenade_scene.instantiate()
 	grenade.global_position = global_position
 	var direction = path_finder.get_direction_to_position(position)
-	
+
 	# Calculate the final initial velocity based on charge percentage
 	grenade.initial_velocity = direction.normalized() * (initial_velocity + (charging_amount * max_additional_velocity))
 	BulletSpawner.create_grenade(grenade)
-	
-	charging_amount = 0.0  # Reset charging amount after launching
+
+	# Reset the charging amount and hide the progress bar after launching
+	charging_amount = 0.0  
+	progress_bar.visible = false  # Hide the progress bar after launch
