@@ -137,10 +137,11 @@ wait_time = 0.18
 one_shot = true
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-visible = false
-position = Vector2(297, 0)
-energy = 0.92
+position = Vector2(34, 1)
+scale = Vector2(2.11039, 1.85937)
+energy = 1.2
+shadow_enabled = true
 texture = ExtResource("7_k044c")
-offset = Vector2(1.76, 0)
+offset = Vector2(263.715, 0)
 
 [connection signal="timeout" from="ShootingCooldown" to="." method="_on_shooting_cooldown_timeout"]

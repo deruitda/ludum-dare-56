@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://1j1hxv2lckcc"]
+
+[ext_resource type="Texture2D" uid="uid://bc6goyrw7c3ub" path="res://assets/sprites/env/crack-long.png" id="1_dxng3"]
+[ext_resource type="Texture2D" uid="uid://c6s85tycda3s1" path="res://assets/sprites/env/straight-light.png" id="2_5g45t"]
+
+[node name="CrackedLight" type="Node2D"]
+modulate = Color(0.533333, 0.533333, 0.533333, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_dxng3")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(2.99999, 10)
+scale = Vector2(4.74219, 1.60938)
+energy = 1.2
+shadow_enabled = true
+texture = ExtResource("2_5g45t")

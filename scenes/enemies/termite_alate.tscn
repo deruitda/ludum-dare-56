@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bbumsja2jwtyt"]
+[gd_scene load_steps=37 format=3 uid="uid://bbumsja2jwtyt"]
 
 [ext_resource type="Script" path="res://scenes/enemies/termite_alate.gd" id="1_p2glw"]
 [ext_resource type="Shape2D" uid="uid://bvv6wfe5a5vmo" path="res://scenes/enemies/termite_alate_shape.tres" id="2_4kggq"]
@@ -179,6 +179,10 @@ animations = [{
 "speed": 15.0
 }]
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_r3lv8"]
+cull_mode = 2
+polygon = PackedVector2Array(-5, -31, -7, -29, -6, -11, -21, -33, -27, -30, -30, -18, -17, -1, -28, 18, -28, 30, -21, 33, -8, 18, -1, 25, 6, 19, 19, 33, 26, 32, 27, 21, 17, 3, 29, -19, 26, -30, 18, -29, 6, -9, 4, -17, 8, -23, 7, -31, 1, -33)
+
 [node name="TermiteAlate" type="CharacterBody2D" node_paths=PackedStringArray("velocity_component", "path_finder", "gun", "gun_pivot")]
 collision_layer = 8
 collision_mask = 6
@@ -214,6 +218,10 @@ script = ExtResource("7_nwrww")
 sprite_frames = SubResource("SpriteFrames_17uiq")
 animation = &"idle"
 autoplay = "idle"
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="AnimatedSprite2D"]
+show_behind_parent = true
+occluder = SubResource("OccluderPolygon2D_r3lv8")
 
 [node name="GunPivot" type="Node2D" parent="." node_paths=PackedStringArray("gun")]
 script = ExtResource("10_ce1cc")
