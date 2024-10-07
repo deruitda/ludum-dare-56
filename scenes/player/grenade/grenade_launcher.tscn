@@ -8,6 +8,7 @@
 position = Vector2(1, 0)
 script = ExtResource("1_0hig3")
 grenade_scene = ExtResource("2_gm8bk")
+max_additional_velocity = 2000.0
 cooldown_timer = NodePath("CooldownTimer")
 
 [node name="PathFinder" type="Node2D" parent="."]

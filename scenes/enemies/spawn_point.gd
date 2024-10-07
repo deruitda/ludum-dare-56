@@ -10,7 +10,7 @@ class_name SpawnPoint
 
 func _ready() -> void:
 	timer.autostart = false
-	timer.one_shot = true
+	timer.one_shot = false
 	timer.start()
 	timer.timeout.connect(_on_spawn_timer_timeout)
 	
