@@ -10,13 +10,6 @@ class_name BulletEmitter
 func _ready() -> void:
 	bullet_emit_timer.timeout.connect(_on_bullet_emit_timer)
 	bullet_emit_timer.autostart = false
-	bullet_emit_timer.start()
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 func create_bullets() -> void:
 	var angle_of_bullets = 360.0 / float(number_of_bullets)  # Divide 360 degrees by the number of bullets
@@ -25,9 +18,7 @@ func create_bullets() -> void:
 		# Calculate the current angle for this bullet (convert degrees to radians)
 		var current_angle = deg_to_rad(i * angle_of_bullets)
 		
-		# Calculate the direction based on the angle
-		var current_bullet_direction = Vector2(cos(current_angle), sin(current_angle))
-		
+		muzzle.rotation = current_angle
 		# Create the bullet at the muzzle with the calculated direction
 		muzzle.create_bullet(bullet_packed_scene)
 func _on_bullet_emit_timer() ->void:

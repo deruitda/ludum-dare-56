@@ -26,3 +26,6 @@ rendering_quadrant_size = 32
 
 [node name="TermiteQueen" parent="." instance=ExtResource("5_7dw80")]
 position = Vector2(678, -761)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(315, -286)

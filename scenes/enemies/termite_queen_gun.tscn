@@ -70,11 +70,10 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="TermiteQueenGun" type="Node2D" node_paths=PackedStringArray("muzzle", "shooting_cooldown")]
+[node name="TermiteQueenGun" type="Node2D" node_paths=PackedStringArray("muzzle")]
 script = ExtResource("1_44v2f")
 muzzle = NodePath("Muzzle")
 bullet_packed_scene = ExtResource("2_eu2ma")
-shooting_cooldown = NodePath("")
 
 [node name="Muzzle" parent="." instance=ExtResource("3_44lat")]
 position = Vector2(137, -8)

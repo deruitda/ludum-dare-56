@@ -5,6 +5,10 @@ extends CharacterBody2D
 @onready var gun_pivot: GunPivot = $GunPivot
 @onready var stream_timer: Timer = $StreamTimer
 @onready var cool_down_timer: Timer = $CoolDownTimer
+@onready var bullet_emitter: BulletEmitter = $Emitters/BulletEmitter
+
+@export var num_blast_waves : int = 6
+@export var emitters : Array[BulletEmitter]
 
 var is_cooling_down : bool = false
 var is_attacking : bool = false
@@ -56,7 +60,11 @@ func stream_attack() -> void:
 	print("Incoming stream")
 
 func blast_attack() -> void:
-	print("Incoming blast")
+	
+	for n in num_blast_waves:
+		for emitter in emitters:
+			emitter.create_bullets()
+	
 	start_cooldown()
 
 func rotate_toward_player(delta: float):
