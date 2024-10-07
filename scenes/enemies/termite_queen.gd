@@ -25,6 +25,7 @@ var current_egg_wave : int = 0
 var is_cooling_down : bool = false
 var is_attacking : bool = false
 
+@onready var pause_attack: bool = false
 const attacks = [
 	"egg",
 	"stream",
@@ -37,7 +38,7 @@ signal queen_just_died
 signal queen_explosion_finished
 
 func _physics_process(delta: float) -> void:
-	if GameState.game_is_paused:
+	if GameState.game_is_paused or pause_attack:
 		return
 	rotate_toward_player(delta)
 	
@@ -80,9 +81,15 @@ func blast_attack() -> void:
 	termite_queen_gun.play_attack_anim()
 	blast_wave_timer.start()
 
+func rotate_to_direction(direction: Vector2, delta: float):
+	rotate_to_point(global_position + direction, delta)
+
+func rotate_to_point(rotate_to_position: Vector2, delta: float):
+		gun_pivot.rotate_lerp_toward_position(rotate_to_position)
+	
 func rotate_toward_player(delta: float):
 	if PlayerManager.current_player:
-		gun_pivot.rotate_lerp_toward_position(PlayerManager.current_player.global_position)
+		rotate_to_point(PlayerManager.current_player.global_position, delta)
 
 func _on_stream_timer_end():
 	termite_queen_gun.stop_stream()

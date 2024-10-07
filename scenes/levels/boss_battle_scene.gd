@@ -6,13 +6,18 @@ extends Node2D
 
 @onready var time_before_explosion: Timer = $CutSceneTimers/TimeBeforeExplosion
 
+@onready var is_opening_cutscene: bool = true
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	termite_queen.pause_attack = true
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if is_opening_cutscene:
+		termite_queen.rotate_to_direction(Vector2.DOWN, delta)
 	pass
 
 
