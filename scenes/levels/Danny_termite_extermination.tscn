@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://c1qwef1i3qpp6"]
+[gd_scene load_steps=17 format=4 uid="uid://c1qwef1i3qpp6"]
 
 [ext_resource type="PackedScene" uid="uid://ck6yxuie4bs3n" path="res://scenes/core/follow_cam.tscn" id="1_rwx32"]
 [ext_resource type="PackedScene" uid="uid://cofh4isrtksv4" path="res://scenes/player/player.tscn" id="2_gns5u"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://c0qk07leqlcqg" path="res://scenes/enemies/termite_soldier_spawner.tscn" id="6_d7m83"]
 [ext_resource type="PackedScene" uid="uid://bmx1622nihm1q" path="res://scenes/enemies/termite_alate_spawner.tscn" id="7_6is3s"]
 [ext_resource type="PackedScene" uid="uid://c5y32eyqqwqo7" path="res://scenes/core/checkpoint.tscn" id="8_jvkc2"]
+[ext_resource type="PackedScene" uid="uid://bqt18sq2qtm8k" path="res://round-light.tscn" id="9_u4lp2"]
+[ext_resource type="PackedScene" uid="uid://nuahsfm77qjp" path="res://scenes/enemies/termite_larvae.tscn" id="10_wlyig"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c64pm"]
 size = Vector2(196, 56.5)
@@ -353,3 +355,9 @@ shape = SubResource("RectangleShape2D_pnlhh")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint/Checkpoint6Area"]
 position = Vector2(2629, -9150.38)
 shape = SubResource("RectangleShape2D_yg534")
+
+[node name="RoundLight" parent="." instance=ExtResource("9_u4lp2")]
+position = Vector2(-246, -9536)
+
+[node name="TermiteLarvae" parent="." instance=ExtResource("10_wlyig")]
+position = Vector2(-200, -9211)

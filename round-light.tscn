@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqt18sq2qtm8k"]
+
+[ext_resource type="Texture2D" uid="uid://cyfp4k5dhjdgb" path="res://assets/sprites/env/hole-small.png" id="1_roe4q"]
+[ext_resource type="Texture2D" uid="uid://prx016kdxq0s" path="res://assets/sprites/env/round-light.png" id="2_ehxln"]
+
+[node name="RoundLight" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_roe4q")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-0.999992, 3.99998)
+scale = Vector2(11.7542, 7.48828)
+energy = 1.2
+shadow_enabled = true
+texture = ExtResource("2_ehxln")
