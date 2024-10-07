@@ -13,7 +13,7 @@ class_name Player
 @onready var is_floor_jumping: bool = false
 @onready var is_wall_jumping: bool = false
 @onready var is_wall_sliding: bool = false
-@onready var is_dashing: bool = false
+@onready var dash_is_cooling_down: bool = false
 
 #states
 @onready var is_running = false
@@ -46,7 +46,7 @@ func _physics_process(delta: float) -> void:
 	
 	direction_input = Input.get_axis("move_left", "move_right")
 	var dash_input = Input.is_action_just_pressed("dash")
-	if dash_input:
+	if dash_input and not dash_is_cooling_down:
 		var dash_direction_input = direction_input
 		if dash_direction_input == 0:
 			dash_direction_input = velocity.x
@@ -55,6 +55,7 @@ func _physics_process(delta: float) -> void:
 			var dash_direction = Vector2(dash_direction_input, 0).normalized()
 			
 			dash_component.start_dash(dash_direction)
+			dash_is_cooling_down = true
 		
 	gun_pivot.rotate_toward_position(get_global_mouse_position())
 	if Input.is_action_pressed("shoot"):
@@ -146,8 +147,9 @@ func set_states() -> void:
 		is_idle = true
 	else:
 		is_idle = false
-		
-		
+	
+	if not is_in_air and not dash_component.is_dashing:
+		dash_is_cooling_down = false
 
 func handle_lower_body_sprite_animation()->void:
 	if is_running and lower_body_sprite.animation != "running":
