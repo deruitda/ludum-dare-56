@@ -1,11 +1,16 @@
 extends RigidBody2D
 class_name Grenade
 
+@onready var bullet_emitter: BulletEmitter = $BulletEmitter
+@onready var explosion_timer: Timer = $ExplosionTimer
+
 @onready var initial_velocity: Vector2
 @export var gravity: float = 980.0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	linear_velocity = initial_velocity
+	explosion_timer.start()
+	explosion_timer.timeout.connect(explode)
 	pass # Replace with function body.
 
 
@@ -16,6 +21,13 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	pass
 
+func start_explosion_animation() -> void:
+	queue_free()
+
+func explode() -> void:
+	print("explode")
+	bullet_emitter.create_bullets()
+	start_explosion_animation()
 
 func _on_body_entered(body: Node) -> void:
 	print ('on body entered')

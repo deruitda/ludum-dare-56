@@ -5,6 +5,10 @@ class_name Bullet
 @export var damage_per_bullet = 1
 @export var animSprite : AnimatedSprite2D
 
+@export var max_distance: float
+@onready var distance_traveled: float = 0.0
+
+
 @onready var direction: Vector2
 @onready var has_hit_something = false
 @onready var has_been_destroyed = false
@@ -26,7 +30,16 @@ func _physics_process(delta: float) -> void:
 		animSprite.play("explode")
 
 	elif not has_hit_something:
-		position = position + (direction * speed * delta)
+		var move_distance = direction * speed * delta
+		position += move_distance
+		
+		# Update the distance traveled
+		distance_traveled += move_distance.length()
+		
+		# Check if the bullet has exceeded the max distance
+		if max_distance > 0 and distance_traveled >= max_distance:
+			_handle_hit_environment()  # Trigger the hit behavior
+			queue_free()  # Destroy the bullet if it has traveled too far
 
 func _handle_hit_environment():
 	has_hit_something = true

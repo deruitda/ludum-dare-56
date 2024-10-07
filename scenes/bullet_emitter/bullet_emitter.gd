@@ -8,8 +8,9 @@ class_name BulletEmitter
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	bullet_emit_timer.timeout.connect(_on_bullet_emit_timer)
-	bullet_emit_timer.autostart = false
+	if bullet_emit_timer:
+		bullet_emit_timer.timeout.connect(_on_bullet_emit_timer)
+		bullet_emit_timer.autostart = false
 
 func create_bullets() -> void:
 	var angle_of_bullets = 360.0 / float(number_of_bullets)  # Divide 360 degrees by the number of bullets
