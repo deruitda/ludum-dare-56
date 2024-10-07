@@ -187,7 +187,7 @@ size = Vector2(61, 30)
 collision_layer = 8
 collision_mask = 262
 platform_floor_layers = 4294966788
-platform_wall_layers = 258
+platform_wall_layers = 2
 script = ExtResource("1_u5irw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
