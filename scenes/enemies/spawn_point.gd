@@ -6,6 +6,8 @@ class_name SpawnPoint
 @export var spawn_range : int = 1000
 @export var total_amount_of_enemies_allowed_at_a_time: int = 1
 
+@export var spawn_location: Node2D
+
 @onready var number_of_child_enemies_alive: int = 0
 
 func _ready() -> void:
@@ -29,7 +31,11 @@ func _on_anim_finished() -> void:
 		animSprite.play("idle")
 
 func _spawn_new_enemy():
-	SignalBus.spawn_enemy.emit(scene, global_position, global_rotation, self)
+	position = global_position
+	if spawn_location:
+		position = spawn_location.global_position
+		
+	SignalBus.spawn_enemy.emit(scene, position, global_rotation, self)
 	number_of_child_enemies_alive += 1
 	if number_of_child_enemies_alive < total_amount_of_enemies_allowed_at_a_time:
 		timer.start()
