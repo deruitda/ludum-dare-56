@@ -4,6 +4,8 @@ extends Node2D
 @onready var follow_cam: FollowCam = $FollowCam
 @onready var level_entrance: LevelEntrance = $LevelEntrance
 
+@onready var background_music_audio = preload("res://assets/Audio/Music/Descent.wav")
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	level_entrance.create_player.connect(_on_level_entrance_create_player)
@@ -22,4 +24,5 @@ func _on_level_entrance_create_player(new_global_position: Vector2, starting_che
 	follow_cam.follow_target = player
 	SignalBus.set_game_is_paused_state.emit(false)
 	SignalBus.set_new_checkpoint.emit(starting_checkpoint)
+	SignalBus.set_background_music.emit(background_music_audio)
 	pass # Replace with function body.
