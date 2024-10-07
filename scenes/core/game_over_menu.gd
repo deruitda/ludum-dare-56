@@ -1,9 +1,16 @@
 extends Control
 
+@onready var death_label: Label = $Container/death_label
+@onready var kills_label: Label = $Container/kills_label
+@onready var total_time_label: Label = $Container/total_time_label
+
 
 @onready var buttons_v_box = $ButtonsVbox
 
 func _ready() -> void:
+	death_label.text = "Number of Deaths: " + str(GameState.player_deaths)
+	kills_label.text = "Number of Kills: " + str(GameState.enemies_killed)
+	#total_time_label.text = "Total Times: " + str(GameState)
 	focus_button()
 
 func _on_retry_button_pressed() -> void:
