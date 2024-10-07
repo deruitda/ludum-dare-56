@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://br7b7ao0pn4rr"]
+[gd_scene load_steps=22 format=3 uid="uid://br7b7ao0pn4rr"]
 
 [ext_resource type="Script" path="res://scenes/player/gun/gun.gd" id="1_tv8xg"]
 [ext_resource type="PackedScene" uid="uid://fvifpd00chk8" path="res://scenes/player/gun/bullet.tscn" id="2_yj2hu"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c1smsdcvkmp4f" path="res://assets/sprites/gun/gun-sheet.png" id="4_jqxav"]
 [ext_resource type="Texture2D" uid="uid://cojhnl06ykq5s" path="res://assets/sprites/gun/gun-shooting-Sheet.png" id="5_cy42n"]
 [ext_resource type="AudioStream" uid="uid://djpo4tm7cjpox" path="res://assets/Audio/SFX/GunPopStereo.wav" id="6_ib0q8"]
+[ext_resource type="Texture2D" uid="uid://prn2dnxcd7t7" path="res://assets/sprites/rex/light.png" id="7_k044c"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0ndyi"]
 atlas = ExtResource("4_jqxav")
@@ -134,5 +135,11 @@ bus = &"PlayerGun"
 [node name="ShootingCooldown" type="Timer" parent="."]
 wait_time = 0.25
 one_shot = true
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(297, 0)
+energy = 0.92
+texture = ExtResource("7_k044c")
+offset = Vector2(1.76, 0)
 
 [connection signal="timeout" from="ShootingCooldown" to="." method="_on_shooting_cooldown_timeout"]
