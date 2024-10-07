@@ -58,4 +58,5 @@ func is_invulnerable() -> bool:
 		return is_currently_invulnerable_after_damage
 
 func reset_health() -> void:
+	has_emitted_is_dead = false
 	current_health = max_health
