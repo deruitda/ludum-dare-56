@@ -1,10 +1,47 @@
-[gd_scene load_steps=15 format=3 uid="uid://b0qmwspjwr53p"]
+[gd_scene load_steps=25 format=3 uid="uid://b0qmwspjwr53p"]
 
 [ext_resource type="Script" path="res://scenes/enemies/termite_queen_gun.gd" id="1_44v2f"]
 [ext_resource type="PackedScene" uid="uid://daptjvsjukjef" path="res://scenes/enemies/termite_bullet.tscn" id="2_eu2ma"]
 [ext_resource type="PackedScene" uid="uid://b7ev8rk7l185t" path="res://scenes/player/gun/muzzle.tscn" id="3_44lat"]
 [ext_resource type="AudioStream" uid="uid://djpo4tm7cjpox" path="res://assets/Audio/SFX/GunPopStereo.wav" id="4_vqc41"]
+[ext_resource type="Texture2D" uid="uid://gfdajjn4ljyo" path="res://assets/sprites/termite-queen/queen-head-attack.png" id="5_1kx2x"]
 [ext_resource type="Texture2D" uid="uid://cj6fa83iekmhj" path="res://assets/sprites/termite-queen/queen-head-idle.png" id="5_1ub0r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ilus3"]
+atlas = ExtResource("5_1kx2x")
+region = Rect2(0, 0, 400, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pe536"]
+atlas = ExtResource("5_1kx2x")
+region = Rect2(400, 0, 400, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dmdjj"]
+atlas = ExtResource("5_1kx2x")
+region = Rect2(800, 0, 400, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kb33w"]
+atlas = ExtResource("5_1kx2x")
+region = Rect2(1200, 0, 400, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mhm2w"]
+atlas = ExtResource("5_1kx2x")
+region = Rect2(1600, 0, 400, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cv3wg"]
+atlas = ExtResource("5_1kx2x")
+region = Rect2(2000, 0, 400, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_datva"]
+atlas = ExtResource("5_1kx2x")
+region = Rect2(2400, 0, 400, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0u7x0"]
+atlas = ExtResource("5_1kx2x")
+region = Rect2(2800, 0, 400, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_41wed"]
+atlas = ExtResource("5_1kx2x")
+region = Rect2(3200, 0, 400, 500)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6teiq"]
 atlas = ExtResource("5_1ub0r")
@@ -42,6 +79,38 @@ region = Rect2(2800, 0, 400, 500)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_ilus3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pe536")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dmdjj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kb33w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mhm2w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cv3wg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_datva")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0u7x0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_41wed")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_6teiq")
 }, {
 "duration": 1.0,
@@ -70,10 +139,11 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="TermiteQueenGun" type="Node2D" node_paths=PackedStringArray("muzzle")]
+[node name="TermiteQueenGun" type="Node2D" node_paths=PackedStringArray("muzzle", "animated_sprite_2d")]
 script = ExtResource("1_44v2f")
 muzzle = NodePath("Muzzle")
 bullet_packed_scene = ExtResource("2_eu2ma")
+animated_sprite_2d = NodePath("Head")
 
 [node name="Muzzle" parent="." instance=ExtResource("3_44lat")]
 position = Vector2(137, -8)
@@ -86,5 +156,5 @@ stream = ExtResource("4_vqc41")
 z_index = 2
 rotation = -1.5708
 sprite_frames = SubResource("SpriteFrames_5x8vi")
-animation = &"idle"
+animation = &"attack"
 autoplay = "idle"

@@ -3,7 +3,6 @@ extends Bullet
 @export var spawn_scene : PackedScene
 
 func _on_body_shape_entered_egg(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
-	print("egg-splode")
 	has_hit_something = true
 	animSprite.play("explode")
 

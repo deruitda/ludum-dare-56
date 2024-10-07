@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends Node2D
 
 @onready var thorax: AnimatedSprite2D = $Model/Thorax
 @onready var termite_queen_gun = $GunPivot/TermiteQueenGun
@@ -8,6 +8,7 @@ extends CharacterBody2D
 @onready var bullet_emitter: BulletEmitter = $Emitters/BulletEmitter
 @onready var blast_wave_timer: Timer = $BlastWaveTimer
 @onready var egg_wave_timer: Timer = $EggWaveTimer
+@onready var health_component: HealthComponent = $HealthComponent
 
 @export var egg_scene : PackedScene
 @export var num_blast_waves : int = 12
@@ -60,13 +61,16 @@ func get_next_attack() -> String:
 	return next
 	
 func egg_attack() -> void:
+	termite_queen_gun.play_attack_anim()
 	egg_wave_timer.start()
 
 func stream_attack() -> void:
+	termite_queen_gun.play_attack_anim()
 	stream_timer.start()
 	termite_queen_gun.shoot_stream()
 
 func blast_attack() -> void:
+	termite_queen_gun.play_attack_anim()
 	blast_wave_timer.start()
 
 func rotate_toward_player(delta: float):
@@ -78,6 +82,7 @@ func _on_stream_timer_end():
 	start_cooldown()
 	
 func start_cooldown():
+	termite_queen_gun.play_idle_anim()
 	is_cooling_down = true
 	is_attacking = false
 	cool_down_timer.start()
@@ -106,3 +111,11 @@ func _on_egg_wave_timer_timeout() -> void:
 	else:
 		current_egg_wave = 0
 		start_cooldown()
+
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	health_component.apply_damage(1)
+
+
+func _on_health_component_died() -> void:
+	queue_free()
