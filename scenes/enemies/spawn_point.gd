@@ -16,9 +16,8 @@ func _on_spawn_timer_timeout() -> void:
 		animSprite.play("spawn")
 
 func _on_anim_finished() -> void:
-	print(animSprite.animation)
 	if animSprite.animation == "spawn":
-		SignalBus.spawn_enemy.emit(scene, global_position)
+		SignalBus.spawn_enemy.emit(scene, global_position, global_rotation)
 		animSprite.play("idle")
 
 func is_player_in_range() -> bool:
@@ -30,7 +29,6 @@ func is_player_in_range() -> bool:
 	var distance = player.global_position.distance_to(self.global_position)
 	
 	if distance < spawn_range:
-		print("spawning distance " + str(distance))
 		return true
 		
 	return false

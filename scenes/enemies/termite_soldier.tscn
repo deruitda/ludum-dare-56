@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://peddybhwcvq6"]
+[gd_scene load_steps=36 format=3 uid="uid://peddybhwcvq6"]
 
 [ext_resource type="Texture2D" uid="uid://ot2ucdq3fya3" path="res://assets/sprites/termite-soldier/termite-soldier-patrol.png" id="1_il6v4"]
 [ext_resource type="Script" path="res://scenes/enemies/termite_soldier.gd" id="1_u5irw"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://w8btqivawm2i" path="res://scenes/entity_composition/enemy_walk_direction.tscn" id="6_l5wsd"]
 [ext_resource type="PackedScene" uid="uid://c1rh7amfumorl" path="res://scenes/core/bug_audio.tscn" id="9_173qp"]
 [ext_resource type="PackedScene" uid="uid://clwybwx42qmpu" path="res://scenes/core/despawner.tscn" id="10_bxhg7"]
+[ext_resource type="Script" path="res://scenes/entity_composition/edge_detector.gd" id="11_t7gxe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rkyvp"]
 size = Vector2(62, 26)
@@ -185,8 +186,8 @@ size = Vector2(51, 26)
 [node name="TermiteSoldier" type="CharacterBody2D"]
 collision_layer = 8
 collision_mask = 262
-platform_floor_layers = 4294967042
-platform_wall_layers = 4
+platform_floor_layers = 4294966788
+platform_wall_layers = 258
 script = ExtResource("1_u5irw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -228,6 +229,20 @@ collide_with_areas = true
 
 [node name="Despawner" parent="." instance=ExtResource("10_bxhg7")]
 
+[node name="EdgeDetector" type="Node2D" parent="." node_paths=PackedStringArray("left_ray_cast", "right_ray_cast")]
+script = ExtResource("11_t7gxe")
+left_ray_cast = NodePath("LeftRayCast")
+right_ray_cast = NodePath("RightRayCast")
+
+[node name="LeftRayCast" type="RayCast2D" parent="EdgeDetector"]
+position = Vector2(-32, 15)
+collision_mask = 262
+
+[node name="RightRayCast" type="RayCast2D" parent="EdgeDetector"]
+position = Vector2(28, 15)
+collision_mask = 262
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="area_entered" from="HurtBox" to="HurtBox" method="_on_area_entered"]
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
+[connection signal="on_hanging_off_ground" from="EdgeDetector" to="." method="_on_edge_detector_on_hanging_off_ground"]

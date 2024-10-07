@@ -8,10 +8,16 @@ class_name EnemyWalkDirection
 
 @onready var toggle_cooldown_timer: Timer = $ToggleCooldownTimer
 
+@export var set_random_start_direction: bool = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	
+	if set_random_start_direction:
+		var random_value = randi() % 2
+		if random_value == 0:
+			current_direction = Vector2.LEFT
+		else:
+			current_direction = Vector2.RIGHT
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -4,7 +4,7 @@ class_name Player
 @export var gun_pivot: GunPivot
 @export var gun: Gun 
 
-
+@export var dash_component: DashComponent
 @export var edge_detector: EdgeDetector
 #inputs
 @onready var direction_input: float = 0.0
@@ -13,6 +13,7 @@ class_name Player
 @onready var is_floor_jumping: bool = false
 @onready var is_wall_jumping: bool = false
 @onready var is_wall_sliding: bool = false
+@onready var dash_is_cooling_down: bool = false
 
 #states
 @onready var is_running = false
@@ -32,21 +33,43 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if is_dead:
 		PlayerManager.remove_current_player()
-		queue_free()
+		#queue_free()
 	else:
 		
 		handle_sprite_orientation()
 		handle_lower_body_sprite_animation()
+
 
 func _physics_process(delta: float) -> void:
 	if is_dead:
 		return
 	
 	direction_input = Input.get_axis("move_left", "move_right")
+	var dash_input = Input.is_action_just_pressed("dash")
+	if dash_input and not dash_is_cooling_down:
+		var dash_direction_input = direction_input
+		if dash_direction_input == 0:
+			dash_direction_input = velocity.x
+		
+		if dash_direction_input != 0:
+			var dash_direction = Vector2(dash_direction_input, 0).normalized()
+			
+			dash_component.start_dash(dash_direction)
+			dash_is_cooling_down = true
+		
 	gun_pivot.rotate_toward_position(get_global_mouse_position())
 	if Input.is_action_pressed("shoot"):
 		gun.shoot_bullet()
 	
+	if dash_component.is_dashing:
+		dash_component.do_dash(self)
+		velocity_component.velocity = velocity
+	else:
+		handle_normal_movement(delta)
+	
+	
+
+func handle_normal_movement(delta: float):
 	set_actions(delta)
 	set_states()
 	
@@ -79,8 +102,6 @@ func _physics_process(delta: float) -> void:
 		velocity_component.apply_idle(delta)
 	
 	velocity_component.do_character_move(self)
-	
-
 
 func get_is_pointing_to_wall():
 	var return_val = (get_wall_normal().x < 0 and direction_input > 0) or (get_wall_normal().x > 0 and direction_input < 0)
@@ -126,7 +147,9 @@ func set_states() -> void:
 		is_idle = true
 	else:
 		is_idle = false
-		
+	
+	if not is_in_air and not dash_component.is_dashing:
+		dash_is_cooling_down = false
 
 func handle_lower_body_sprite_animation()->void:
 	if is_running and lower_body_sprite.animation != "running":
@@ -161,12 +184,24 @@ func get_left_right_input() -> Vector2:
 	return left_right_input
 
 func _on_died() -> void:
-	print("you died")
-	is_dead = true
+	SignalBus.player_died.emit()
+	start_death()
 	pass # Replace with function body.
+	
+	
+	
+func start_death() -> void:
+	is_dead = true
+	$PlayerAudio.play_player_death_audio()
+	$PlayerAudio.finished.connect(finish_death)
+	#animated_sprite_2d.animation_finished.connect(finish_death)
+	#animated_sprite_2d.play("death")
+	
+func finish_death() -> void:
+	queue_free()
 
 func _on_damage_applied() -> void:
-	print("damage")
+	SignalBus.player_hurt.emit()
 	pass # Replace with function body.
 
 func get_is_on_floor() -> bool:

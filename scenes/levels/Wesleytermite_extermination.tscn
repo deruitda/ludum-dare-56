@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cofh4isrtksv4" path="res://scenes/player/player.tscn" id="2_m54io"]
 [ext_resource type="Texture2D" uid="uid://cyfxjev184uv2" path="res://assets/sprites/tiles/tile-sprite-sheet.png" id="3_2n7tf"]
 [ext_resource type="PackedScene" uid="uid://b4shxvhahtanx" path="res://scenes/core/enemy_spawner.tscn" id="4_svfex"]
-[ext_resource type="PackedScene" uid="uid://c3g5a3xfhtd4p" path="res://scenes/enemies/termite_larvae_spawner.tscn" id="5_384lq"]
+[ext_resource type="PackedScene" uid="uid://c3g5a3xfhtd4p" path="res://scenes/termite_larvae_spawner.tscn" id="5_384lq"]
 [ext_resource type="PackedScene" uid="uid://nuahsfm77qjp" path="res://scenes/enemies/termite_larvae.tscn" id="6_yhm8y"]
 [ext_resource type="PackedScene" uid="uid://bbumsja2jwtyt" path="res://scenes/enemies/termite_alate.tscn" id="7_njbv1"]
 

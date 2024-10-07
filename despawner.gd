@@ -14,6 +14,5 @@ func _process(delta: float) -> void:
 	var distance = playerPos.distance_to(self.global_position)
 	
 	if !is_despawned and distance > despawn_distance:
-		print("emitting despawn")
 		is_despawned = true
 		despawn.emit()
