@@ -11,11 +11,12 @@
 
 [sub_resource type="Environment" id="Environment_i55ik"]
 
-[node name="TermiteExtermination" type="Node2D"]
+[node name="BossBattleScene" type="Node2D"]
 script = ExtResource("1_555cq")
 
-[node name="FollowCam" parent="." instance=ExtResource("1_g112b")]
+[node name="FollowCam" parent="." node_paths=PackedStringArray("follow_target") instance=ExtResource("1_g112b")]
 position = Vector2(794, -448)
+follow_target = NodePath("../TermiteQueen")
 weight = 0.023
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
@@ -105,13 +106,22 @@ position = Vector2(-1, 95)
 
 [node name="CutSceneTimers" type="Node" parent="."]
 
+[node name="TimeBeforeScream" type="Timer" parent="CutSceneTimers"]
+wait_time = 1.5
+one_shot = true
+
+[node name="TimeAfterScreamBeforeStart" type="Timer" parent="CutSceneTimers"]
+one_shot = true
+
 [node name="TimeBeforeExplosion" type="Timer" parent="CutSceneTimers"]
 wait_time = 3.0
 one_shot = true
 
 [node name="LevelEntrance" parent="." instance=ExtResource("8_sox13")]
 position = Vector2(12, -61)
+walk_out_on_startup = false
 
+[connection signal="opening_scream_finished" from="TermiteQueen" to="." method="_on_termite_queen_opening_scream_finished"]
 [connection signal="queen_explosion_finished" from="TermiteQueen" to="." method="_on_termite_queen_queen_explosion_finished"]
 [connection signal="queen_just_died" from="TermiteQueen" to="." method="_on_termite_queen_queen_just_died"]
 [connection signal="create_player" from="LevelEntrance" to="." method="_on_level_entrance_create_player"]

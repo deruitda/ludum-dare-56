@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://3tbnum67fnc7"]
+[gd_scene load_steps=7 format=3 uid="uid://3tbnum67fnc7"]
 
 [ext_resource type="PackedScene" uid="uid://56t0wxwth7ya" path="res://scenes/core/ui.tscn" id="1_7wot7"]
 [ext_resource type="PackedScene" uid="uid://dva4inhwc7dta" path="res://scenes/core/world.tscn" id="2_6cr2y"]
 [ext_resource type="Script" path="res://scenes/core/ui.gd" id="2_ho8lm"]
 [ext_resource type="PackedScene" uid="uid://blk02h2fepm4b" path="res://scenes/core/start_menu.tscn" id="3_dmdf0"]
+[ext_resource type="Script" path="res://scenes/core/audio_stream_player.gd" id="6_6s1n5"]
 [ext_resource type="AudioStream" uid="uid://dex42bx6ll6ko" path="res://assets/Audio/Music/Ascent.wav" id="6_g2rgv"]
 
 [node name="Main" type="Node2D"]
@@ -20,3 +21,4 @@ skip_cutscene = true
 stream = ExtResource("6_g2rgv")
 autoplay = true
 bus = &"Music"
+script = ExtResource("6_6s1n5")
