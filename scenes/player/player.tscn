@@ -477,7 +477,7 @@ script = ExtResource("16_tawhn")
 dash_timer = NodePath("Timer")
 
 [node name="Timer" type="Timer" parent="DashComponent"]
-wait_time = 0.2
+wait_time = 0.15
 
 [node name="RespawnComponent" type="Node" parent="." node_paths=PackedStringArray("respawn_idle_timer", "respawn_invulnerability_timer")]
 script = ExtResource("17_qo5ue")
