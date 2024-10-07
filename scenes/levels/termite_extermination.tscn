@@ -55,6 +55,48 @@ position = Vector2(2253, -2062)
 [node name="TermiteLarvaeSpawner3" parent="LarvaeSpawn" instance=ExtResource("6_qhfv5")]
 position = Vector2(295, -1773)
 
+[node name="TermiteLarvaeSpawner8" parent="LarvaeSpawn" instance=ExtResource("6_qhfv5")]
+position = Vector2(416, -1771)
+
+[node name="TermiteLarvaeSpawner9" parent="LarvaeSpawn" instance=ExtResource("6_qhfv5")]
+position = Vector2(717, -1612)
+
+[node name="TermiteLarvaeSpawner31" parent="LarvaeSpawn" instance=ExtResource("6_qhfv5")]
+position = Vector2(872, -1608)
+
+[node name="TermiteLarvaeSpawner32" parent="LarvaeSpawn" instance=ExtResource("6_qhfv5")]
+position = Vector2(-706, -1004)
+
+[node name="TermiteLarvaeSpawner33" parent="LarvaeSpawn" instance=ExtResource("6_qhfv5")]
+position = Vector2(-313, -1004)
+
+[node name="TermiteLarvaeSpawner34" parent="LarvaeSpawn" instance=ExtResource("6_qhfv5")]
+position = Vector2(1694, -1011)
+
+[node name="TermiteLarvaeSpawner35" parent="LarvaeSpawn" instance=ExtResource("6_qhfv5")]
+position = Vector2(2127, -1007)
+
+[node name="TermiteLarvaeSpawner36" parent="LarvaeSpawn" instance=ExtResource("6_qhfv5")]
+position = Vector2(2349, -2060)
+
+[node name="TermiteLarvaeSpawner37" parent="LarvaeSpawn" instance=ExtResource("6_qhfv5")]
+position = Vector2(249, -7018)
+
+[node name="TermiteLarvaeSpawner38" parent="LarvaeSpawn" instance=ExtResource("6_qhfv5")]
+position = Vector2(702, -7462)
+
+[node name="TermiteLarvaeSpawner39" parent="LarvaeSpawn" instance=ExtResource("6_qhfv5")]
+position = Vector2(1351, -7047)
+
+[node name="TermiteLarvaeSpawner40" parent="LarvaeSpawn" instance=ExtResource("6_qhfv5")]
+position = Vector2(2673, -7025)
+
+[node name="TermiteLarvaeSpawner41" parent="LarvaeSpawn" instance=ExtResource("6_qhfv5")]
+position = Vector2(1378, -7945)
+
+[node name="TermiteLarvaeSpawner42" parent="LarvaeSpawn" instance=ExtResource("6_qhfv5")]
+position = Vector2(1459, -8457)
+
 [node name="TermiteLarvaeSpawner4" parent="LarvaeSpawn" instance=ExtResource("6_qhfv5")]
 position = Vector2(-841, -1811)
 
@@ -158,6 +200,14 @@ total_amount_of_enemies_allowed_at_a_time = 2
 position = Vector2(2770, -3951)
 rotation = -1.5708
 
+[node name="TermiteLarvaeSpawner39" parent="SoldierSpawn" instance=ExtResource("6_giht6")]
+position = Vector2(2768, -3601)
+rotation = -1.5708
+
+[node name="TermiteLarvaeSpawner40" parent="SoldierSpawn" instance=ExtResource("6_giht6")]
+position = Vector2(2759, -3064)
+rotation = -1.5708
+
 [node name="TermiteLarvaeSpawner15" parent="SoldierSpawn" instance=ExtResource("6_giht6")]
 position = Vector2(-956, -3040)
 rotation = 1.5708
@@ -165,6 +215,42 @@ total_amount_of_enemies_allowed_at_a_time = 2
 
 [node name="TermiteLarvaeSpawner16" parent="SoldierSpawn" instance=ExtResource("6_giht6")]
 position = Vector2(-955, -4116)
+rotation = 1.5708
+
+[node name="TermiteLarvaeSpawner31" parent="SoldierSpawn" instance=ExtResource("6_giht6")]
+position = Vector2(179, -3840)
+rotation = 1.5708
+
+[node name="TermiteLarvaeSpawner32" parent="SoldierSpawn" instance=ExtResource("6_giht6")]
+position = Vector2(-457, -3588)
+rotation = 1.5708
+
+[node name="TermiteLarvaeSpawner33" parent="SoldierSpawn" instance=ExtResource("6_giht6")]
+position = Vector2(-537, -3617)
+rotation = -1.5708
+
+[node name="TermiteLarvaeSpawner34" parent="SoldierSpawn" instance=ExtResource("6_giht6")]
+position = Vector2(-530, -2979)
+rotation = -1.5708
+
+[node name="TermiteLarvaeSpawner35" parent="SoldierSpawn" instance=ExtResource("6_giht6")]
+position = Vector2(685, -3421)
+rotation = -1.5708
+
+[node name="TermiteLarvaeSpawner36" parent="SoldierSpawn" instance=ExtResource("6_giht6")]
+position = Vector2(1970, -3087)
+rotation = 1.5708
+
+[node name="TermiteLarvaeSpawner37" parent="SoldierSpawn" instance=ExtResource("6_giht6")]
+position = Vector2(2417, -2849)
+rotation = 1.5708
+
+[node name="TermiteLarvaeSpawner41" parent="SoldierSpawn" instance=ExtResource("6_giht6")]
+position = Vector2(-945, -3655)
+rotation = 1.5708
+
+[node name="TermiteLarvaeSpawner38" parent="SoldierSpawn" instance=ExtResource("6_giht6")]
+position = Vector2(1806, -3927)
 rotation = 1.5708
 
 [node name="TermiteLarvaeSpawner17" parent="SoldierSpawn" instance=ExtResource("6_giht6")]
@@ -223,6 +309,18 @@ rotation = -1.5708
 position = Vector2(2769, -8549)
 rotation = -1.5708
 
+[node name="TermiteLarvaeSpawner42" parent="SoldierSpawn" instance=ExtResource("6_giht6")]
+position = Vector2(2765, -8035)
+rotation = -1.5708
+
+[node name="TermiteLarvaeSpawner43" parent="SoldierSpawn" instance=ExtResource("6_giht6")]
+position = Vector2(2026, -7826)
+rotation = -1.5708
+
+[node name="TermiteLarvaeSpawner44" parent="SoldierSpawn" instance=ExtResource("6_giht6")]
+position = Vector2(662, -7815)
+rotation = 158.65
+
 [node name="TermiteLarvaeSpawner20" parent="SoldierSpawn" instance=ExtResource("6_giht6")]
 position = Vector2(2769, -7491)
 rotation = -1.5708
@@ -252,6 +350,15 @@ position = Vector2(863, -6068)
 
 [node name="TermiteAlateSpawner12" parent="AlateSpawn" instance=ExtResource("7_au6v5")]
 position = Vector2(488, -8233)
+
+[node name="TermiteAlateSpawner26" parent="AlateSpawn" instance=ExtResource("7_au6v5")]
+position = Vector2(232, -8655)
+
+[node name="TermiteAlateSpawner27" parent="AlateSpawn" instance=ExtResource("7_au6v5")]
+position = Vector2(2158, -9517)
+
+[node name="TermiteAlateSpawner28" parent="AlateSpawn" instance=ExtResource("7_au6v5")]
+position = Vector2(2620, -10056)
 
 [node name="TermiteAlateSpawner13" parent="AlateSpawn" instance=ExtResource("7_au6v5")]
 position = Vector2(-468, -8617)
@@ -288,6 +395,21 @@ position = Vector2(2584, -6447)
 
 [node name="TermiteAlateSpawner11" parent="AlateSpawn" instance=ExtResource("7_au6v5")]
 position = Vector2(2713, -6444)
+
+[node name="TermiteAlateSpawner21" parent="AlateSpawn" instance=ExtResource("7_au6v5")]
+position = Vector2(-346, -5330)
+
+[node name="TermiteAlateSpawner22" parent="AlateSpawn" instance=ExtResource("7_au6v5")]
+position = Vector2(-238, -5325)
+
+[node name="TermiteAlateSpawner23" parent="AlateSpawn" instance=ExtResource("7_au6v5")]
+position = Vector2(111, -6062)
+
+[node name="TermiteAlateSpawner24" parent="AlateSpawn" instance=ExtResource("7_au6v5")]
+position = Vector2(270, -6060)
+
+[node name="TermiteAlateSpawner25" parent="AlateSpawn" instance=ExtResource("7_au6v5")]
+position = Vector2(-441, -4720)
 
 [node name="Checkpoint" type="Node" parent="."]
 
