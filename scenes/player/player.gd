@@ -38,6 +38,7 @@ func _process(delta: float) -> void:
 		#queue_free()
 	elif Input.is_action_just_pressed("respawn"):
 		respawn_component.do_respawn(self)
+		is_dead = false
 	else:
 		handle_sprite_orientation()
 		handle_lower_body_sprite_animation()

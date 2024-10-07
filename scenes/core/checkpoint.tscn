@@ -13,4 +13,4 @@ scale = Vector2(0.158065, 0.101227)
 texture = ExtResource("2_fhd4n")
 
 [node name="SpawnLocation" type="Node2D" parent="."]
-position = Vector2(0, -27)
+position = Vector2(-4, -99)
