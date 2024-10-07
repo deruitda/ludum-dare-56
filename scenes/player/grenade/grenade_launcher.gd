@@ -5,6 +5,9 @@ class_name GrenadeLauncher
 @onready var click_when_cooling_down_audio: AudioStreamPlayer2D = $ClickWhenCoolingDownAudio
 @onready var grenade_launch_audio: AudioStreamPlayer2D = $GrenadeLaunchAudio
 
+@onready var grenade_charge_start_audio: AudioStreamPlayer2D = $GrenadeChargeStartAudio
+@onready var grenade_charge_full_audio: AudioStreamPlayer2D = $GrenadeChargeFullAudio
+
 @onready var path_finder: PathFinder = $PathFinder
 
 @export var grenade_scene: PackedScene
@@ -17,6 +20,7 @@ class_name GrenadeLauncher
 @export var progress_bar: ProgressBar  # Reference to the ProgressBar node
 @export var cooldown_timer: Timer
 
+@onready var full_charge_has_played: bool = false
 @onready var is_cooling_down: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -41,10 +45,13 @@ func charge_grenade(delta: float):
 	# Show the progress bar when charging begins
 	if charging_amount == 0.0:
 		progress_bar.visible = true
+		grenade_charge_start_audio.play()
 
 	# Increment the charging amount based on delta time, clamping it to the max charge time
 	charging_amount = clamp(charging_amount + (delta / max_charge_time), 0, 1.0)
-
+	if not full_charge_has_played and charging_amount == max_charge_time:
+		grenade_charge_full_audio.play()
+		full_charge_has_played = true
 	# Update the progress bar's value
 	progress_bar.value = charging_amount * progress_bar.max_value  # Set progress based on charge amount
 
@@ -64,6 +71,7 @@ func launch_grenade_toward(position: Vector2) -> void:
 
 	# Reset the charging amount and hide the progress bar after launching
 	charging_amount = 0.0  
+	full_charge_has_played = false
 	progress_bar.visible = false  # Hide the progress bar after launch
 	is_cooling_down = true
 	grenade_launch_audio.play()

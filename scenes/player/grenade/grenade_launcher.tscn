@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://234u3mqv0xmc"]
+[gd_scene load_steps=8 format=3 uid="uid://234u3mqv0xmc"]
 
 [ext_resource type="Script" path="res://scenes/player/grenade/grenade_launcher.gd" id="1_0hig3"]
 [ext_resource type="PackedScene" uid="uid://d2ky1qst3g810" path="res://scenes/player/grenade/grenade.tscn" id="2_gm8bk"]
@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://bfyobc22j0gbi" path="res://assets/Audio/SFX/GrenadeReady1.wav" id="4_bioxq"]
 [ext_resource type="AudioStream" uid="uid://dcc1nuetad442" path="res://assets/Audio/SFX/GrenadeClick.wav" id="5_tx0r2"]
 [ext_resource type="AudioStream" uid="uid://c0y32ib6hkyr" path="res://assets/Audio/SFX/GrenadeLaunch1.wav" id="6_72phl"]
+[ext_resource type="AudioStream" uid="uid://cqek5ff3oaa8l" path="res://assets/Audio/SFX/SelectionSound.wav" id="7_1xsgi"]
 
 [node name="GrenadeLauncher" type="Node2D" node_paths=PackedStringArray("cooldown_timer")]
 position = Vector2(1, 0)
@@ -29,3 +30,10 @@ stream = ExtResource("5_tx0r2")
 
 [node name="GrenadeLaunchAudio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_72phl")
+
+[node name="GrenadeChargeStartAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_1xsgi")
+
+[node name="GrenadeChargeFullAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_1xsgi")
+pitch_scale = 10.0
