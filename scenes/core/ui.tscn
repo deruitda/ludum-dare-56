@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://56t0wxwth7ya"]
+[gd_scene load_steps=11 format=3 uid="uid://56t0wxwth7ya"]
 
 [ext_resource type="Theme" uid="uid://cxwyw4x8t5r2v" path="res://assets/themes/default_theme.tres" id="1_6lw3b"]
 [ext_resource type="Script" path="res://scenes/core/ui.gd" id="1_k8gjm"]
@@ -6,7 +6,9 @@
 [ext_resource type="Script" path="res://scenes/core/hp.gd" id="2_83q50"]
 [ext_resource type="Script" path="res://scenes/core/kill_count.gd" id="3_cgw1v"]
 [ext_resource type="Texture2D" uid="uid://co01gstpumt0c" path="res://icon.svg" id="4_0tsl8"]
+[ext_resource type="Script" path="res://scenes/core/heart.gd" id="5_24k7y"]
 [ext_resource type="Script" path="res://scenes/core/item_slot.gd" id="5_rcdii"]
+[ext_resource type="Texture2D" uid="uid://ctk2u4gvudgsh" path="res://assets/sprites/ui/heart-full.png" id="5_si8dk"]
 [ext_resource type="Script" path="res://scenes/core/death_count.gd" id="5_vrxma"]
 
 [node name="Ui" type="CanvasLayer"]
@@ -33,21 +35,31 @@ horizontal_alignment = 1
 script = ExtResource("1_kc8fq")
 
 [node name="HPBackground" type="Panel" parent="."]
-offset_left = 50.0
-offset_top = 5.0
-offset_right = 50.0
-offset_bottom = 5.0
-
-[node name="HP" type="Label" parent="HPBackground"]
-layout_mode = 0
-offset_left = 9.0
-offset_top = 10.0
-offset_right = 51.0
-offset_bottom = 33.0
-theme = ExtResource("1_6lw3b")
-text = "3"
-horizontal_alignment = 1
+offset_left = 30.0
+offset_top = 25.0
+offset_right = 30.0
+offset_bottom = 25.0
+scale = Vector2(0.47, 0.47)
 script = ExtResource("2_83q50")
+
+[node name="Container" type="VFlowContainer" parent="HPBackground"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Heart1" type="Sprite2D" parent="HPBackground/Container"]
+texture = ExtResource("5_si8dk")
+script = ExtResource("5_24k7y")
+
+[node name="Heart2" type="Sprite2D" parent="HPBackground/Container"]
+position = Vector2(72, 0)
+texture = ExtResource("5_si8dk")
+script = ExtResource("5_24k7y")
+
+[node name="Heart3" type="Sprite2D" parent="HPBackground/Container"]
+position = Vector2(144, 0)
+texture = ExtResource("5_si8dk")
+script = ExtResource("5_24k7y")
 
 [node name="KillCountBackground" type="Panel" parent="."]
 offset_left = 1020.0
