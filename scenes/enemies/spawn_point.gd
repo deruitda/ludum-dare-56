@@ -4,13 +4,16 @@ class_name SpawnPoint
 @export var timer : Timer
 @export var animSprite : AnimatedSprite2D
 @export var spawn_range : int = 1000
-
 @export var total_amount_of_enemies_allowed_at_a_time: int = 1
 
 @onready var number_of_child_enemies_alive: int = 0
 
 func _ready() -> void:
+	timer.autostart = false
+	timer.one_shot = true
+	timer.start()
 	timer.timeout.connect(_on_spawn_timer_timeout)
+	
 	animSprite.animation_finished.connect(_on_anim_finished)
 	SignalBus.enemy_died.connect(_on_enemy_died)
 
@@ -22,9 +25,15 @@ func _on_spawn_timer_timeout() -> void:
 
 func _on_anim_finished() -> void:
 	if animSprite.animation == "spawn":
-		SignalBus.spawn_enemy.emit(scene, global_position, global_rotation, self)
+		_spawn_new_enemy()
 		animSprite.play("idle")
-		number_of_child_enemies_alive += 1
+
+func _spawn_new_enemy():
+	SignalBus.spawn_enemy.emit(scene, global_position, global_rotation, self)
+	number_of_child_enemies_alive += 1
+	if number_of_child_enemies_alive < total_amount_of_enemies_allowed_at_a_time:
+		timer.start()
+	
 
 func is_player_in_range() -> bool:
 	var player = PlayerManager.current_player
@@ -43,3 +52,5 @@ func _on_enemy_died(enemy: Node):
 	var spawn_point = enemy.spawn_point as SpawnPoint
 	if spawn_point == self:
 		number_of_child_enemies_alive -= 1
+		if number_of_child_enemies_alive < total_amount_of_enemies_allowed_at_a_time and timer.is_stopped():
+			timer.start()

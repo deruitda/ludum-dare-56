@@ -1,6 +1,5 @@
 extends Node2D
 
-@export var total_amount_of_enemies_allowed_at_a_time: int = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
