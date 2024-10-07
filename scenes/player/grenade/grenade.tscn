@@ -23,7 +23,7 @@ texture = ExtResource("1_mqaxf")
 
 [node name="BulletEmitter" type="Node2D" parent="." node_paths=PackedStringArray("muzzle")]
 script = ExtResource("3_cjexm")
-number_of_bullets = 100
+number_of_bullets = 25
 muzzle = NodePath("Muzzle")
 bullet_packed_scene = ExtResource("4_olhd0")
 
