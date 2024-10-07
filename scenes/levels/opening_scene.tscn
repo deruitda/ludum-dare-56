@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cw5ma2tlywnpd"]
+[gd_scene load_steps=3 format=3 uid="uid://d1yddsi8d05by"]
 
 [ext_resource type="Script" path="res://scenes/levels/opening_scene.gd" id="1_al26b"]
-[ext_resource type="PackedScene" uid="uid://cnmdipwqnabip" path="res://scenes/player/sprites/cut_scene_rex.tscn" id="2_po3f0"]
+[ext_resource type="PackedScene" path="res://scenes/player/sprites/cut_scene_rex.tscn" id="2_po3f0"]
 
 [node name="OpeningScene" type="Node2D"]
 script = ExtResource("1_al26b")
