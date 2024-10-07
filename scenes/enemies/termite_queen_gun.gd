@@ -14,3 +14,9 @@ func shoot_stream():
 func stop_stream() -> void:
 	print("stopping shooting")
 	is_shooting = false
+
+func play_attack_anim():
+	animated_sprite_2d.play("attack")
+	
+func play_idle_anim():
+	animated_sprite_2d.play("idle")
