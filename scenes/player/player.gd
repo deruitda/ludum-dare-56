@@ -30,7 +30,6 @@ class_name Player
 
 @onready var respawn_component: RespawnComponent = $RespawnComponent
 @onready var grenade_launcher: GrenadeLauncher = $GrenadeLauncher
-@onready var grenade_input_pressed_on_cooldown: bool = false
 
 func _ready() -> void:
 	PlayerManager.set_player(self)
@@ -70,14 +69,8 @@ func _physics_process(delta: float) -> void:
 	
 	
 	if Input.is_action_pressed("throw_grenade"):
-		if grenade_launcher.is_cooling_down:
-			grenade_input_pressed_on_cooldown = true
-		else:
 			grenade_launcher.charge_grenade(delta)
 	elif Input.is_action_just_released("throw_grenade"):
-		if grenade_input_pressed_on_cooldown:
-			grenade_input_pressed_on_cooldown = false
-		else:
 			grenade_launcher.launch_grenade_toward(get_global_mouse_position())
 	
 	if Input.is_action_pressed("shoot"):

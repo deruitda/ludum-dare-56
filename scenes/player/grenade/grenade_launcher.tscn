@@ -1,13 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://234u3mqv0xmc"]
+[gd_scene load_steps=7 format=3 uid="uid://234u3mqv0xmc"]
 
 [ext_resource type="Script" path="res://scenes/player/grenade/grenade_launcher.gd" id="1_0hig3"]
 [ext_resource type="PackedScene" uid="uid://d2ky1qst3g810" path="res://scenes/player/grenade/grenade.tscn" id="2_gm8bk"]
 [ext_resource type="Script" path="res://scenes/entity_composition/path_finder.gd" id="3_qb3sg"]
+[ext_resource type="AudioStream" uid="uid://bfyobc22j0gbi" path="res://assets/Audio/SFX/GrenadeReady1.wav" id="4_bioxq"]
+[ext_resource type="AudioStream" uid="uid://dcc1nuetad442" path="res://assets/Audio/SFX/GrenadeClick.wav" id="5_tx0r2"]
+[ext_resource type="AudioStream" uid="uid://c0y32ib6hkyr" path="res://assets/Audio/SFX/GrenadeLaunch1.wav" id="6_72phl"]
 
 [node name="GrenadeLauncher" type="Node2D" node_paths=PackedStringArray("cooldown_timer")]
 position = Vector2(1, 0)
 script = ExtResource("1_0hig3")
 grenade_scene = ExtResource("2_gm8bk")
+initial_velocity = 500.0
 max_additional_velocity = 2000.0
 cooldown_timer = NodePath("CooldownTimer")
 
@@ -15,4 +19,13 @@ cooldown_timer = NodePath("CooldownTimer")
 script = ExtResource("3_qb3sg")
 
 [node name="CooldownTimer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 2.0
+
+[node name="CooldownFinishedAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_bioxq")
+
+[node name="ClickWhenCoolingDownAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_tx0r2")
+
+[node name="GrenadeLaunchAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_72phl")

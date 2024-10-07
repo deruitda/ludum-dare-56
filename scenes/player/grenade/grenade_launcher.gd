@@ -1,5 +1,10 @@
 extends Node2D
 class_name GrenadeLauncher
+
+@onready var cooldown_finished_audio: AudioStreamPlayer2D = $CooldownFinishedAudio
+@onready var click_when_cooling_down_audio: AudioStreamPlayer2D = $ClickWhenCoolingDownAudio
+@onready var grenade_launch_audio: AudioStreamPlayer2D = $GrenadeLaunchAudio
+
 @onready var path_finder: PathFinder = $PathFinder
 
 @export var grenade_scene: PackedScene
@@ -26,9 +31,12 @@ func _process(delta: float) -> void:
 
 func _on_cooldown_timer_timeout() -> void:
 	is_cooling_down = false
+	cooldown_finished_audio.play()
+	
 
 func charge_grenade(delta: float):
 	if is_cooling_down:
+		cooldown_finished_audio.play()
 		return
 	# Show the progress bar when charging begins
 	if charging_amount == 0.0:
@@ -42,6 +50,9 @@ func charge_grenade(delta: float):
 
 func launch_grenade_toward(position: Vector2) -> void:
 	if is_cooling_down:
+		cooldown_finished_audio.play()
+		return
+	if charging_amount == 0.0:
 		return
 	var grenade = grenade_scene.instantiate()
 	grenade.global_position = global_position
@@ -55,4 +66,5 @@ func launch_grenade_toward(position: Vector2) -> void:
 	charging_amount = 0.0  
 	progress_bar.visible = false  # Hide the progress bar after launch
 	is_cooling_down = true
+	grenade_launch_audio.play()
 	cooldown_timer.start()
