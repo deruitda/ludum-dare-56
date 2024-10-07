@@ -197,7 +197,7 @@ collision_mask = 262
 collide_with_areas = true
 
 [node name="RightRayCast" type="RayCast2D" parent="EdgeDetector"]
-position = Vector2(21, 12)
+position = Vector2(21, 10)
 collision_mask = 262
 collide_with_areas = true
 
