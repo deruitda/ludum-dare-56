@@ -10,6 +10,7 @@ class_name HealthComponent
 @onready var seconds_after_latest_damage: float = 0.0
 
 @export var dash_component: DashComponent
+@export var respawn_component: RespawnComponent
 signal died
 signal damage_applied
 signal is_invulnurable_state_change(is_invulnerable_new_value: bool)
@@ -49,7 +50,9 @@ func apply_heal(added_health: int) -> void:
 	current_health = min(current_health + added_health, max_health)
 
 func is_invulnerable() -> bool:
-	if dash_component:
-		return is_currently_invulnerable_after_damage or dash_component.is_dashing
+	if respawn_component and respawn_component.is_invulnerable:
+		return true
+	if dash_component and dash_component.is_dashing:
+		return true
 	else:
 		return is_currently_invulnerable_after_damage

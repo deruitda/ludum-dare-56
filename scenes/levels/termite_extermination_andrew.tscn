@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://csqtrpv7g20vc"]
+[gd_scene load_steps=11 format=4 uid="uid://csqtrpv7g20vc"]
 
 [ext_resource type="PackedScene" uid="uid://ck6yxuie4bs3n" path="res://scenes/core/follow_cam.tscn" id="1_o2pw8"]
 [ext_resource type="PackedScene" uid="uid://cofh4isrtksv4" path="res://scenes/player/player.tscn" id="2_lvxv5"]
@@ -7,6 +7,13 @@
 [ext_resource type="PackedScene" uid="uid://nuahsfm77qjp" path="res://scenes/enemies/termite_larvae.tscn" id="5_2jaao"]
 [ext_resource type="PackedScene" uid="uid://peddybhwcvq6" path="res://scenes/enemies/termite_soldier.tscn" id="6_0qe46"]
 [ext_resource type="PackedScene" uid="uid://bbumsja2jwtyt" path="res://scenes/enemies/termite_alate.tscn" id="7_xgg5m"]
+[ext_resource type="PackedScene" uid="uid://c5y32eyqqwqo7" path="res://scenes/core/checkpoint.tscn" id="8_m4a0u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ynr4"]
+size = Vector2(384, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c5di8"]
+size = Vector2(84.5, 300)
 
 [node name="TermiteExtermination" type="Node2D"]
 position = Vector2(51, -117)
@@ -43,3 +50,20 @@ wall_is_right = false
 
 [node name="TermiteAlate" parent="." instance=ExtResource("7_xgg5m")]
 position = Vector2(1230, -577)
+
+[node name="Checkpoint" parent="." node_paths=PackedStringArray("area_2ds") instance=ExtResource("8_m4a0u")]
+position = Vector2(655, -429)
+area_2ds = [NodePath("../Area2D")]
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 512
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(448, -355)
+shape = SubResource("RectangleShape2D_2ynr4")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(599, -200)
+shape = SubResource("RectangleShape2D_c5di8")
+
+[connection signal="body_entered" from="Area2D" to="FollowCam" method="_on_area_2d_body_entered"]
