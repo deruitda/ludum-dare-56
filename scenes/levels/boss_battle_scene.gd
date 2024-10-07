@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var follow_cam: Camera2D = $FollowCam
 @onready var termite_queen: ThermiteQueen = $TermiteQueen
+@onready var player_packed_scene = preload("res://scenes/player/player.tscn")
 
 @onready var time_before_explosion: Timer = $CutSceneTimers/TimeBeforeExplosion
 
@@ -29,4 +30,14 @@ func _on_time_before_explosion_timeout() -> void:
 func _on_termite_queen_queen_explosion_finished() -> void:
 	print("must emit now")
 	SignalBus.termite_queen_is_dead.emit()
+	pass # Replace with function body.
+
+
+func _on_level_entrance_create_player(new_global_position: Vector2, starting_checkpoint: Checkpoint) -> void:
+	var player = player_packed_scene.instantiate()
+	player.global_position = new_global_position
+	add_child(player)
+	follow_cam.follow_target = player
+	SignalBus.set_game_is_paused_state.emit(false)
+	SignalBus.set_new_checkpoint.emit(starting_checkpoint)
 	pass # Replace with function body.

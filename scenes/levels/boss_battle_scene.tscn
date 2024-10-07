@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" path="res://scenes/levels/boss_battle_scene.gd" id="1_555cq"]
 [ext_resource type="PackedScene" uid="uid://ck6yxuie4bs3n" path="res://scenes/core/follow_cam.tscn" id="1_g112b"]
-[ext_resource type="PackedScene" uid="uid://cofh4isrtksv4" path="res://scenes/player/player.tscn" id="2_svlwg"]
 [ext_resource type="TileSet" uid="uid://dhwky8od3ahak" path="res://assets/sprites/tiles/base_tileset.tres" id="3_ai5rj"]
 [ext_resource type="PackedScene" uid="uid://b4shxvhahtanx" path="res://scenes/core/enemy_spawner.tscn" id="4_60ey6"]
 [ext_resource type="PackedScene" uid="uid://crjay8kxraspw" path="res://scenes/enemies/termite_queen.tscn" id="5_5r62d"]
 [ext_resource type="PackedScene" uid="uid://c0qk07leqlcqg" path="res://scenes/enemies/termite_soldier_spawner.tscn" id="6_1whuv"]
 [ext_resource type="PackedScene" uid="uid://bmx1622nihm1q" path="res://scenes/enemies/termite_alate_spawner.tscn" id="7_jx70v"]
+[ext_resource type="PackedScene" uid="uid://3g732ci7ilo4" path="res://scenes/levels/level_entrance.tscn" id="8_sox13"]
 
 [sub_resource type="Environment" id="Environment_i55ik"]
 
@@ -16,12 +16,8 @@ script = ExtResource("1_555cq")
 
 [node name="FollowCam" parent="." node_paths=PackedStringArray("follow_target") instance=ExtResource("1_g112b")]
 position = Vector2(794, -448)
-follow_target = NodePath("../Player")
+follow_target = NodePath("")
 weight = 0.023
-
-[node name="Player" parent="." instance=ExtResource("2_svlwg")]
-z_index = 1
-position = Vector2(521, -128)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 modulate = Color(0.377919, 0.377919, 0.377919, 1)
@@ -114,5 +110,9 @@ position = Vector2(-1, 95)
 wait_time = 3.0
 one_shot = true
 
+[node name="LevelEntrance" parent="." instance=ExtResource("8_sox13")]
+position = Vector2(12, -61)
+
 [connection signal="queen_explosion_finished" from="TermiteQueen" to="." method="_on_termite_queen_queen_explosion_finished"]
 [connection signal="queen_just_died" from="TermiteQueen" to="." method="_on_termite_queen_queen_just_died"]
+[connection signal="create_player" from="LevelEntrance" to="." method="_on_level_entrance_create_player"]

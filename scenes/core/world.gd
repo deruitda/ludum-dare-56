@@ -10,6 +10,7 @@ const BOSS_FIGHT_SCENE = "res://scenes/levels/boss_battle_scene.tscn"
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	SignalBus.termite_queen_is_dead.connect(transition_to_end_credits_scene)
+	SignalBus.start_boss_scene.connect(transition_to_boss_scene)
 	if skip_cutscene:
 		SignalBus.start_game.connect(on_load_level) # Replace with function body.
 	elif start_with_boss_fight:
