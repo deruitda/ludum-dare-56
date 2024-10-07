@@ -16,6 +16,7 @@ class_name CutSceneRex
 signal done_shrinking
 
 @onready var lower_body: AnimatedSprite2D = $LowerBody
+@onready var upper_body: AnimatedSprite2D = $UpperBody
 
 @export var set_as_target_scale: bool = false
 
@@ -55,7 +56,15 @@ func start_walk(new_direction: Vector2):
 func stop_walk() -> void:
 	is_walking = false
 	lower_body.play("idle")
-	
-func set_is_shrinking(new_original_scale: Vector2) -> void:
+
+func put_on_headphones_and_shrink(new_original_scale: Vector2):
 	original_scale = new_original_scale
+	upper_body.play("put_on_headphones")
+	upper_body.animation_finished.connect(_on_put_on_headphones_end)
+
+func _on_put_on_headphones_end():
+	set_is_shrinking()
+	upper_body.animation_finished.disconnect(_on_put_on_headphones_end)
+	
+func set_is_shrinking() -> void:
 	is_shrinking = true

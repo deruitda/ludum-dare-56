@@ -52,7 +52,8 @@ func _on_end_walk_to_hole_timer_timeout() -> void:
 	
 func _on_idle_before_shrink_timeout():
 	wait_timer.timeout.disconnect(_on_idle_before_shrink_timeout)
-	rex.set_is_shrinking(rex.scale)
+	rex.put_on_headphones_and_shrink(rex.scale)
+	
 
 
 func _on_rex_done_shrinking() -> void:
