@@ -1,0 +1,89 @@
+[gd_scene load_steps=14 format=3 uid="uid://c6rpcdc0wlwaw"]
+
+[ext_resource type="Texture2D" uid="uid://bwfmeyfwx8a4i" path="res://assets/sprites/termite-queen/egg-bomb.png" id="1_evtp6"]
+[ext_resource type="Script" path="res://scenes/enemies/egg.gd" id="1_ql000"]
+[ext_resource type="Texture2D" uid="uid://dhbsy6qo1qnft" path="res://assets/sprites/termite-queen/egg-bomb-explode.png" id="2_bdmtj"]
+[ext_resource type="PackedScene" uid="uid://nuahsfm77qjp" path="res://scenes/enemies/termite_larvae.tscn" id="2_r581l"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qhk3v"]
+atlas = ExtResource("2_bdmtj")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qj1va"]
+atlas = ExtResource("2_bdmtj")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15e84"]
+atlas = ExtResource("2_bdmtj")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y2yie"]
+atlas = ExtResource("2_bdmtj")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_07vj6"]
+atlas = ExtResource("2_bdmtj")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yvcom"]
+atlas = ExtResource("2_bdmtj")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x3bq2"]
+atlas = ExtResource("1_evtp6")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6m4w0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qhk3v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qj1va")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_15e84")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y2yie")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_07vj6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yvcom")
+}],
+"loop": false,
+"name": &"explode",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x3bq2")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ktxvn"]
+radius = 37.054
+
+[node name="Egg" type="Area2D" node_paths=PackedStringArray("animSprite")]
+collision_layer = 0
+collision_mask = 262
+script = ExtResource("1_ql000")
+spawn_scene = ExtResource("2_r581l")
+animSprite = NodePath("AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_6m4w0")
+animation = &"explode"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ktxvn")
+
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered_egg"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

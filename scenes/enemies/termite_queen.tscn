@@ -1,11 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://crjay8kxraspw"]
+[gd_scene load_steps=16 format=3 uid="uid://crjay8kxraspw"]
 
 [ext_resource type="Script" path="res://scenes/enemies/termite_queen.gd" id="1_bhhtr"]
+[ext_resource type="PackedScene" uid="uid://c6rpcdc0wlwaw" path="res://scenes/enemies/egg.tscn" id="2_f2pny"]
 [ext_resource type="Texture2D" uid="uid://brhvm7uq8lbw7" path="res://assets/sprites/termite-queen/queen-thorax-idle.png" id="2_f28vk"]
 [ext_resource type="Script" path="res://scenes/player/gun/gun_pivot.gd" id="4_geo7a"]
 [ext_resource type="PackedScene" uid="uid://b0qmwspjwr53p" path="res://scenes/enemies/termite_queen_gun.tscn" id="4_to4q0"]
 [ext_resource type="PackedScene" uid="uid://b6xwdcloo2sce" path="res://scenes/bullet_emitter/bullet_emitter.tscn" id="5_wjtyb"]
 [ext_resource type="PackedScene" uid="uid://daptjvsjukjef" path="res://scenes/enemies/termite_bullet.tscn" id="6_wc31g"]
+[ext_resource type="PackedScene" uid="uid://b7ev8rk7l185t" path="res://scenes/player/gun/muzzle.tscn" id="7_mqtgx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rnxhg"]
 atlas = ExtResource("2_f28vk")
@@ -53,9 +55,13 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_5dxkp"]
 radius = 70.5762
 
-[node name="TermiteQueen" type="CharacterBody2D" node_paths=PackedStringArray("emitters")]
+[node name="TermiteQueen" type="CharacterBody2D" node_paths=PackedStringArray("emitters", "egg_muzzles")]
+collision_layer = 0
+collision_mask = 32
 script = ExtResource("1_bhhtr")
+egg_scene = ExtResource("2_f2pny")
 emitters = [NodePath("GunPivot/Emitters/BulletEmitter"), NodePath("GunPivot/Emitters/BulletEmitter2"), NodePath("GunPivot/Emitters/BulletEmitter3"), NodePath("GunPivot/Emitters/BulletEmitter4"), NodePath("GunPivot/Emitters/BulletEmitter5"), NodePath("GunPivot/Emitters/BulletEmitter6"), NodePath("GunPivot/Emitters/BulletEmitter7"), NodePath("GunPivot/Emitters/BulletEmitter8"), NodePath("GunPivot/Emitters/BulletEmitter9"), NodePath("GunPivot/Emitters/BulletEmitter10"), NodePath("GunPivot/Emitters/BulletEmitter11"), NodePath("GunPivot/Emitters/BulletEmitter12")]
+egg_muzzles = [NodePath("GunPivot/EggMuzzles/BulletSpawner"), NodePath("GunPivot/EggMuzzles/BulletSpawner2"), NodePath("GunPivot/EggMuzzles/BulletSpawner3"), NodePath("GunPivot/EggMuzzles/BulletSpawner4"), NodePath("GunPivot/EggMuzzles/BulletSpawner5")]
 
 [node name="Model" type="Node2D" parent="."]
 
@@ -138,6 +144,22 @@ rotation = 5.75959
 number_of_bullets = 15
 bullet_packed_scene = ExtResource("6_wc31g")
 
+[node name="EggMuzzles" type="Node2D" parent="GunPivot"]
+
+[node name="BulletSpawner" parent="GunPivot/EggMuzzles" instance=ExtResource("7_mqtgx")]
+
+[node name="BulletSpawner2" parent="GunPivot/EggMuzzles" instance=ExtResource("7_mqtgx")]
+rotation = 0.523599
+
+[node name="BulletSpawner3" parent="GunPivot/EggMuzzles" instance=ExtResource("7_mqtgx")]
+rotation = -0.523599
+
+[node name="BulletSpawner4" parent="GunPivot/EggMuzzles" instance=ExtResource("7_mqtgx")]
+rotation = 1.0472
+
+[node name="BulletSpawner5" parent="GunPivot/EggMuzzles" instance=ExtResource("7_mqtgx")]
+rotation = -1.0472
+
 [node name="StreamTimer" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
@@ -149,6 +171,11 @@ one_shot = true
 [node name="BlastWaveTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="EggWaveTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
 [connection signal="timeout" from="StreamTimer" to="." method="_on_stream_timer_end"]
 [connection signal="timeout" from="CoolDownTimer" to="." method="_on_cool_down_timer_timeout"]
 [connection signal="timeout" from="BlastWaveTimer" to="." method="_on_blast_wave_timer_timeout"]
+[connection signal="timeout" from="EggWaveTimer" to="." method="_on_egg_wave_timer_timeout"]

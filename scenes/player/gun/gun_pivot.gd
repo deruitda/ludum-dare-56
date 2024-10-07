@@ -27,6 +27,9 @@ func rotate_toward_direction(direction: Vector2):
 		# Set the rotation of the character
 		rotation = angle
 		_set_flip(direction)
+		
+func rotate_add_angle(angle_in_rads : float):
+	rotation += angle_in_rads
 
 func rotate_toward_position(point_to_global_position: Vector2):
 	var direction = (point_to_global_position - global_position).normalized()
