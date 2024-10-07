@@ -6,10 +6,12 @@ extends CharacterBody2D
 @onready var stream_timer: Timer = $StreamTimer
 @onready var cool_down_timer: Timer = $CoolDownTimer
 @onready var bullet_emitter: BulletEmitter = $Emitters/BulletEmitter
+@onready var blast_wave_timer: Timer = $BlastWaveTimer
 
-@export var num_blast_waves : int = 6
+@export var num_blast_waves : int = 12
 @export var emitters : Array[BulletEmitter]
 
+var current_wave : int = 0
 var is_cooling_down : bool = false
 var is_attacking : bool = false
 
@@ -60,12 +62,7 @@ func stream_attack() -> void:
 	print("Incoming stream")
 
 func blast_attack() -> void:
-	
-	for n in num_blast_waves:
-		for emitter in emitters:
-			emitter.create_bullets()
-	
-	start_cooldown()
+	blast_wave_timer.start()
 
 func rotate_toward_player(delta: float):
 	gun_pivot.rotate_lerp_toward_position(PlayerManager.current_player.global_position)
@@ -82,3 +79,13 @@ func start_cooldown():
 
 func _on_cool_down_timer_timeout() -> void:
 	is_cooling_down = false
+
+
+func _on_blast_wave_timer_timeout() -> void:
+	if current_wave < num_blast_waves:
+		current_wave += 1
+		for emitter in emitters:
+			emitter.create_bullets()
+		blast_wave_timer.start()
+	else:	
+		start_cooldown()

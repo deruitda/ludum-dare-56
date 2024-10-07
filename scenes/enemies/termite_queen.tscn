@@ -55,7 +55,7 @@ radius = 70.5762
 
 [node name="TermiteQueen" type="CharacterBody2D" node_paths=PackedStringArray("emitters")]
 script = ExtResource("1_bhhtr")
-emitters = [NodePath("GunPivot/Emitters/BulletEmitter"), NodePath("GunPivot/Emitters/BulletEmitter2"), NodePath("GunPivot/Emitters/BulletEmitter3"), NodePath("GunPivot/Emitters/BulletEmitter4"), NodePath("GunPivot/Emitters/BulletEmitter5"), NodePath("GunPivot/Emitters/BulletEmitter6")]
+emitters = [NodePath("GunPivot/Emitters/BulletEmitter"), NodePath("GunPivot/Emitters/BulletEmitter2"), NodePath("GunPivot/Emitters/BulletEmitter3"), NodePath("GunPivot/Emitters/BulletEmitter4"), NodePath("GunPivot/Emitters/BulletEmitter5"), NodePath("GunPivot/Emitters/BulletEmitter6"), NodePath("GunPivot/Emitters/BulletEmitter7"), NodePath("GunPivot/Emitters/BulletEmitter8"), NodePath("GunPivot/Emitters/BulletEmitter9"), NodePath("GunPivot/Emitters/BulletEmitter10"), NodePath("GunPivot/Emitters/BulletEmitter11"), NodePath("GunPivot/Emitters/BulletEmitter12")]
 
 [node name="Model" type="Node2D" parent="."]
 
@@ -94,7 +94,7 @@ number_of_bullets = 15
 bullet_packed_scene = ExtResource("6_wc31g")
 
 [node name="BulletEmitter4" parent="GunPivot/Emitters" instance=ExtResource("5_wjtyb")]
-rotation = 1.309
+rotation = 1.5708
 number_of_bullets = 15
 bullet_packed_scene = ExtResource("6_wc31g")
 
@@ -108,6 +108,36 @@ rotation = 2.61799
 number_of_bullets = 15
 bullet_packed_scene = ExtResource("6_wc31g")
 
+[node name="BulletEmitter7" parent="GunPivot/Emitters" instance=ExtResource("5_wjtyb")]
+rotation = 3.14159
+number_of_bullets = 15
+bullet_packed_scene = ExtResource("6_wc31g")
+
+[node name="BulletEmitter8" parent="GunPivot/Emitters" instance=ExtResource("5_wjtyb")]
+rotation = 3.66519
+number_of_bullets = 15
+bullet_packed_scene = ExtResource("6_wc31g")
+
+[node name="BulletEmitter9" parent="GunPivot/Emitters" instance=ExtResource("5_wjtyb")]
+rotation = 4.18879
+number_of_bullets = 15
+bullet_packed_scene = ExtResource("6_wc31g")
+
+[node name="BulletEmitter10" parent="GunPivot/Emitters" instance=ExtResource("5_wjtyb")]
+rotation = 4.71239
+number_of_bullets = 15
+bullet_packed_scene = ExtResource("6_wc31g")
+
+[node name="BulletEmitter11" parent="GunPivot/Emitters" instance=ExtResource("5_wjtyb")]
+rotation = 5.23599
+number_of_bullets = 15
+bullet_packed_scene = ExtResource("6_wc31g")
+
+[node name="BulletEmitter12" parent="GunPivot/Emitters" instance=ExtResource("5_wjtyb")]
+rotation = 5.75959
+number_of_bullets = 15
+bullet_packed_scene = ExtResource("6_wc31g")
+
 [node name="StreamTimer" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
@@ -116,5 +146,9 @@ one_shot = true
 wait_time = 5.0
 one_shot = true
 
+[node name="BlastWaveTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="timeout" from="StreamTimer" to="." method="_on_stream_timer_end"]
 [connection signal="timeout" from="CoolDownTimer" to="." method="_on_cool_down_timer_timeout"]
+[connection signal="timeout" from="BlastWaveTimer" to="." method="_on_blast_wave_timer_timeout"]
