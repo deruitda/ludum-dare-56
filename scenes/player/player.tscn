@@ -407,10 +407,11 @@ position = Vector2(-3.5, 0)
 shape = SubResource("RectangleShape2D_jr7co")
 one_way_collision = true
 
-[node name="HealthComponent" parent="." node_paths=PackedStringArray("dash_component") instance=ExtResource("3_e2fg7")]
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("dash_component", "respawn_component") instance=ExtResource("3_e2fg7")]
 max_health = 3
 seconds_of_invulnerability_after_damage = 5.0
 dash_component = NodePath("../DashComponent")
+respawn_component = NodePath("../RespawnComponent")
 
 [node name="VelocityComponent" parent="." instance=ExtResource("4_nqq8h")]
 gravity = 3000.0

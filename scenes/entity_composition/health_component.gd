@@ -16,7 +16,7 @@ signal damage_applied
 signal is_invulnurable_state_change(is_invulnerable_new_value: bool)
 
 func _ready() -> void:
-	current_health = max_health
+	reset_health()
 	pass # Replace with function body.
 
 func apply_damage(damage: int) -> void:
@@ -56,3 +56,6 @@ func is_invulnerable() -> bool:
 		return true
 	else:
 		return is_currently_invulnerable_after_damage
+
+func reset_health() -> void:
+	current_health = max_health

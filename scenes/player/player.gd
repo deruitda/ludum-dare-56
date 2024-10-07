@@ -8,6 +8,7 @@ class_name Player
 @export var edge_detector: EdgeDetector
 #inputs
 @onready var direction_input: float = 0.0
+@onready var health_component: HealthComponent = $HealthComponent
 
 #actions
 @onready var is_floor_jumping: bool = false
@@ -38,7 +39,6 @@ func _process(delta: float) -> void:
 		#queue_free()
 	elif Input.is_action_just_pressed("respawn"):
 		respawn_component.do_respawn(self)
-		is_dead = false
 	else:
 		handle_sprite_orientation()
 		handle_lower_body_sprite_animation()
@@ -202,6 +202,8 @@ func start_death() -> void:
 	#animated_sprite_2d.play("death")
 	
 func finish_death() -> void:
+	health_component.reset_health()
+	is_dead = false
 	respawn_component.do_respawn(self)
 
 func _on_damage_applied() -> void:
