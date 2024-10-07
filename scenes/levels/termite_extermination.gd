@@ -20,6 +20,6 @@ func _on_level_entrance_create_player(new_global_position: Vector2, starting_che
 	player.global_position = new_global_position
 	add_child(player)
 	follow_cam.follow_target = player
-	SignalBus.set_new_checkpoint.emit(starting_checkpoint)
 	SignalBus.set_game_is_paused_state.emit(false)
+	SignalBus.set_new_checkpoint.emit(starting_checkpoint)
 	pass # Replace with function body.

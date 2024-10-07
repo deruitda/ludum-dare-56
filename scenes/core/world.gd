@@ -1,17 +1,17 @@
 extends Node2D
 class_name World
 
-@export var current_level : PackedScene
 @export var skip_cutscene: bool = false
 @export var start_with_boss_fight = false
 const OPENING_SCENE = "res://scenes/levels/opening_scene.tscn"
+const LEVEL = "res://scenes/levels/termite_extermination.tscn"
 const END_CREDITS_SCENE = "res://scenes/core/game_over_menu.tscn"
 const BOSS_FIGHT_SCENE = "res://scenes/levels/boss_battle_scene.tscn"
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	SignalBus.termite_queen_is_dead.connect(transition_to_end_credits_scene)
 	if skip_cutscene:
-		on_load_level()
+		SignalBus.start_game.connect(on_load_level) # Replace with function body.
 	elif start_with_boss_fight:
 		SignalBus.start_game.connect(transition_to_boss_scene) # Replace with function body.
 	else:
@@ -26,7 +26,7 @@ func start_opening_cutscene():
 
 func on_load_level() -> void:
 	clean_up_scene()
-	add_child(current_level.instantiate())
+	add_child(preload(LEVEL).instantiate())
 	
 func clean_up_scene():
 	for child in get_children():
