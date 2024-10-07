@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://56t0wxwth7ya"]
+[gd_scene load_steps=9 format=3 uid="uid://56t0wxwth7ya"]
 
 [ext_resource type="Theme" uid="uid://cxwyw4x8t5r2v" path="res://assets/themes/default_theme.tres" id="1_6lw3b"]
+[ext_resource type="Script" path="res://scenes/core/ui.gd" id="1_k8gjm"]
 [ext_resource type="Script" path="res://scenes/core/game_time.gd" id="1_kc8fq"]
 [ext_resource type="Script" path="res://scenes/core/hp.gd" id="2_83q50"]
 [ext_resource type="Script" path="res://scenes/core/kill_count.gd" id="3_cgw1v"]
@@ -9,6 +10,7 @@
 [ext_resource type="Script" path="res://scenes/core/death_count.gd" id="5_vrxma"]
 
 [node name="Ui" type="CanvasLayer"]
+script = ExtResource("1_k8gjm")
 metadata/_edit_horizontal_guides_ = [98.0]
 metadata/_edit_vertical_guides_ = [600.0]
 
@@ -82,12 +84,14 @@ horizontal_alignment = 1
 script = ExtResource("5_vrxma")
 
 [node name="ItemSlotBackground" type="Panel" parent="."]
+visible = false
 offset_left = 22.0
 offset_top = 482.0
 offset_right = 22.0
 offset_bottom = 482.0
 
 [node name="Sprite2D" type="Sprite2D" parent="ItemSlotBackground"]
+visible = false
 position = Vector2(70, 340)
 texture = ExtResource("4_0tsl8")
 script = ExtResource("5_rcdii")

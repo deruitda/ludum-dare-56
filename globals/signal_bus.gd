@@ -29,3 +29,5 @@ signal go_to_main_menu
 signal pause_background_music
 
 signal set_background_music(new_background_stream: AudioStream)
+
+signal game_state_changed
