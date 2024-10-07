@@ -184,7 +184,7 @@ func get_left_right_input() -> Vector2:
 	return left_right_input
 
 func _on_died() -> void:
-	print("you died")
+	SignalBus.player_died.emit()
 	start_death()
 	pass # Replace with function body.
 	
@@ -201,6 +201,7 @@ func finish_death() -> void:
 	queue_free()
 
 func _on_damage_applied() -> void:
+	SignalBus.player_hurt.emit()
 	print("damage")
 	pass # Replace with function body.
 
