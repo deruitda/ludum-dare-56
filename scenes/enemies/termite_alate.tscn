@@ -181,7 +181,7 @@ animations = [{
 
 [node name="TermiteAlate" type="CharacterBody2D" node_paths=PackedStringArray("velocity_component", "path_finder", "gun", "gun_pivot")]
 collision_layer = 8
-collision_mask = 262
+collision_mask = 6
 script = ExtResource("1_p2glw")
 velocity_component = NodePath("VelocityComponent")
 path_finder = NodePath("PathFinder")

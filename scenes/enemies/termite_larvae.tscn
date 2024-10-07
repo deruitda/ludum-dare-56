@@ -192,12 +192,12 @@ left_ray_cast = NodePath("LeftRayCast")
 right_ray_cast = NodePath("RightRayCast")
 
 [node name="LeftRayCast" type="RayCast2D" parent="EdgeDetector"]
-position = Vector2(-44, 16)
+position = Vector2(-44, 14)
 collision_mask = 262
 collide_with_areas = true
 
 [node name="RightRayCast" type="RayCast2D" parent="EdgeDetector"]
-position = Vector2(31, 16)
+position = Vector2(44, 14)
 collision_mask = 262
 collide_with_areas = true
 

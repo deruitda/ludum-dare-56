@@ -31,11 +31,11 @@ func _on_anim_finished() -> void:
 		animSprite.play("idle")
 
 func _spawn_new_enemy():
-	position = global_position
+	var setting_position = global_position
 	if spawn_location:
-		position = spawn_location.global_position
+		setting_position = spawn_location.global_position
 		
-	SignalBus.spawn_enemy.emit(scene, position, global_rotation, self)
+	SignalBus.spawn_enemy.emit(scene, setting_position, global_rotation, self)
 	number_of_child_enemies_alive += 1
 	if number_of_child_enemies_alive < total_amount_of_enemies_allowed_at_a_time:
 		timer.start()
