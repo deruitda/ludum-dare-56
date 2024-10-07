@@ -39,6 +39,8 @@ func anim_finished():
 
 func _on_health_component_died() -> void:
 	start_death()
+	SignalBus.player_kill.emit()
+
 
 func _on_shooting_timer_timeout() -> void:
 	if PlayerManager.current_player:

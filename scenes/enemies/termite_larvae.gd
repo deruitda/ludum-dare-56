@@ -43,6 +43,8 @@ func set_current_direction() -> void:
 	
 func _on_died() -> void:
 	start_death()
+	SignalBus.player_kill.emit()
+
 	
 func start_death() -> void:
 	is_dead = true

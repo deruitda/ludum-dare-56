@@ -90,9 +90,9 @@ func handle_apply_movement(delta: float) -> void:
 	
 func _on_health_component_died() -> void:
 	start_death()
+	SignalBus.player_kill.emit()
+
 	pass # Replace with function body.
-	
-	
 func start_death():
 	is_dying = true
 	$BugAudio.play_enemy_death_audio()
