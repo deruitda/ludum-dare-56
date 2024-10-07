@@ -7,7 +7,7 @@ func _ready() -> void:
 	focus_button()
 
 func _on_retry_button_pressed() -> void:
-	SignalBus.start_game.emit()
+	SignalBus.go_to_main_menu.emit()
 	hide()
 
 func _on_exit_button_pressed() -> void:

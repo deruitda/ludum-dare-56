@@ -4,6 +4,7 @@ extends Control
 @onready var buttons_v_box = $ButtonsVbox
 
 func _ready() -> void:
+	SignalBus.go_to_main_menu.connect(show)
 	focus_button()
 
 func _on_start_game_button_pressed() -> void:

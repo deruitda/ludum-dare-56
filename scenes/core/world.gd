@@ -13,12 +13,12 @@ func _ready() -> void:
 	if skip_cutscene:
 		on_load_level()
 	elif start_with_boss_fight:
-		transition_to_boss_scene()
+		SignalBus.start_game.connect(transition_to_boss_scene) # Replace with function body.
 	else:
 		SignalBus.start_game.connect(start_opening_cutscene) # Replace with function body.
 		SignalBus.opening_cutscene_finished.connect(on_load_level)
 	
-	
+	SignalBus.go_to_main_menu.connect(_on_go_to_main_menu)
 
 func start_opening_cutscene():
 	clean_up_scene()
@@ -43,3 +43,6 @@ func transition_to_end_credits_scene() -> void:
 func transition_to_boss_scene() -> void:
 	clean_up_scene()
 	add_child(preload(BOSS_FIGHT_SCENE).instantiate())
+
+func _on_go_to_main_menu():
+	clean_up_scene()

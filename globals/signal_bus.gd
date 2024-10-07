@@ -23,3 +23,5 @@ signal set_game_is_paused_state(new_game_is_paused_value: bool)
 signal termite_queen_is_dead
 
 signal start_boss_scene
+
+signal go_to_main_menu
