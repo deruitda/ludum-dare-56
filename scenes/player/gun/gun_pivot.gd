@@ -31,3 +31,9 @@ func rotate_toward_direction(direction: Vector2):
 func rotate_toward_position(point_to_global_position: Vector2):
 	var direction = (point_to_global_position - global_position).normalized()
 	rotate_toward_direction(direction)
+	
+func rotate_lerp_toward_position(point_to_global_position: Vector2):
+	var direction = (point_to_global_position - global_position).normalized()
+	var lerpAngle = lerp(direction, PlayerManager.current_player.global_position - global_position, 10).angle()
+	var newAngle = move_toward(rotation, lerpAngle, 10)
+	rotation = newAngle

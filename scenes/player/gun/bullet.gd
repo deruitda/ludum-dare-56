@@ -23,7 +23,6 @@ func set_direction(new_direction: Vector2):
 
 func _physics_process(delta: float) -> void:
 	if has_hit_something and (animSprite and not animSprite.animation == "explode"):
-		print("boom")
 		animSprite.play("explode")
 
 	elif not has_hit_something:
@@ -31,10 +30,8 @@ func _physics_process(delta: float) -> void:
 
 func _handle_hit_environment():
 	has_hit_something = true
-	print("hit")
 	
 func _handle_hit_hurt_box():
-	print("hit")
 	has_hit_something = true
 
 func _on_area_entered(area: Area2D) -> void:

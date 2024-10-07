@@ -1,0 +1,85 @@
+[gd_scene load_steps=12 format=3 uid="uid://crjay8kxraspw"]
+
+[ext_resource type="Script" path="res://scenes/enemies/termite_queen.gd" id="1_bhhtr"]
+[ext_resource type="Texture2D" uid="uid://brhvm7uq8lbw7" path="res://assets/sprites/termite-queen/queen-thorax-idle.png" id="2_f28vk"]
+[ext_resource type="Script" path="res://scenes/player/gun/gun_pivot.gd" id="4_geo7a"]
+[ext_resource type="PackedScene" uid="uid://b0qmwspjwr53p" path="res://scenes/enemies/termite_queen_gun.tscn" id="4_to4q0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rnxhg"]
+atlas = ExtResource("2_f28vk")
+region = Rect2(0, 0, 700, 800)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m5ot7"]
+atlas = ExtResource("2_f28vk")
+region = Rect2(700, 0, 700, 800)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_57bgj"]
+atlas = ExtResource("2_f28vk")
+region = Rect2(1400, 0, 700, 800)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qgmu1"]
+atlas = ExtResource("2_f28vk")
+region = Rect2(2100, 0, 700, 800)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sd0np"]
+atlas = ExtResource("2_f28vk")
+region = Rect2(2800, 0, 700, 800)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c4dh1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rnxhg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m5ot7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_57bgj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qgmu1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sd0np")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5dxkp"]
+radius = 70.5762
+
+[node name="TermiteQueen" type="CharacterBody2D"]
+script = ExtResource("1_bhhtr")
+
+[node name="Model" type="Node2D" parent="."]
+
+[node name="Thorax" type="AnimatedSprite2D" parent="Model"]
+position = Vector2(108, -302)
+sprite_frames = SubResource("SpriteFrames_c4dh1")
+animation = &"idle"
+frame_progress = 0.0300021
+offset = Vector2(-98, -90)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(5.00002, 100)
+rotation = 3.11016
+shape = SubResource("CircleShape2D_5dxkp")
+
+[node name="GunPivot" type="Node2D" parent="."]
+script = ExtResource("4_geo7a")
+
+[node name="TermiteQueenGun" parent="GunPivot" instance=ExtResource("4_to4q0")]
+
+[node name="StreamTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="CoolDownTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="timeout" from="StreamTimer" to="." method="_on_stream_timer_end"]
+[connection signal="timeout" from="CoolDownTimer" to="." method="_on_cool_down_timer_timeout"]

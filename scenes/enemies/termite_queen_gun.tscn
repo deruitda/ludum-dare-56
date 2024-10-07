@@ -1,0 +1,91 @@
+[gd_scene load_steps=15 format=3 uid="uid://b0qmwspjwr53p"]
+
+[ext_resource type="Script" path="res://scenes/enemies/termite_queen_gun.gd" id="1_44v2f"]
+[ext_resource type="PackedScene" uid="uid://daptjvsjukjef" path="res://scenes/enemies/termite_bullet.tscn" id="2_eu2ma"]
+[ext_resource type="PackedScene" uid="uid://b7ev8rk7l185t" path="res://scenes/player/gun/muzzle.tscn" id="3_44lat"]
+[ext_resource type="AudioStream" uid="uid://djpo4tm7cjpox" path="res://assets/Audio/SFX/GunPopStereo.wav" id="4_vqc41"]
+[ext_resource type="Texture2D" uid="uid://cj6fa83iekmhj" path="res://assets/sprites/termite-queen/queen-head-idle.png" id="5_1ub0r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6teiq"]
+atlas = ExtResource("5_1ub0r")
+region = Rect2(0, 0, 400, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_abfni"]
+atlas = ExtResource("5_1ub0r")
+region = Rect2(400, 0, 400, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gffmq"]
+atlas = ExtResource("5_1ub0r")
+region = Rect2(800, 0, 400, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l86yq"]
+atlas = ExtResource("5_1ub0r")
+region = Rect2(1200, 0, 400, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qp3lj"]
+atlas = ExtResource("5_1ub0r")
+region = Rect2(1600, 0, 400, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3djfk"]
+atlas = ExtResource("5_1ub0r")
+region = Rect2(2000, 0, 400, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g5d7f"]
+atlas = ExtResource("5_1ub0r")
+region = Rect2(2400, 0, 400, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6xvs6"]
+atlas = ExtResource("5_1ub0r")
+region = Rect2(2800, 0, 400, 500)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5x8vi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6teiq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_abfni")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gffmq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l86yq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qp3lj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3djfk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g5d7f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6xvs6")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="TermiteQueenGun" type="Node2D" node_paths=PackedStringArray("muzzle", "shooting_cooldown")]
+script = ExtResource("1_44v2f")
+muzzle = NodePath("Muzzle")
+bullet_packed_scene = ExtResource("2_eu2ma")
+shooting_cooldown = NodePath("")
+
+[node name="Muzzle" parent="." instance=ExtResource("3_44lat")]
+position = Vector2(137, -8)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(0, 1)
+stream = ExtResource("4_vqc41")
+
+[node name="Head" type="AnimatedSprite2D" parent="."]
+z_index = 2
+rotation = -1.5708
+sprite_frames = SubResource("SpriteFrames_5x8vi")
+animation = &"idle"
+autoplay = "idle"
