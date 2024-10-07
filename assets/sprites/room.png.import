@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://choevm701xvqa"
-path="res://.godot/imported/rex-put-on-headphones.png-326d0bed11dcd7a3d5d3160f2fa4097c.ctex"
+uid="uid://uoa2w4kjgtl8"
+path="res://.godot/imported/room.png-9ae6bd7df6b89a05d0aa2c513072972c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/rex/rex-put-on-headphones.png"
-dest_files=["res://.godot/imported/rex-put-on-headphones.png-326d0bed11dcd7a3d5d3160f2fa4097c.ctex"]
+source_file="res://assets/sprites/room.png"
+dest_files=["res://.godot/imported/room.png-9ae6bd7df6b89a05d0aa2c513072972c.ctex"]
 
 [params]
 
