@@ -18,6 +18,10 @@ script = ExtResource("1_555cq")
 position = Vector2(794, -448)
 follow_target = NodePath("../TermiteQueen")
 weight = 0.023
+min_y_pos = -448.0
+min_x_pos = 799.833
+max_x_pos = 799.833
+is_boss = true
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 modulate = Color(0.377919, 0.377919, 0.377919, 1)
