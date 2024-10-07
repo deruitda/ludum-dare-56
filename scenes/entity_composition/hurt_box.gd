@@ -22,7 +22,7 @@ func handle_bullet_collision(bullet: Bullet):
 		hit_by_bullet.emit(bullet)
 
 func handle_enemy_collision(enemy: HurtBox):
-	if enemy.can_handle_taking_damage() and not health_component.is_invulnerable():
+	if enemy and enemy.can_handle_taking_damage() and not health_component.is_invulnerable():
 		health_component.apply_damage(1)
 		hit_by_enemy.emit()
 

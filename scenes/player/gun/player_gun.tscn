@@ -133,7 +133,7 @@ stream = ExtResource("6_ib0q8")
 bus = &"PlayerGun"
 
 [node name="ShootingCooldown" type="Timer" parent="."]
-wait_time = 0.25
+wait_time = 0.18
 one_shot = true
 
 [node name="PointLight2D" type="PointLight2D" parent="."]

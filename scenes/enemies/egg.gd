@@ -8,6 +8,6 @@ func _on_body_shape_entered_egg(body_rid: RID, body: Node2D, body_shape_index: i
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if animSprite.animation == "explode":
-		SignalBus.spawn_enemy.emit(spawn_scene, global_position, rotation)
+		SignalBus.spawn_enemy.emit(spawn_scene, global_position, rotation, null)
 		queue_free()
 		

@@ -95,7 +95,7 @@ animations = [{
 
 [node name="Grenade" type="RigidBody2D"]
 collision_layer = 1024
-collision_mask = 6
+collision_mask = 262
 contact_monitor = true
 max_contacts_reported = 1
 script = ExtResource("1_7myjt")
@@ -113,7 +113,7 @@ bullet_packed_scene = ExtResource("4_olhd0")
 script = ExtResource("4_7xd7w")
 
 [node name="ExplosionTimer" type="Timer" parent="."]
-wait_time = 8.0
+wait_time = 3.0
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 16
