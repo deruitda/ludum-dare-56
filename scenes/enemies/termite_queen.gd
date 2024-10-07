@@ -33,7 +33,6 @@ func _physics_process(delta: float) -> void:
 	rotate_toward_player(delta)
 	
 	if !is_attacking and !is_cooling_down:
-		print("attacking")
 		perform_attack()
 	
 
@@ -57,7 +56,6 @@ func get_next_attack() -> String:
 		while next == last_attack:
 			next = attacks.pick_random()
 	
-	print("Next attack " + next)
 	return next
 	
 func egg_attack() -> void:

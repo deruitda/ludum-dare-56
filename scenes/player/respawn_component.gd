@@ -19,7 +19,6 @@ func _process(delta: float) -> void:
 	pass
 
 func _set_new_checkpoint(new_checkpoint: Checkpoint) -> void:
-	print("new checkpoint set")
 	current_checkpoint = new_checkpoint
 
 func do_respawn(character_body: CharacterBody2D):

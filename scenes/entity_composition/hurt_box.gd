@@ -17,8 +17,6 @@ func can_handle_taking_damage() -> bool:
 	return not health_component.is_dead()
 
 func handle_bullet_collision(bullet: Bullet):
-	print('has hit something: ' + str(bullet.has_hit_something))
-	print ('is invulnerable: ' + str(health_component.is_invulnerable()))
 	if not health_component.is_invulnerable():
 		health_component.apply_damage(bullet.damage_per_bullet)
 		hit_by_bullet.emit(bullet)
