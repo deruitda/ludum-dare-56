@@ -223,6 +223,8 @@ func finish_death() -> void:
 	respawn_component.do_respawn(self)
 
 func _on_damage_applied() -> void:
+	if health_component.is_dead() == false:	
+		$PlayerHurt.play_player_hurt_audio()
 	SignalBus.player_health_changed.emit(health_component.current_health)
 	pass # Replace with function body.
 
