@@ -8,6 +8,7 @@ class_name DashComponent
 
 @export var dash_sound: AudioStreamPlayer
 
+signal dash_started
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -24,12 +25,11 @@ func do_dash(character_body: CharacterBody2D):
 
 func start_dash(new_dash_direction: Vector2):
 	if not is_dashing:
-		dash_sound.play()
-		
 		is_dashing = true
 		dash_direction = new_dash_direction
 		dash_timer.start()
 		dash_timer.timeout.connect(_on_dash_timer_timeout)
+		dash_started.emit()
 
 func _on_dash_timer_timeout() -> void:
 	dash_direction = Vector2.ZERO

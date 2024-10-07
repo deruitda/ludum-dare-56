@@ -2,6 +2,5 @@
 
 [ext_resource type="Script" path="res://scenes/entity_composition/dash_component.gd" id="1_tssqf"]
 
-[node name="DashComponent" type="Node" node_paths=PackedStringArray("dash_sound")]
+[node name="DashComponent" type="Node"]
 script = ExtResource("1_tssqf")
-dash_sound = NodePath("")

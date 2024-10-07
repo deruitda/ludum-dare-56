@@ -226,3 +226,7 @@ func _on_damage_applied() -> void:
 
 func get_is_on_floor() -> bool:
 	return is_on_floor() and edge_detector.is_touching_ground()
+
+
+func _on_dash_component_dash_started() -> void:
+	$DashSound.play()

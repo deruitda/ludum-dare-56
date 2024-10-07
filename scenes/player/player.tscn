@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=3 uid="uid://cofh4isrtksv4"]
+[gd_scene load_steps=72 format=3 uid="uid://cofh4isrtksv4"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_y4k5w"]
 [ext_resource type="Shape2D" uid="uid://cc3bsg65yxgm0" path="res://scenes/player/player_shape.tres" id="2_n3d0r"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" path="res://scenes/player/respawn_component.gd" id="17_qo5ue"]
 [ext_resource type="PackedScene" uid="uid://234u3mqv0xmc" path="res://scenes/player/grenade/grenade_launcher.tscn" id="18_khoxa"]
 [ext_resource type="Script" path="res://scenes/player/player_hurt.gd" id="19_2gw1v"]
+[ext_resource type="AudioStream" uid="uid://cih3l62ufm4r7" path="res://assets/Audio/SFX/Dash.wav" id="20_64jjk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jr7co"]
 size = Vector2(23, 64)
@@ -512,6 +513,10 @@ script = ExtResource("19_2gw1v")
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 occluder = SubResource("OccluderPolygon2D_x4boj")
 
+[node name="DashSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("20_64jjk")
+
 [connection signal="damage_applied" from="HealthComponent" to="." method="_on_damage_applied"]
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]
 [connection signal="area_entered" from="HurtBox" to="HurtBox" method="_on_area_entered"]
+[connection signal="dash_started" from="DashComponent" to="." method="_on_dash_component_dash_started"]

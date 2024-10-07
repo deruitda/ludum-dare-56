@@ -1,8 +1,8 @@
 extends CanvasLayer
 class_name UI
-@onready var kill_count: Label = $KillCountBackground/KillCount
-@onready var death_count: Label = $DeathCountBackground/DeathCount
 @onready var hp_background: Panel = $HPBackground
+@onready var kill_count: Label = $Container/KillCountBackground/KillCount
+@onready var death_count: Label = $Container/DeathCountBackground/DeathCount
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
