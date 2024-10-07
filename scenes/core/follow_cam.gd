@@ -3,8 +3,12 @@ class_name FollowCam
 @export var follow_target: Node2D
 @export_range(0, 1) var weight: float
 var min_y_pos: float = -450
-@export var min_x_pos: float = -450
-@export var max_x_pos: float = 3000
+var min_x_pos: float = -223.891
+var max_x_pos: float = 2045.525
+
+# dumb way for narrow scenes to keep camera centered
+var narrow_level_x_pos: float = 799.833
+var narrow_level_y_barrier: float = -1045.839
 
 func _process(delta: float) -> void:
 	
@@ -13,7 +17,9 @@ func _process(delta: float) -> void:
 	
 	global_position = lerp(global_position, follow_target.global_position, weight)
 	
-	#global_position.y = lerp(global_position.y, follow_target.global_position.y, weight)
+	if global_position.y > narrow_level_y_barrier:
+		global_position.x = narrow_level_x_pos
+		return
 	
 	if global_position.x < min_x_pos:
 		global_position.x = min_x_pos
