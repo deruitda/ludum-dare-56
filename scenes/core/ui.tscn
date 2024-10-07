@@ -63,6 +63,23 @@ text = "0"
 horizontal_alignment = 1
 script = ExtResource("3_cgw1v")
 
+[node name="DeathCountBackground" type="Panel" parent="."]
+offset_left = 1020.0
+offset_top = 10.0
+offset_right = 1020.0
+offset_bottom = 10.0
+
+[node name="DeathCount" type="Label" parent="DeathCountBackground"]
+layout_mode = 0
+offset_left = 472.0
+offset_top = 40.0
+offset_right = 512.0
+offset_bottom = 63.0
+theme = ExtResource("1_6lw3b")
+text = "0"
+horizontal_alignment = 1
+script = ExtResource("3_cgw1v")
+
 [node name="ItemSlotBackground" type="Panel" parent="."]
 offset_left = 22.0
 offset_top = 482.0

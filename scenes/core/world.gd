@@ -2,11 +2,15 @@ extends Node2D
 class_name World
 
 @export var current_level : PackedScene
+@export var skip_cutscene: bool = false
 const OPENING_SCENE = preload("res://scenes/levels/opening_scene.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	SignalBus.start_game.connect(start_opening_cutscene) # Replace with function body.
-	SignalBus.opening_cutscene_finished.connect(on_load_level)
+	if skip_cutscene:
+		on_load_level()
+	else:
+		SignalBus.start_game.connect(start_opening_cutscene) # Replace with function body.
+		SignalBus.opening_cutscene_finished.connect(on_load_level)
 
 func start_opening_cutscene():
 	clean_up_scene()

@@ -203,11 +203,12 @@ func start_death() -> void:
 	
 func finish_death() -> void:
 	health_component.reset_health()
+	SignalBus.player_health_changed.emit(health_component.current_health)
 	is_dead = false
 	respawn_component.do_respawn(self)
 
 func _on_damage_applied() -> void:
-	SignalBus.player_hurt.emit()
+	SignalBus.player_health_changed.emit(health_component.current_health)
 	pass # Replace with function body.
 
 func get_is_on_floor() -> bool:

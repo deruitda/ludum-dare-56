@@ -1,6 +1,6 @@
 extends Node
 
-signal player_hurt()
+signal player_health_changed(new_health_value: int)
 
 signal player_kill()
 
