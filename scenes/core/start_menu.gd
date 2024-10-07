@@ -2,6 +2,7 @@ extends Control
 
 
 @onready var buttons_v_box = $ButtonsVbox
+@onready var texture_rect: TextureRect = $TextureRect
 
 func _ready() -> void:
 	SignalBus.go_to_main_menu.connect(show)
@@ -27,3 +28,7 @@ func focus_button() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+
+func _on_show_controls_pressed() -> void:
+	texture_rect.visible = !texture_rect.visible
