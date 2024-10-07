@@ -12,7 +12,10 @@ func _ready() -> void:
 	SignalBus.enemy_died.connect(_on_enemy_died)
 	SignalBus.player_health_changed.connect(_set_current_health)
 	SignalBus.player_died.connect(_on_player_death)
+	
 	SignalBus.set_game_is_paused_state.connect(_on_set_game_is_paused_state)
+	
+	SignalBus.go_to_main_menu.connect(reset_player_state)
 
 	pass # Replace with function body.
 

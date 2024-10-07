@@ -14,4 +14,5 @@ func remove_current_player() -> void:
 
 func set_player(new_player: Player) -> void:
 	current_player = new_player
+	current_player.health_component.current_health = GameState.current_player_health
 	
