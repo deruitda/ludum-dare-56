@@ -113,4 +113,5 @@ position = Vector2(-1, 95)
 [node name="TimeBeforeExplosion" type="Timer" parent="CutSceneTimers"]
 wait_time = 3.0
 
+[connection signal="queen_explosion_finished" from="TermiteQueen" to="." method="_on_termite_queen_queen_explosion_finished"]
 [connection signal="queen_just_died" from="TermiteQueen" to="." method="_on_termite_queen_queen_just_died"]

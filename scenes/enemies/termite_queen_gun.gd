@@ -1,5 +1,5 @@
 extends Gun
-
+class_name ThermiteQueenGun
 var is_shooting : bool = false
 
 func _physics_process(delta: float) -> void:
@@ -19,5 +19,5 @@ func play_attack_anim():
 func play_idle_anim():
 	animated_sprite_2d.play("idle")
 
-func start_death() -> void:
-	SignalBus.p
+func play_explode_anim():
+	animated_sprite_2d.play("explode")

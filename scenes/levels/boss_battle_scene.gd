@@ -24,3 +24,8 @@ func _on_termite_queen_queen_just_died() -> void:
 func _on_time_before_explosion_timeout() -> void:
 	termite_queen.do_explode()
 	pass
+
+
+func _on_termite_queen_queen_explosion_finished() -> void:
+	print("done")
+	pass # Replace with function body.

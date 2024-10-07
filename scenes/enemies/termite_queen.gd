@@ -2,7 +2,7 @@ extends Node2D
 class_name ThermiteQueen
 
 @onready var thorax: AnimatedSprite2D = $Model/Thorax
-@onready var termite_queen_gun = $GunPivot/TermiteQueenGun
+@onready var termite_queen_gun: ThermiteQueenGun = $GunPivot/TermiteQueenGun
 @onready var gun_pivot: GunPivot = $GunPivot
 @onready var stream_timer: Timer = $StreamTimer
 @onready var cool_down_timer: Timer = $CoolDownTimer
@@ -10,6 +10,9 @@ class_name ThermiteQueen
 @onready var blast_wave_timer: Timer = $BlastWaveTimer
 @onready var egg_wave_timer: Timer = $EggWaveTimer
 @onready var health_component: HealthComponent = $HealthComponent
+
+@onready var explosion_delay_for_head_timer: Timer = $ExplosionDelayForHeadTimer
+@onready var explosion_total_time_timer: Timer = $ExplosionTotalTimeTimer
 
 @export var egg_scene : PackedScene
 @export var num_blast_waves : int = 12
@@ -31,6 +34,7 @@ const attacks = [
 var last_attack : String
 
 signal queen_just_died
+signal queen_explosion_finished
 
 func _physics_process(delta: float) -> void:
 	rotate_toward_player(delta)
@@ -125,8 +129,19 @@ func _on_health_component_died() -> void:
 
 func do_explode() -> void:
 	thorax.play("explode")
-	thorax.animation_finished.connect(_on_thorax_animation_finish)
+	
+	explosion_delay_for_head_timer.start()
+	explosion_delay_for_head_timer.timeout.connect(_on_explosion_delay_for_head_timeout)
+	
+	explosion_total_time_timer.start()
+	explosion_total_time_timer.timeout.connect(_on_thorax_animation_finish)
+	
+	explosion_total_time_timer
 	
 func _on_thorax_animation_finish():
-	thorax.animation_finished.disconnect(_on_thorax_animation_finish)
+	queen_explosion_finished.emit()
 	pass
+
+func _on_explosion_delay_for_head_timeout():
+	termite_queen_gun.play_explode_anim()
+	

@@ -556,6 +556,11 @@ one_shot = true
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("9_7jpxo")
 
+[node name="ExplosionDelayForHeadTimer" type="Timer" parent="."]
+
+[node name="ExplosionTotalTimeTimer" type="Timer" parent="."]
+wait_time = 4.0
+
 [connection signal="area_entered" from="GunPivot/Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="timeout" from="StreamTimer" to="." method="_on_stream_timer_end"]
 [connection signal="timeout" from="CoolDownTimer" to="." method="_on_cool_down_timer_timeout"]
