@@ -13,11 +13,8 @@
 [node name="StartMenu" parent="Ui" instance=ExtResource("3_dmdf0")]
 
 [node name="World" parent="." instance=ExtResource("2_6cr2y")]
-<<<<<<< HEAD
 skip_cutscene = true
 start_with_boss_fight = true
-=======
->>>>>>> 5622afa (more buggs)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_g2rgv")
