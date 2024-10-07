@@ -39,9 +39,6 @@ func _process(delta: float) -> void:
 	
 	if GameState.game_is_paused:
 		return
-	if is_dead:
-		PlayerManager.remove_current_player()
-		#queue_free()
 	elif Input.is_action_just_pressed("respawn"):
 		respawn_component.do_respawn(self)
 	else:

@@ -14,9 +14,8 @@
 [node name="TermiteExtermination" type="Node2D"]
 script = ExtResource("1_555cq")
 
-[node name="FollowCam" parent="." node_paths=PackedStringArray("follow_target") instance=ExtResource("1_g112b")]
+[node name="FollowCam" parent="." instance=ExtResource("1_g112b")]
 position = Vector2(794, -448)
-follow_target = NodePath("")
 weight = 0.023
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
