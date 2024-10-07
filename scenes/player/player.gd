@@ -65,7 +65,7 @@ func _physics_process(delta: float) -> void:
 	gun_pivot.rotate_toward_position(get_global_mouse_position())
 	
 	if Input.is_action_just_pressed("throw_grenade"):
-		grenade_launcher.launch_grenade(get_global_mouse_position())
+		grenade_launcher.launch_grenade_toward(get_global_mouse_position())
 	
 	if Input.is_action_pressed("shoot"):
 		gun.shoot_bullet()

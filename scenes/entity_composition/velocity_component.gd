@@ -37,7 +37,8 @@ func apply_wall_jump(direction: Vector2) -> void:
 	# Determine wall side and apply horizontal force
 func apply_floor_jump() -> void:
 	velocity.y = -jump_velocity
-
+func apply_launch(new_velocity: Vector2) -> void:
+	velocity = new_velocity
 func apply_wall_slide() -> void:
 	velocity.y = min(velocity.y, wall_slide_speed)
 	velocity.x = 0
@@ -78,9 +79,7 @@ func do_character_move(character_body: CharacterBody2D):
 	character_body.move_and_slide()
 
 func do_rigid_body_move(rigid_body: RigidBody2D):
-	rigid_body.velocity = velocity
-	rigid_body.move_and_slide()
-	
+	rigid_body.apply_central_impulse(velocity * rigid_body.mass)	
 func set_rotation(rotation: float) -> void:
 	current_rotation = rotation
 
