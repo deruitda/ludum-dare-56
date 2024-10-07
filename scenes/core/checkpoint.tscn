@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5y32eyqqwqo7"]
+
+[ext_resource type="Script" path="res://scenes/core/checkpoint.gd" id="1_dqbu5"]
+[ext_resource type="Texture2D" uid="uid://drgqwovtewp8l" path="res://godot_red.png" id="2_fhd4n"]
+
+[node name="Checkpoint" type="Node2D"]
+position = Vector2(3, 0)
+script = ExtResource("1_dqbu5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2, -6)
+scale = Vector2(0.158065, 0.101227)
+texture = ExtResource("2_fhd4n")
+
+[node name="SpawnLocation" type="Node2D" parent="."]
+position = Vector2(-5, -99)

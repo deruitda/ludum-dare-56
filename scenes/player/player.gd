@@ -8,6 +8,7 @@ class_name Player
 @export var edge_detector: EdgeDetector
 #inputs
 @onready var direction_input: float = 0.0
+@onready var health_component: HealthComponent = $HealthComponent
 
 #actions
 @onready var is_floor_jumping: bool = false
@@ -27,6 +28,8 @@ class_name Player
 @onready var wall_grace_timer = 0.0  # Timer for wall grace period
 @export var wall_grace_period: float = 0.2
 
+@onready var respawn_component: RespawnComponent = $RespawnComponent
+
 func _ready() -> void:
 	PlayerManager.set_player(self)
 
@@ -34,14 +37,15 @@ func _process(delta: float) -> void:
 	if is_dead:
 		PlayerManager.remove_current_player()
 		#queue_free()
+	elif Input.is_action_just_pressed("respawn"):
+		respawn_component.do_respawn(self)
 	else:
-		
 		handle_sprite_orientation()
 		handle_lower_body_sprite_animation()
 
 
 func _physics_process(delta: float) -> void:
-	if is_dead:
+	if is_dead or respawn_component.is_respawn_idling:
 		return
 	
 	direction_input = Input.get_axis("move_left", "move_right")
@@ -198,7 +202,9 @@ func start_death() -> void:
 	#animated_sprite_2d.play("death")
 	
 func finish_death() -> void:
-	queue_free()
+	health_component.reset_health()
+	is_dead = false
+	respawn_component.do_respawn(self)
 
 func _on_damage_applied() -> void:
 	SignalBus.player_hurt.emit()

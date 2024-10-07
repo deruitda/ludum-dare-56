@@ -70,7 +70,7 @@ animations = [{
 
 [node name="TermiteBullet" type="Area2D" node_paths=PackedStringArray("animSprite")]
 collision_layer = 64
-collision_mask = 278
+collision_mask = 310
 script = ExtResource("1_8evh1")
 speed = 200.0
 animSprite = NodePath("AnimatedSprite2D")

@@ -15,3 +15,5 @@ signal equip_item(new_texture)
 signal spawn_enemy(scene: PackedScene, location: Vector2, rotation: float)
 
 signal enemy_died(name: String)
+
+signal set_new_checkpoint(new_checkpoint: Checkpoint)
