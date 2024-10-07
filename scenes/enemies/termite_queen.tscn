@@ -422,6 +422,7 @@ animations = [{
 radius = 70.5762
 
 [node name="TermiteQueen" type="Node2D" node_paths=PackedStringArray("emitters", "egg_muzzles")]
+modulate = Color(0.533333, 0.533333, 0.533333, 1)
 script = ExtResource("1_bhhtr")
 egg_scene = ExtResource("2_f2pny")
 emitters = [NodePath("GunPivot/Emitters/BulletEmitter"), NodePath("GunPivot/Emitters/BulletEmitter2"), NodePath("GunPivot/Emitters/BulletEmitter3"), NodePath("GunPivot/Emitters/BulletEmitter4"), NodePath("GunPivot/Emitters/BulletEmitter5"), NodePath("GunPivot/Emitters/BulletEmitter6"), NodePath("GunPivot/Emitters/BulletEmitter7"), NodePath("GunPivot/Emitters/BulletEmitter8"), NodePath("GunPivot/Emitters/BulletEmitter9"), NodePath("GunPivot/Emitters/BulletEmitter10"), NodePath("GunPivot/Emitters/BulletEmitter11"), NodePath("GunPivot/Emitters/BulletEmitter12")]
@@ -556,6 +557,7 @@ one_shot = true
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("9_7jpxo")
+max_health = 100
 
 [node name="ExplosionDelayForHeadTimer" type="Timer" parent="."]
 one_shot = true
@@ -572,4 +574,5 @@ stream = ExtResource("12_2cucj")
 [connection signal="timeout" from="CoolDownTimer" to="." method="_on_cool_down_timer_timeout"]
 [connection signal="timeout" from="BlastWaveTimer" to="." method="_on_blast_wave_timer_timeout"]
 [connection signal="timeout" from="EggWaveTimer" to="." method="_on_egg_wave_timer_timeout"]
+[connection signal="damage_applied" from="HealthComponent" to="." method="_on_health_component_damage_applied"]
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
