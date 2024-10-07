@@ -20,6 +20,8 @@ class_name ThermiteQueen
 @export var emitters : Array[BulletEmitter]
 @export var egg_muzzles : Array[Muzzle]
 
+@onready var scream: AudioStreamPlayer2D = $Scream
+
 var current_blast_wave : int = 0
 var current_egg_wave : int = 0
 var is_cooling_down : bool = false
@@ -36,6 +38,7 @@ var last_attack : String
 
 signal queen_just_died
 signal queen_explosion_finished
+signal opening_scream_finished
 
 func _physics_process(delta: float) -> void:
 	if GameState.game_is_paused or pause_attack:
@@ -137,7 +140,6 @@ func _on_health_component_died() -> void:
 	#queue_free()
 
 func do_explode() -> void:
-	print("do explode")
 	thorax.play("explode")
 	
 	explosion_delay_for_head_timer.start()
@@ -156,3 +158,10 @@ func _on_thorax_animation_finish():
 func _on_explosion_delay_for_head_timeout():
 	termite_queen_gun.play_explode_anim()
 	
+func do_initial_scream():
+	scream.play()
+	scream.finished.connect(_on_initial_scream_finish)
+
+func _on_initial_scream_finish():
+	opening_scream_finished.emit()
+	scream.finished.disconnect(_on_initial_scream_finish)

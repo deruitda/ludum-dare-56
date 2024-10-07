@@ -106,6 +106,13 @@ position = Vector2(-1, 95)
 
 [node name="CutSceneTimers" type="Node" parent="."]
 
+[node name="TimeBeforeScream" type="Timer" parent="CutSceneTimers"]
+wait_time = 1.5
+one_shot = true
+
+[node name="TimeAfterScreamBeforeStart" type="Timer" parent="CutSceneTimers"]
+one_shot = true
+
 [node name="TimeBeforeExplosion" type="Timer" parent="CutSceneTimers"]
 wait_time = 3.0
 one_shot = true
@@ -114,6 +121,7 @@ one_shot = true
 position = Vector2(12, -61)
 walk_out_on_startup = false
 
+[connection signal="opening_scream_finished" from="TermiteQueen" to="." method="_on_termite_queen_opening_scream_finished"]
 [connection signal="queen_explosion_finished" from="TermiteQueen" to="." method="_on_termite_queen_queen_explosion_finished"]
 [connection signal="queen_just_died" from="TermiteQueen" to="." method="_on_termite_queen_queen_just_died"]
 [connection signal="create_player" from="LevelEntrance" to="." method="_on_level_entrance_create_player"]

@@ -25,3 +25,7 @@ signal termite_queen_is_dead
 signal start_boss_scene
 
 signal go_to_main_menu
+
+signal pause_background_music
+
+signal set_background_music(new_background_stream: AudioStream)
