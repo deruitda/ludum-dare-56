@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://cwaxfr5h3o4rx"]
+[gd_scene load_steps=20 format=4 uid="uid://cwaxfr5h3o4rx"]
 
 [ext_resource type="PackedScene" uid="uid://ck6yxuie4bs3n" path="res://scenes/core/follow_cam.tscn" id="1_jtnxx"]
 [ext_resource type="Script" path="res://scenes/levels/termite_extermination.gd" id="1_n10ue"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://scenes/levels/transition_to_boss_fight.gd" id="9_u7owk"]
 [ext_resource type="PackedScene" uid="uid://3g732ci7ilo4" path="res://scenes/levels/level_entrance.tscn" id="10_l5rsu"]
 [ext_resource type="PackedScene" uid="uid://bqt18sq2qtm8k" path="res://round-light.tscn" id="11_2nrqc"]
+[ext_resource type="PackedScene" uid="uid://1j1hxv2lckcc" path="res://cracked_light.tscn" id="12_sd8qc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c64pm"]
 size = Vector2(196, 56.5)
@@ -378,7 +379,77 @@ tile_map_data = PackedByteArray("AAAAAOL/AAAAAAAAAAAAAOP/AAAAAAAAAAAAAOT/AAAAAAA
 tile_set = ExtResource("3_owjan")
 rendering_quadrant_size = 32
 
-[node name="RoundLight" parent="." instance=ExtResource("11_2nrqc")]
-position = Vector2(158, -449)
+[node name="Lights" type="Node" parent="."]
+
+[node name="RoundLight" parent="Lights" instance=ExtResource("11_2nrqc")]
+position = Vector2(815, -791)
+
+[node name="RoundLight2" parent="Lights" instance=ExtResource("11_2nrqc")]
+position = Vector2(2310, -1416)
+
+[node name="RoundLight3" parent="Lights" instance=ExtResource("11_2nrqc")]
+position = Vector2(1881, -2153)
+
+[node name="RoundLight4" parent="Lights" instance=ExtResource("11_2nrqc")]
+position = Vector2(-402, -2261)
+
+[node name="RoundLight5" parent="Lights" instance=ExtResource("11_2nrqc")]
+position = Vector2(959, -4128)
+
+[node name="RoundLight8" parent="Lights" instance=ExtResource("11_2nrqc")]
+position = Vector2(975, -5779)
+
+[node name="RoundLight9" parent="Lights" instance=ExtResource("11_2nrqc")]
+position = Vector2(-616, -6452)
+
+[node name="RoundLight10" parent="Lights" instance=ExtResource("11_2nrqc")]
+position = Vector2(1991, -6960)
+
+[node name="RoundLight11" parent="Lights" instance=ExtResource("11_2nrqc")]
+position = Vector2(86, -8141)
+
+[node name="RoundLight13" parent="Lights" instance=ExtResource("11_2nrqc")]
+position = Vector2(1931, -9995)
+
+[node name="RoundLight14" parent="Lights" instance=ExtResource("11_2nrqc")]
+position = Vector2(-53, -10506)
+
+[node name="RoundLight15" parent="Lights" instance=ExtResource("11_2nrqc")]
+position = Vector2(925, -12454)
+
+[node name="RoundLight12" parent="Lights" instance=ExtResource("11_2nrqc")]
+position = Vector2(2331, -8817)
+
+[node name="RoundLight6" parent="Lights" instance=ExtResource("11_2nrqc")]
+position = Vector2(2197, -3242)
+
+[node name="RoundLight7" parent="Lights" instance=ExtResource("11_2nrqc")]
+position = Vector2(-206, -3407)
+
+[node name="CrackedLight" parent="Lights" instance=ExtResource("12_sd8qc")]
+position = Vector2(881, -2767)
+
+[node name="CrackedLight3" parent="Lights" instance=ExtResource("12_sd8qc")]
+position = Vector2(960, -5005)
+
+[node name="CrackedLight4" parent="Lights" instance=ExtResource("12_sd8qc")]
+position = Vector2(2433, -6542)
+rotation = -0.421866
+
+[node name="CrackedLight5" parent="Lights" instance=ExtResource("12_sd8qc")]
+position = Vector2(-532, -8898)
+rotation = -2.79818
+
+[node name="CrackedLight6" parent="Lights" instance=ExtResource("12_sd8qc")]
+position = Vector2(1594, -11204)
+rotation = -2.79818
+
+[node name="CrackedLight7" parent="Lights" instance=ExtResource("12_sd8qc")]
+position = Vector2(-70.9999, -11468)
+rotation = -3.09613
+
+[node name="CrackedLight2" parent="Lights" instance=ExtResource("12_sd8qc")]
+position = Vector2(405, -1586)
+rotation = 0.515566
 
 [connection signal="body_entered" from="TransitionToBossFight" to="TransitionToBossFight" method="_on_body_entered"]
