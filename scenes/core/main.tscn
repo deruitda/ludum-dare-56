@@ -16,7 +16,7 @@ script = ExtResource("2_ho8lm")
 
 [node name="World" parent="." instance=ExtResource("2_6cr2y")]
 current_level = ExtResource("5_60tcq")
-start_with_boss_fight = true
+skip_cutscene = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_g2rgv")

@@ -1,5 +1,5 @@
 extends Camera2D
-
+class_name FollowCam
 @export var follow_target: Node2D
 @export_range(0, 1) var weight: float
 var min_y_pos: float = -450
