@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://cofh4isrtksv4"]
+[gd_scene load_steps=69 format=3 uid="uid://cofh4isrtksv4"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_y4k5w"]
 [ext_resource type="Shape2D" uid="uid://cc3bsg65yxgm0" path="res://scenes/player/player_shape.tres" id="2_n3d0r"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://c8nfyb168ghgg" path="res://scenes/core/player_audio.tscn" id="15_e48xh"]
 [ext_resource type="Script" path="res://scenes/entity_composition/dash_component.gd" id="16_tawhn"]
 [ext_resource type="Script" path="res://scenes/player/respawn_component.gd" id="17_qo5ue"]
+[ext_resource type="PackedScene" uid="uid://234u3mqv0xmc" path="res://scenes/player/grenade/grenade_launcher.tscn" id="18_khoxa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jr7co"]
 size = Vector2(23, 64)
@@ -487,6 +488,8 @@ respawn_invulnerability_timer = NodePath("RespawnInvulnerabilityTimer")
 
 [node name="RespawnInvulnerabilityTimer" type="Timer" parent="RespawnComponent"]
 wait_time = 3.0
+
+[node name="GrenadeLauncher" parent="." instance=ExtResource("18_khoxa")]
 
 [connection signal="damage_applied" from="HealthComponent" to="." method="_on_damage_applied"]
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]

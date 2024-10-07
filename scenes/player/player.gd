@@ -29,6 +29,7 @@ class_name Player
 @export var wall_grace_period: float = 0.2
 
 @onready var respawn_component: RespawnComponent = $RespawnComponent
+@onready var grenade_launcher: Node2D = $GrenadeLauncher
 
 func _ready() -> void:
 	PlayerManager.set_player(self)
@@ -62,6 +63,10 @@ func _physics_process(delta: float) -> void:
 			dash_is_cooling_down = true
 		
 	gun_pivot.rotate_toward_position(get_global_mouse_position())
+	
+	if Input.is_action_just_pressed("throw_grenade"):
+		grenade_launcher.launch_grenade(get_global_mouse_position())
+	
 	if Input.is_action_pressed("shoot"):
 		gun.shoot_bullet()
 	

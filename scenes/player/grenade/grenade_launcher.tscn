@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://234u3mqv0xmc"]
+
+[ext_resource type="Script" path="res://scenes/player/grenade/grenade_launcher.gd" id="1_0hig3"]
+[ext_resource type="PackedScene" uid="uid://d2ky1qst3g810" path="res://scenes/player/grenade/grenade.tscn" id="2_gm8bk"]
+
+[node name="GrenadeLauncher" type="Node2D"]
+script = ExtResource("1_0hig3")
+grenade_scene = ExtResource("2_gm8bk")
