@@ -27,6 +27,9 @@ func set_direction(new_direction: Vector2):
 	direction = new_direction.normalized()
 
 func _physics_process(delta: float) -> void:
+	
+	if GameState.game_is_paused:
+		return
 	if has_hit_something and (animSprite and not animSprite.animation == "explode"):
 		animSprite.play("explode")
 

@@ -20,17 +20,26 @@ func _ready() -> void:
 	SignalBus.enemy_died.connect(_on_enemy_died)
 
 func _on_spawn_timer_timeout() -> void:
+	
+	if GameState.game_is_paused:
+		return
 	# play the 'spawn' animation, when that animation is complete it will trigger 
 	# the _on_anim_finished callback to spawn the enemy scene
 	if is_player_in_range() and number_of_child_enemies_alive < total_amount_of_enemies_allowed_at_a_time:
 		animSprite.play("spawn")
 
 func _on_anim_finished() -> void:
+	
+	if GameState.game_is_paused:
+		return
 	if animSprite.animation == "spawn":
 		_spawn_new_enemy()
 		animSprite.play("idle")
 
 func _spawn_new_enemy():
+	
+	if GameState.game_is_paused:
+		return
 	var setting_position = global_position
 	if spawn_location:
 		setting_position = spawn_location.global_position

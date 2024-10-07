@@ -13,6 +13,9 @@ func _ready() -> void:
 	set_current_direction()
 	
 func _process(delta: float) -> void:
+	
+	if GameState.game_is_paused:
+		return
 	if enemy_walk_direction.current_direction == Vector2.ZERO:
 		set_current_direction()
 	
@@ -23,6 +26,9 @@ func _process(delta: float) -> void:
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
+	
+	if GameState.game_is_paused:
+		return
 	if is_dead:
 		velocity_component.apply_idle(delta)
 		return

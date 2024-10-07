@@ -27,6 +27,8 @@ func _ready() -> void:
 	
 func _process(delta: float) -> void:
 	
+	if GameState.game_is_paused:
+		return
 	if enemy_walk_direction.current_direction == Vector2.RIGHT:
 		animated_sprite_2d.flip_h = false
 		rage_ray.rotation = deg_to_rad(-90)
@@ -43,7 +45,8 @@ func _process(delta: float) -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	
+	if GameState.game_is_paused:
+		return
 	if is_dying:
 		velocity_component.set_rotation(0.0)
 		velocity_component.apply_gravity(delta)

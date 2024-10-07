@@ -1,5 +1,5 @@
 extends Camera2D
-
+class_name FollowCam
 @export var follow_target: Node2D
 @export_range(0, 1) var weight: float
 var min_y_pos: float = -450
@@ -23,3 +23,6 @@ func _process(delta: float) -> void:
 	
 	if global_position.y > min_y_pos:
 		global_position.y = min_y_pos
+
+func switch_target(new_target: Node2D):
+	follow_target = new_target
