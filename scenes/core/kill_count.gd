@@ -7,5 +7,5 @@ func _ready() -> void:
 	text = str(enemy_kill_count)
 
 func set_enemy_kill_count(enemy_kill_count: int) -> void:
-	text = str(enemy_kill_count)
+	text = "Kill Count: " + str(enemy_kill_count)
 	
