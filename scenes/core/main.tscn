@@ -18,6 +18,7 @@ script = ExtResource("2_ho8lm")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_g2rgv")
-autoplay = true
 bus = &"Music"
 script = ExtResource("6_6s1n5")
+
+[connection signal="finished" from="AudioStreamPlayer" to="AudioStreamPlayer" method="_on_finished"]

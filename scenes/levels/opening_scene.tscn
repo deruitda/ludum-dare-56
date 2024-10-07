@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://d1yddsi8d05by"]
+[gd_scene load_steps=5 format=3 uid="uid://d1yddsi8d05by"]
 
 [ext_resource type="Script" path="res://scenes/levels/opening_scene.gd" id="1_al26b"]
 [ext_resource type="PackedScene" uid="uid://cnmdipwqnabip" path="res://scenes/player/sprites/cut_scene_rex.tscn" id="2_po3f0"]
 [ext_resource type="Texture2D" uid="uid://uoa2w4kjgtl8" path="res://assets/sprites/room.png" id="3_jn6tt"]
+[ext_resource type="AudioStream" uid="uid://c06ejq6bjogly" path="res://assets/Audio/SFX/Playergasm/Herogasm9.wav" id="4_5qsg4"]
 
 [node name="OpeningScene" type="Node2D"]
 script = ExtResource("1_al26b")
@@ -22,6 +23,20 @@ color = Color(0, 0, 0, 1)
 [node name="Rex" parent="." instance=ExtResource("2_po3f0")]
 position = Vector2(-997, 208)
 scale = Vector2(7.5, 7.5)
+
+[node name="Help Text" type="RichTextLabel" parent="."]
+visible = false
+offset_left = -396.0
+offset_top = -97.0
+offset_right = -164.0
+offset_bottom = 73.0
+theme_override_colors/default_color = Color(0.200413, 0.164044, 0.149692, 1)
+theme_override_colors/font_selected_color = Color(0.643926, 0, 0.296622, 1)
+theme_override_font_sizes/normal_font_size = 24
+text = "There are termites everywhere! Please, Rex, you're my only hope!"
+
+[node name="RetortAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_5qsg4")
 
 [connection signal="done_shrinking" from="Rex" to="." method="_on_rex_done_shrinking"]
 [connection signal="headphones_are_on" from="Rex" to="." method="_on_rex_headphones_are_on"]

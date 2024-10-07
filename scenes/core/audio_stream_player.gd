@@ -21,3 +21,7 @@ func _on_set_background_music(new_stream: AudioStream):
 	stream = new_stream
 	play()
 	pass
+
+
+func _on_finished() -> void:
+	stream.play()
