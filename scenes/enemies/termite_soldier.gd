@@ -90,7 +90,7 @@ func handle_apply_movement(delta: float) -> void:
 	
 func _on_health_component_died() -> void:
 	start_death()
-	SignalBus.player_kill.emit()
+	SignalBus.enemy_died.emit()
 
 	pass # Replace with function body.
 func start_death():

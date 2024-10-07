@@ -2,8 +2,6 @@ extends Node
 
 signal player_health_changed(new_health_value: int)
 
-signal player_kill()
-
 signal player_died()
 
 signal start_game()
