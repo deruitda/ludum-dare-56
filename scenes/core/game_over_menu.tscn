@@ -19,16 +19,18 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 1108.0
-offset_bottom = 607.0
+offset_right = 1560.0
+offset_bottom = 856.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
-offset_right = 1143.0
-offset_bottom = 655.0
+offset_left = 225.0
+offset_top = 126.0
+offset_right = 1368.0
+offset_bottom = 781.0
 theme_override_constants/margin_left = 32
 theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
@@ -40,7 +42,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-text = "You died"
+text = "You sucessfully cleared the house"
 label_settings = SubResource("LabelSettings_6o87w")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -67,6 +69,9 @@ focus_next = NodePath("../RetryButton")
 focus_previous = NodePath("../RetryButton")
 text = "Exit
 "
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(800, 450)
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonsVBox/RetryButton" to="." method="_on_retry_button_pressed"]

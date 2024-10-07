@@ -27,5 +27,6 @@ func _on_time_before_explosion_timeout() -> void:
 
 
 func _on_termite_queen_queen_explosion_finished() -> void:
-	print("done")
+	print("must emit now")
+	SignalBus.termite_queen_is_dead.emit()
 	pass # Replace with function body.

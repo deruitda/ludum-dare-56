@@ -37,6 +37,8 @@ signal queen_just_died
 signal queen_explosion_finished
 
 func _physics_process(delta: float) -> void:
+	if GameState.game_is_paused:
+		return
 	rotate_toward_player(delta)
 	
 	if !is_attacking and !is_cooling_down:
@@ -128,6 +130,7 @@ func _on_health_component_died() -> void:
 	#queue_free()
 
 func do_explode() -> void:
+	print("do explode")
 	thorax.play("explode")
 	
 	explosion_delay_for_head_timer.start()
@@ -139,6 +142,7 @@ func do_explode() -> void:
 	explosion_total_time_timer
 	
 func _on_thorax_animation_finish():
+	print('thorax ani')
 	queen_explosion_finished.emit()
 	pass
 

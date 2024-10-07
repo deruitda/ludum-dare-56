@@ -19,3 +19,7 @@ signal set_new_checkpoint(new_checkpoint: Checkpoint)
 signal opening_cutscene_finished()
 
 signal set_game_is_paused_state(new_game_is_paused_value: bool)
+
+signal termite_queen_is_dead
+
+signal start_boss_scene
