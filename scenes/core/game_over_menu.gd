@@ -10,7 +10,7 @@ extends Control
 func _ready() -> void:
 	death_label.text = "Number of Deaths: " + str(GameState.player_deaths)
 	kills_label.text = "Number of Kills: " + str(GameState.enemies_killed)
-	#total_time_label.text = "Total Times: " + str(GameState)
+	total_time_label.text = "Total Times: " + str(GameState.time_elapsed)
 	focus_button()
 
 func _on_retry_button_pressed() -> void:

@@ -18,6 +18,7 @@ func _process(delta: float) -> void:
 	if is_started:
 		time_elapsed += delta
 		self.text = str(time_elapsed).pad_decimals(2)
+		SignalBus.game_time_change.emit(time_elapsed)
 
 func reset() -> void:
 	# possibly save time_elapsed somewhere else before overriding it

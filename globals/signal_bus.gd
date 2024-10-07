@@ -35,3 +35,5 @@ signal set_background_music(new_background_stream: AudioStream)
 signal game_state_changed
 
 signal boss_hurt
+
+signal game_time_change(time_elapsed: float)
