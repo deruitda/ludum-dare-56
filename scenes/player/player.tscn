@@ -394,7 +394,7 @@ func _process(delta: float) -> void:
 polygon = PackedVector2Array(7.7381, 19.0476, -14.881, 19.6429, -14.881, 31.5476, 8.33333, 32.1429)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("gun_pivot", "gun", "dash_component", "edge_detector", "lower_body_sprite", "velocity_component")]
-modulate = Color(0.533333, 0.533333, 0.533333, 1)
+modulate = Color(0.873298, 0.873298, 0.873298, 1)
 scale = Vector2(1.68, 1.68)
 collision_mask = 774
 floor_block_on_wall = false
