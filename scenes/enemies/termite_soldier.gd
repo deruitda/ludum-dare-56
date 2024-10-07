@@ -11,8 +11,8 @@ class_name TermiteSoldier
 @export var wall_is_right: bool = true
 @export var start_walking_up: bool = true
 
-@onready var _rage_speed: float = 500.0
-@onready var _walk_speed: float = 200.0
+@onready var _rage_speed: float = 300.0
+@onready var _walk_speed: float = 100.0
 
 @onready var is_dying: bool = false
 
