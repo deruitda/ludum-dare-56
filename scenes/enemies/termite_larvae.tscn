@@ -159,7 +159,7 @@ shape = SubResource("RectangleShape2D_bqby1")
 
 [node name="HurtBox" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_dfm05")]
 collision_layer = 128
-collision_mask = 32
+collision_mask = 1056
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]

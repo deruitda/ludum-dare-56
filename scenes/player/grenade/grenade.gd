@@ -25,15 +25,9 @@ func start_explosion_animation() -> void:
 	queue_free()
 
 func explode() -> void:
-	print("explode")
 	bullet_emitter.create_bullets()
 	start_explosion_animation()
 
-func _on_body_entered(body: Node) -> void:
-	print ('on body entered')
-	pass # Replace with function body.
-
-
-func _on_body_shape_entered(body_rid: RID, body: Node, body_shape_index: int, local_shape_index: int) -> void:
-	print ('on body shape entered')
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	explode()
 	pass # Replace with function body.

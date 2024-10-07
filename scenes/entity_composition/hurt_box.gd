@@ -33,3 +33,7 @@ func _on_area_entered(area: Area2D) -> void:
 	else:
 		var enemy = area as HurtBox
 		handle_enemy_collision(enemy)
+
+
+func _on_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
+	pass # Replace with function body.
