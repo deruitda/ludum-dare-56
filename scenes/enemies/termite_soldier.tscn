@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://peddybhwcvq6"]
+[gd_scene load_steps=37 format=3 uid="uid://peddybhwcvq6"]
 
 [ext_resource type="Texture2D" uid="uid://ot2ucdq3fya3" path="res://assets/sprites/termite-soldier/termite-soldier-patrol.png" id="1_il6v4"]
 [ext_resource type="Script" path="res://scenes/enemies/termite_soldier.gd" id="1_u5irw"]
@@ -180,6 +180,10 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_8tbd5"]
+cull_mode = 2
+polygon = PackedVector2Array(1, -11, 19, -16, 22, -10, 30, -4, 30, 10, 24, 12, 15, 10, 11, 11, 6, 8, 2, 10, 3, 16, -34, 16, -33, 0, -25, -9, -11, -9)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v2h1t"]
 size = Vector2(61, 30)
 
@@ -198,6 +202,10 @@ shape = SubResource("RectangleShape2D_rkyvp")
 sprite_frames = SubResource("SpriteFrames_37qoh")
 animation = &"dying"
 autoplay = "walking"
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="AnimatedSprite2D"]
+show_behind_parent = true
+occluder = SubResource("OccluderPolygon2D_8tbd5")
 
 [node name="HurtBox" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
 collision_layer = 128

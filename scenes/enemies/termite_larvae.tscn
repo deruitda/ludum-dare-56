@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://nuahsfm77qjp"]
+[gd_scene load_steps=31 format=3 uid="uid://nuahsfm77qjp"]
 
 [ext_resource type="PackedScene" uid="uid://dqgxt6ms0uyu8" path="res://scenes/entity_composition/health_component.tscn" id="1_38jc2"]
 [ext_resource type="Script" path="res://scenes/enemies/termite_larvae.gd" id="1_l1k41"]
@@ -142,7 +142,12 @@ animations = [{
 "speed": 20.0
 }]
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_en3yu"]
+cull_mode = 2
+polygon = PackedVector2Array(2.08696, -9.89687, 13.2174, -9.89687, 20.8696, -4.61854, 22.2609, 4.61854, 16, 9.89688, 6.26087, 11.2165, 2.78261, 11.2165, -3.47826, 10.5567, -9.04348, 11.2165, -12.5217, 10.5567, -16.6957, 11.2165, -22.9565, 11.2165, -31.3043, 4.61854, -32, -1.31958, -25.0435, -8.57729, -16.6957, -8.57729, -12.5217, -8.57729, -7.65217, -9.23708)
+
 [node name="TermiteLarvae" type="CharacterBody2D" node_paths=PackedStringArray("velocity_component", "toggle_direction_timer")]
+modulate = Color(0.533333, 0.533333, 0.533333, 1)
 collision_layer = 8
 collision_mask = 262
 platform_floor_layers = 4294967042
@@ -175,6 +180,10 @@ scale = Vector2(1.4375, 1.51563)
 sprite_frames = SubResource("SpriteFrames_4wioa")
 animation = &"death"
 autoplay = "crawl"
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="AnimatedSprite2D"]
+show_behind_parent = true
+occluder = SubResource("OccluderPolygon2D_en3yu")
 
 [node name="Despawner" parent="." instance=ExtResource("7_dq5ch")]
 
