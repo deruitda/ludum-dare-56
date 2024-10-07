@@ -1,15 +1,79 @@
-[gd_scene load_steps=3 format=3 uid="uid://dodod3y6l7dws"]
+[gd_scene load_steps=12 format=3 uid="uid://dodod3y6l7dws"]
 
 [ext_resource type="Script" path="res://scenes/player/gun/bullet.gd" id="1_m1lsr"]
+[ext_resource type="Texture2D" uid="uid://dfxm52g6wslue" path="res://assets/sprites/bullet/bullet-explode-Sheet.png" id="2_4i3t7"]
+[ext_resource type="Texture2D" uid="uid://d2460tkkkq3o2" path="res://assets/sprites/bullet/bullet.png" id="3_lcsmr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_stk2n"]
 
-[node name="GrenadeBullet" type="Area2D"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_jnkpb"]
+atlas = ExtResource("2_4i3t7")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6sew7"]
+atlas = ExtResource("2_4i3t7")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lm6jg"]
+atlas = ExtResource("2_4i3t7")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hgd34"]
+atlas = ExtResource("2_4i3t7")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wfoth"]
+atlas = ExtResource("2_4i3t7")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jfuky"]
+atlas = ExtResource("3_lcsmr")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7b50y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jnkpb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6sew7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lm6jg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hgd34")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wfoth")
+}],
+"loop": false,
+"name": &"explode",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jfuky")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="GrenadeBullet" type="Area2D" node_paths=PackedStringArray("animSprite")]
 collision_layer = 32
 collision_mask = 1222
 script = ExtResource("1_m1lsr")
 speed = 1000.0
+animSprite = NodePath("AnimatedSprite2D")
 max_distance = 350.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_stk2n")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1, 3.08)
+sprite_frames = SubResource("SpriteFrames_7b50y")
+animation = &"explode"
+autoplay = "idle"
