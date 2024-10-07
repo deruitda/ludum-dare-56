@@ -202,7 +202,6 @@ func finish_death() -> void:
 
 func _on_damage_applied() -> void:
 	SignalBus.player_hurt.emit()
-	print("damage")
 	pass # Replace with function body.
 
 func get_is_on_floor() -> bool:
