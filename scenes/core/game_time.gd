@@ -6,9 +6,13 @@ var is_started := false
 
 func _ready() -> void:
 	SignalBus.start_game.connect(on_start_game)
+	SignalBus.termite_queen_is_dead.connect(on_game_over)
 
 func on_start_game() -> void:
 	is_started = true
+	
+func on_game_over() -> void:
+	is_started = false
 
 func _process(delta: float) -> void:
 	if is_started:

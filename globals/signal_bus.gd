@@ -6,6 +6,8 @@ signal player_died()
 
 signal start_game()
 
+signal game_over()
+
 signal create_bullet(bullet: Bullet)
 
 signal equip_item(new_texture)

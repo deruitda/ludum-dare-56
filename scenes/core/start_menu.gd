@@ -2,7 +2,9 @@ extends Control
 
 
 @onready var buttons_v_box = $ButtonsVbox
-@onready var texture_rect: TextureRect = $TextureRect
+@onready var contols_image: TextureRect = $ContolsImage
+@onready var how_to_text: Label = $HowToText
+
 
 func _ready() -> void:
 	SignalBus.go_to_main_menu.connect(show)
@@ -31,4 +33,10 @@ func _process(delta: float) -> void:
 
 
 func _on_show_controls_pressed() -> void:
-	texture_rect.visible = !texture_rect.visible
+	contols_image.visible = !contols_image.visible
+	how_to_text.visible = false
+
+
+func _on_show_how_to_pressed() -> void:
+	how_to_text.visible = !how_to_text.visible
+	contols_image.visible = false

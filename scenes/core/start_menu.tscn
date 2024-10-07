@@ -69,7 +69,11 @@ text = "Start
 
 [node name="ShowControls" type="Button" parent="MarginContainer/VBoxContainer/ButtonsVBox"]
 layout_mode = 2
-text = "Show Controls"
+text = "Controls"
+
+[node name="ShowHowTo" type="Button" parent="MarginContainer/VBoxContainer/ButtonsVBox"]
+layout_mode = 2
+text = "How to play"
 
 [node name="QuitButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonsVBox"]
 layout_mode = 2
@@ -80,7 +84,7 @@ focus_previous = NodePath("../StartButton")
 text = "Quit
 "
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="ContolsImage" type="TextureRect" parent="."]
 visible = false
 layout_mode = 0
 offset_left = 356.0
@@ -89,7 +93,20 @@ offset_right = 1256.0
 offset_bottom = 702.0
 texture = ExtResource("3_cm82m")
 
+[node name="HowToText" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 424.0
+offset_top = 504.0
+offset_right = 848.0
+offset_bottom = 735.0
+scale = Vector2(1.87802, 1.56437)
+text = "You play as Rex-Terminator, and you goal is to run, jump, and dash your way up the wall of the house, find the termite queen, and eliminate her."
+horizontal_alignment = 1
+autowrap_mode = 2
+
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonsVBox/StartButton" to="." method="_on_start_game_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonsVBox/ShowControls" to="." method="_on_show_controls_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonsVBox/ShowHowTo" to="." method="_on_show_how_to_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonsVBox/QuitButton" to="." method="_on_quit_button_pressed"]
