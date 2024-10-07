@@ -9,5 +9,5 @@ func _ready() -> void:
 
 func on_player_kill() -> void:
 	kill_count += 1
-	self.text = str(kill_count)
+	text = str(kill_count)
 	
