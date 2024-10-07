@@ -6,8 +6,8 @@ class_name CutSceneRex
 @onready var walking_direction: Vector2
 @onready var is_shrinking: bool = false
 
-@onready var target_scale: Vector2 = Vector2(1.65, 1.65)
-@onready var shrink_speed = 1.0
+@onready var target_scale: Vector2 = Vector2(0.35, 0.35)
+@onready var shrink_speed = 2.0
 
 @onready var original_scale: Vector2
 
@@ -37,10 +37,10 @@ func _process(delta: float) -> void:
 		scale += scale_step
 		
 		# Adjust position so that it shrinks towards the bottom
-		position.y -= scale_step.y * collision_shape.shape.extents.y
+		#position.y -= scale_step.y * collision_shape.shape.extents.y
 		
 		# Stop shrinking when target size is reached
-		if scale - target_scale < Vector2(0.25, 0.25):
+		if scale - target_scale < Vector2(0.15, 0.15):
 			is_shrinking = false
 			done_shrinking.emit()
 			

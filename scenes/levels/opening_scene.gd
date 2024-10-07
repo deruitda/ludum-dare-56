@@ -2,8 +2,9 @@ extends Node2D
 @onready var rex: CutSceneRex = $Rex
 @onready var wait_timer: Timer
 
-
+var INITIAL_WALK_IN_TIME = 2.2
 var INITIAL_IDLE_TIME = 2.0
+var AFTER_IDLE_WALK_IN_TIME =  1.96
 var IDLE_BEFORE_PUTTING_IN_HEADPHONES = 1.0
 
 # Called when the node enters the scene tree for the first time.
@@ -11,7 +12,7 @@ func _ready() -> void:
 	rex.start_walk(Vector2.RIGHT)
 	wait_timer = Timer.new()
 	add_child(wait_timer)
-	wait_timer.wait_time = 1.0
+	wait_timer.wait_time = INITIAL_WALK_IN_TIME
 	wait_timer.autostart = false
 	wait_timer.one_shot = true
 	wait_timer.start()
@@ -36,7 +37,7 @@ func _on_wait_after_entering_house_timer_timeout() -> void:
 	rex.start_walk(Vector2.RIGHT)
 	wait_timer.timeout.disconnect(_on_wait_after_entering_house_timer_timeout)
 	
-	wait_timer.wait_time = 3.16
+	wait_timer.wait_time = AFTER_IDLE_WALK_IN_TIME
 	wait_timer.start()
 	wait_timer.timeout.connect(_on_end_walk_to_hole_timer_timeout)
 	
