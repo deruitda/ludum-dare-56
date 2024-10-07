@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://56t0wxwth7ya"]
+[gd_scene load_steps=8 format=3 uid="uid://56t0wxwth7ya"]
 
 [ext_resource type="Theme" uid="uid://cxwyw4x8t5r2v" path="res://assets/themes/default_theme.tres" id="1_6lw3b"]
 [ext_resource type="Script" path="res://scenes/core/game_time.gd" id="1_kc8fq"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scenes/core/kill_count.gd" id="3_cgw1v"]
 [ext_resource type="Texture2D" uid="uid://co01gstpumt0c" path="res://icon.svg" id="4_0tsl8"]
 [ext_resource type="Script" path="res://scenes/core/item_slot.gd" id="5_rcdii"]
+[ext_resource type="Script" path="res://scenes/core/death_count.gd" id="5_vrxma"]
 
 [node name="Ui" type="CanvasLayer"]
 metadata/_edit_horizontal_guides_ = [98.0]
@@ -62,6 +63,23 @@ theme = ExtResource("1_6lw3b")
 text = "0"
 horizontal_alignment = 1
 script = ExtResource("3_cgw1v")
+
+[node name="DeathCountBackground" type="Panel" parent="."]
+offset_left = 1020.0
+offset_top = 10.0
+offset_right = 1020.0
+offset_bottom = 10.0
+
+[node name="DeathCount" type="Label" parent="DeathCountBackground"]
+layout_mode = 0
+offset_left = 472.0
+offset_top = 40.0
+offset_right = 512.0
+offset_bottom = 63.0
+theme = ExtResource("1_6lw3b")
+text = "0"
+horizontal_alignment = 1
+script = ExtResource("5_vrxma")
 
 [node name="ItemSlotBackground" type="Panel" parent="."]
 offset_left = 22.0

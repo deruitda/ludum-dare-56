@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://234u3mqv0xmc"]
+
+[ext_resource type="Script" path="res://scenes/player/grenade/grenade_launcher.gd" id="1_0hig3"]
+[ext_resource type="PackedScene" uid="uid://d2ky1qst3g810" path="res://scenes/player/grenade/grenade.tscn" id="2_gm8bk"]
+[ext_resource type="Script" path="res://scenes/entity_composition/path_finder.gd" id="3_qb3sg"]
+
+[node name="GrenadeLauncher" type="Node2D" node_paths=PackedStringArray("cooldown_timer")]
+position = Vector2(1, 0)
+script = ExtResource("1_0hig3")
+grenade_scene = ExtResource("2_gm8bk")
+max_additional_velocity = 2000.0
+cooldown_timer = NodePath("CooldownTimer")
+
+[node name="PathFinder" type="Node2D" parent="."]
+script = ExtResource("3_qb3sg")
+
+[node name="CooldownTimer" type="Timer" parent="."]
+wait_time = 5.0

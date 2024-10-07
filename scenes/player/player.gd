@@ -29,6 +29,8 @@ class_name Player
 @export var wall_grace_period: float = 0.2
 
 @onready var respawn_component: RespawnComponent = $RespawnComponent
+@onready var grenade_launcher: GrenadeLauncher = $GrenadeLauncher
+@onready var grenade_input_pressed_on_cooldown: bool = false
 
 func _ready() -> void:
 	PlayerManager.set_player(self)
@@ -62,6 +64,19 @@ func _physics_process(delta: float) -> void:
 			dash_is_cooling_down = true
 		
 	gun_pivot.rotate_toward_position(get_global_mouse_position())
+	
+	
+	if Input.is_action_pressed("throw_grenade"):
+		if grenade_launcher.is_cooling_down:
+			grenade_input_pressed_on_cooldown = true
+		else:
+			grenade_launcher.charge_grenade(delta)
+	elif Input.is_action_just_released("throw_grenade"):
+		if grenade_input_pressed_on_cooldown:
+			grenade_input_pressed_on_cooldown = false
+		else:
+			grenade_launcher.launch_grenade_toward(get_global_mouse_position())
+	
 	if Input.is_action_pressed("shoot"):
 		gun.shoot_bullet()
 	
@@ -203,11 +218,14 @@ func start_death() -> void:
 	
 func finish_death() -> void:
 	health_component.reset_health()
+	SignalBus.player_health_changed.emit(health_component.current_health)
 	is_dead = false
 	respawn_component.do_respawn(self)
 
 func _on_damage_applied() -> void:
-	SignalBus.player_hurt.emit()
+	if health_component.is_dead() == false:	
+		$PlayerHurt.play_player_hurt_audio()
+	SignalBus.player_health_changed.emit(health_component.current_health)
 	pass # Replace with function body.
 
 func get_is_on_floor() -> bool:

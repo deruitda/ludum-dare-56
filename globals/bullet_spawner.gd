@@ -11,3 +11,6 @@ func _process(delta: float) -> void:
 	
 func create_bullet(bullet: Bullet) -> void:
 	get_tree().root.add_child(bullet)
+
+func create_grenade(grenade: Grenade) -> void:
+	get_tree().root.add_child(grenade)

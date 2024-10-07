@@ -4,9 +4,9 @@ var health = 3
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	SignalBus.player_hurt.connect(on_player_hurt)
+	SignalBus.player_health_changed.connect(_set_current_health)
 	self.text = str(health)
 
-func on_player_hurt() -> void:
-	health -= 1
+func _set_current_health(new_health: int) -> void:
+	health = new_health
 	self.text = str(health)

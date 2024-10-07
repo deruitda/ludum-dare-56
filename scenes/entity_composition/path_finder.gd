@@ -10,6 +10,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
+func get_direction_to_position(incoming_position: Vector2) -> Vector2:
+	var direction: Vector2 = incoming_position - global_position
+	return direction.normalized()
 # Function to get the direction from the current PathFinder node to the target node.
 func get_direction_to_node(node: Node2D) -> Vector2:
 	# Calculate the difference in positions

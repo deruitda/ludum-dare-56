@@ -5,6 +5,7 @@ class_name TermiteLarvae
 @export var toggle_direction_timer: Timer
 @onready var enemy_walk_direction: Node = $EnemyWalkDirection
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var spawn_point: SpawnPoint
 
 var is_dead : bool = false
 
@@ -43,7 +44,7 @@ func set_current_direction() -> void:
 	
 func _on_died() -> void:
 	start_death()
-	SignalBus.player_kill.emit()
+	SignalBus.enemy_died.emit(self)
 
 	
 func start_death() -> void:

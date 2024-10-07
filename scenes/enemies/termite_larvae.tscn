@@ -12,10 +12,10 @@
 [ext_resource type="Script" path="res://scenes/entity_composition/edge_detector.gd" id="10_wsf42"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bqby1"]
-size = Vector2(54, 21)
+size = Vector2(90, 30)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rdvc8"]
-size = Vector2(54, 21)
+size = Vector2(90, 30)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vi5to"]
 atlas = ExtResource("6_0w3vn")
@@ -152,18 +152,16 @@ velocity_component = NodePath("VelocityComponent")
 toggle_direction_timer = NodePath("EnemyWalkDirection/DefaultToggleDirectionTimer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-5, 0.5)
 shape = SubResource("RectangleShape2D_bqby1")
 
 [node name="HealthComponent" parent="." instance=ExtResource("1_38jc2")]
 
 [node name="HurtBox" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_dfm05")]
 collision_layer = 128
-collision_mask = 32
+collision_mask = 1056
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2(-5, 0.5)
 shape = SubResource("RectangleShape2D_rdvc8")
 
 [node name="VelocityComponent" type="Node" parent="."]
@@ -172,6 +170,8 @@ max_speed = 200.0
 wall_slide_speed = 0.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(9.53674e-07, -3.8147e-06)
+scale = Vector2(1.4375, 1.51563)
 sprite_frames = SubResource("SpriteFrames_4wioa")
 animation = &"death"
 autoplay = "crawl"
@@ -192,12 +192,12 @@ left_ray_cast = NodePath("LeftRayCast")
 right_ray_cast = NodePath("RightRayCast")
 
 [node name="LeftRayCast" type="RayCast2D" parent="EdgeDetector"]
-position = Vector2(-32, 10)
+position = Vector2(-44, 16)
 collision_mask = 262
 collide_with_areas = true
 
 [node name="RightRayCast" type="RayCast2D" parent="EdgeDetector"]
-position = Vector2(21, 10)
+position = Vector2(31, 16)
 collision_mask = 262
 collide_with_areas = true
 

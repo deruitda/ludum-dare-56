@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://cofh4isrtksv4"]
+[gd_scene load_steps=70 format=3 uid="uid://cofh4isrtksv4"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_y4k5w"]
 [ext_resource type="Shape2D" uid="uid://cc3bsg65yxgm0" path="res://scenes/player/player_shape.tres" id="2_n3d0r"]
@@ -17,6 +17,8 @@
 [ext_resource type="PackedScene" uid="uid://c8nfyb168ghgg" path="res://scenes/core/player_audio.tscn" id="15_e48xh"]
 [ext_resource type="Script" path="res://scenes/entity_composition/dash_component.gd" id="16_tawhn"]
 [ext_resource type="Script" path="res://scenes/player/respawn_component.gd" id="17_qo5ue"]
+[ext_resource type="PackedScene" uid="uid://234u3mqv0xmc" path="res://scenes/player/grenade/grenade_launcher.tscn" id="18_khoxa"]
+[ext_resource type="Script" path="res://scenes/player/player_hurt.gd" id="19_2gw1v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jr7co"]
 size = Vector2(23, 64)
@@ -416,7 +418,6 @@ respawn_component = NodePath("../RespawnComponent")
 [node name="VelocityComponent" parent="." instance=ExtResource("4_nqq8h")]
 gravity = 3000.0
 max_speed = 800.0
-acceleration = 30000.0
 in_air_resistance = 8000.0
 wall_jump_velocity = 800.0
 wall_slide_speed = 250.0
@@ -488,6 +489,21 @@ respawn_invulnerability_timer = NodePath("RespawnInvulnerabilityTimer")
 
 [node name="RespawnInvulnerabilityTimer" type="Timer" parent="RespawnComponent"]
 wait_time = 3.0
+
+[node name="GrenadeLauncher" parent="." node_paths=PackedStringArray("progress_bar") instance=ExtResource("18_khoxa")]
+position = Vector2(1.19048, -0.595238)
+progress_bar = NodePath("../ProgressBar")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -13.0952
+offset_top = -41.0714
+offset_right = 26.9048
+offset_bottom = -1.07143
+scale = Vector2(0.50656, 0.0675333)
+show_percentage = false
+
+[node name="PlayerHurt" type="AudioStreamPlayer2D" parent="."]
+script = ExtResource("19_2gw1v")
 
 [connection signal="damage_applied" from="HealthComponent" to="." method="_on_damage_applied"]
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]

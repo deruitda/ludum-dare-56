@@ -1,8 +1,6 @@
 extends Node
 
-signal player_hurt()
-
-signal player_kill()
+signal player_health_changed(new_health_value: int)
 
 signal player_died()
 
@@ -14,6 +12,8 @@ signal equip_item(new_texture)
 
 signal spawn_enemy(scene: PackedScene, location: Vector2, rotation: float)
 
-signal enemy_died(name: String)
+signal enemy_died(enemy: Node)
 
 signal set_new_checkpoint(new_checkpoint: Checkpoint)
+
+signal opening_cutscene_finished()

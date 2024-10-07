@@ -11,6 +11,9 @@ class_name VelocityComponent
 @export var wall_slide_speed: float = 50.0
 @export var floor_resistance: float = 8000.0
 
+@export var deceleration: float = 30000.0
+
+
 @onready var velocity: Vector2
 @onready var current_rotation: float = 0.0
 # Called when the node enters the scene tree for the first time.
@@ -34,14 +37,30 @@ func apply_wall_jump(direction: Vector2) -> void:
 	# Determine wall side and apply horizontal force
 func apply_floor_jump() -> void:
 	velocity.y = -jump_velocity
-
+func apply_launch(new_velocity: Vector2) -> void:
+	velocity = new_velocity
 func apply_wall_slide() -> void:
 	velocity.y = min(velocity.y, wall_slide_speed)
 	velocity.x = 0
 func apply_move(direction: Vector2, delta: float) -> void:
-		velocity.x = clamp(velocity.x + (direction.x * acceleration * delta), -max_speed, max_speed)
-		velocity.y = clamp(velocity.y + (direction.y * acceleration * delta), -max_speed, max_speed)
+	var acceleration_metric = acceleration
+	var deceleration_metric = deceleration
 
+	# Handle X-axis
+	if sign(direction.x) != sign(velocity.x) and velocity.x != 0:
+		# If the direction is opposite to the current velocity, apply deceleration
+		velocity.x = clamp(velocity.x + (direction.x * deceleration_metric * delta), -max_speed, max_speed)
+	else:
+		# Otherwise, apply regular acceleration
+		velocity.x = clamp(velocity.x + (direction.x * acceleration_metric * delta), -max_speed, max_speed)
+
+	# Handle Y-axis
+	if sign(direction.y) != sign(velocity.y) and velocity.y != 0:
+		# Apply deceleration for opposite direction
+		velocity.y = clamp(velocity.y + (direction.y * deceleration_metric * delta), -max_speed, max_speed)
+	else:
+		# Otherwise, apply regular acceleration
+		velocity.y = clamp(velocity.y + (direction.y * acceleration_metric * delta), -max_speed, max_speed)
 func apply_in_air_movement(direction: float, delta: float) -> void:
 	velocity.x = clamp(velocity.x + direction * in_air_acceleration * delta, -max_speed, max_speed)
 
@@ -60,9 +79,7 @@ func do_character_move(character_body: CharacterBody2D):
 	character_body.move_and_slide()
 
 func do_rigid_body_move(rigid_body: RigidBody2D):
-	rigid_body.velocity = velocity
-	rigid_body.move_and_slide()
-	
+	rigid_body.apply_central_impulse(velocity * rigid_body.mass)	
 func set_rotation(rotation: float) -> void:
 	current_rotation = rotation
 
