@@ -10,4 +10,5 @@ func spawn_enemy(scene: PackedScene, pos: Vector2, rotation: float, spawn_point:
 	enemy.set_global_position(pos)
 	enemy.rotation = rotation
 	get_parent().add_child(enemy)
-	enemy.spawn_point = spawn_point
+	if spawn_point:
+		enemy.spawn_point = spawn_point
