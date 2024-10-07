@@ -14,9 +14,12 @@ class_name CutSceneRex
 @onready var collision_shape : CollisionShape2D = $Area2D/CollisionShape2D
 
 signal done_shrinking
+signal headphones_are_on
 
 @onready var lower_body: AnimatedSprite2D = $LowerBody
 @onready var upper_body: AnimatedSprite2D = $UpperBody
+
+@onready var time_to_put_on_headphones: Timer = $TimeToPutOnHeadphones
 
 @export var set_as_target_scale: bool = false
 
@@ -60,7 +63,13 @@ func stop_walk() -> void:
 func put_on_headphones_and_shrink(new_original_scale: Vector2):
 	original_scale = new_original_scale
 	upper_body.play("put_on_headphones")
+	time_to_put_on_headphones.start()
+	time_to_put_on_headphones.timeout.connect(_on_time_to_put_on_headphones)
 	upper_body.animation_finished.connect(_on_put_on_headphones_end)
+
+func _on_time_to_put_on_headphones():
+	headphones_are_on.emit()
+	time_to_put_on_headphones.timeout.disconnect(_on_time_to_put_on_headphones)
 
 func _on_put_on_headphones_end():
 	set_is_shrinking()

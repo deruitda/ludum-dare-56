@@ -989,3 +989,5 @@ autoplay = "idle"
 visible = false
 position = Vector2(3, 0.5)
 shape = SubResource("RectangleShape2D_hvx5c")
+
+[node name="TimeToPutOnHeadphones" type="Timer" parent="."]

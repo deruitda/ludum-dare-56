@@ -24,3 +24,4 @@ position = Vector2(-997, 208)
 scale = Vector2(7.5, 7.5)
 
 [connection signal="done_shrinking" from="Rex" to="." method="_on_rex_done_shrinking"]
+[connection signal="headphones_are_on" from="Rex" to="." method="_on_rex_headphones_are_on"]
