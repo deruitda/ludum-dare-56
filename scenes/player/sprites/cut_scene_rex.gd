@@ -35,8 +35,10 @@ func _process(delta: float) -> void:
 		position.y -= scale_step.y * collision_shape.shape.extents.y
 		
 		# Stop shrinking when target size is reached
-		if scale == target_scale:
+		if scale - target_scale < Vector2(0.25, 0.25):
 			is_shrinking = false
+			done_shrinking.emit()
+			
 	pass
 
 func start_walk(new_direction: Vector2):

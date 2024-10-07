@@ -3,8 +3,8 @@ extends Node2D
 @onready var wait_timer: Timer
 
 
-var INITIAL_IDLE_TIME = 0.1
-var IDLE_BEFORE_PUTTING_IN_HEADPHONES = 0.2
+var INITIAL_IDLE_TIME = 2.0
+var IDLE_BEFORE_PUTTING_IN_HEADPHONES = 1.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -52,3 +52,13 @@ func _on_end_walk_to_hole_timer_timeout() -> void:
 func _on_idle_before_shrink_timeout():
 	wait_timer.timeout.disconnect(_on_idle_before_shrink_timeout)
 	rex.set_is_shrinking(rex.scale)
+
+
+func _on_rex_done_shrinking() -> void:
+	wait_timer.timeout.connect(_on_done_walking_out_timeout)
+	wait_timer.start()
+	rex.start_walk(Vector2.RIGHT)
+
+func _on_done_walking_out_timeout():
+	wait_timer.timeout.disconnect(_on_done_walking_out_timeout)
+	SignalBus.opening_cutscene_finished.emit()

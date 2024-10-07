@@ -597,11 +597,13 @@ position = Vector2(-5, 0)
 script = ExtResource("1_tl7oj")
 
 [node name="UpperBody" type="AnimatedSprite2D" parent="."]
+z_index = 2
 sprite_frames = SubResource("SpriteFrames_c4bdg")
 animation = &"idle"
 autoplay = "idle"
 
 [node name="LowerBody" type="AnimatedSprite2D" parent="."]
+position = Vector2(3, 0)
 sprite_frames = SubResource("SpriteFrames_n4ibw")
 animation = &"idle"
 autoplay = "idle"
@@ -609,5 +611,6 @@ autoplay = "idle"
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
 position = Vector2(3, 0.5)
 shape = SubResource("RectangleShape2D_hvx5c")
