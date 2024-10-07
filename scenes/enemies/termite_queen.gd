@@ -165,3 +165,7 @@ func do_initial_scream():
 func _on_initial_scream_finish():
 	opening_scream_finished.emit()
 	scream.finished.disconnect(_on_initial_scream_finish)
+
+
+func _on_health_component_damage_applied() -> void:
+	SignalBus.boss_hurt.emit()

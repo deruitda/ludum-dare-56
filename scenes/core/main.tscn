@@ -14,6 +14,7 @@
 
 [node name="World" parent="." instance=ExtResource("2_6cr2y")]
 skip_cutscene = true
+start_with_boss_fight = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_g2rgv")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=86 format=3 uid="uid://b0qmwspjwr53p"]
+[gd_scene load_steps=87 format=3 uid="uid://b0qmwspjwr53p"]
 
 [ext_resource type="Script" path="res://scenes/enemies/termite_queen_gun.gd" id="1_44v2f"]
 [ext_resource type="PackedScene" uid="uid://daptjvsjukjef" path="res://scenes/enemies/termite_bullet.tscn" id="2_eu2ma"]
@@ -565,6 +565,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_tedli"]
+polygon = PackedVector2Array(16, -41, 94, -63, 134, -45, 148, -14, 142, 23, 111, 50, 76, 54, 42, 31, 20, 36, 12, 50, -20, 67, -91, 116, -131, 88, -129, -135, -105, -142, -93, -129, -72, -130)
+
 [node name="TermiteQueenGun" type="Node2D" node_paths=PackedStringArray("muzzle", "animated_sprite_2d")]
 script = ExtResource("1_44v2f")
 muzzle = NodePath("Muzzle")
@@ -584,3 +587,7 @@ rotation = -1.5708
 sprite_frames = SubResource("SpriteFrames_5x8vi")
 animation = &"explode"
 autoplay = "idle"
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+show_behind_parent = true
+occluder = SubResource("OccluderPolygon2D_tedli")

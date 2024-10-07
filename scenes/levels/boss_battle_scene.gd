@@ -9,6 +9,7 @@ extends Node2D
 @onready var time_before_scream: Timer = $CutSceneTimers/TimeBeforeScream
 @onready var time_after_scream_before_start: Timer = $CutSceneTimers/TimeAfterScreamBeforeStart
 @onready var time_before_explosion: Timer = $CutSceneTimers/TimeBeforeExplosion
+@onready var boss_health_bar: ProgressBar = $BossHealthBar
 
 @onready var is_opening_cutscene: bool = true
 
@@ -16,6 +17,8 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	boss_health_bar.value = termite_queen.health_component.current_health
+	boss_health_bar.max_value = boss_health_bar.value
 	termite_queen.pause_attack = true
 	time_before_scream.start()
 	time_before_scream.timeout.connect(_on_time_before_scream_timeout)
