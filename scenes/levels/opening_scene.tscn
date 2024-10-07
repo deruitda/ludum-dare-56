@@ -9,5 +9,5 @@ script = ExtResource("1_al26b")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Rex" parent="." instance=ExtResource("2_po3f0")]
-position = Vector2(-700, 182)
+position = Vector2(-997, 208)
 scale = Vector2(7.5, 7.5)
