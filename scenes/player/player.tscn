@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://cofh4isrtksv4"]
+[gd_scene load_steps=67 format=3 uid="uid://cofh4isrtksv4"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_y4k5w"]
 [ext_resource type="Shape2D" uid="uid://cc3bsg65yxgm0" path="res://scenes/player/player_shape.tres" id="2_n3d0r"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://scenes/entity_composition/flashing_component.gd" id="14_gqpvi"]
 [ext_resource type="Script" path="res://scenes/entity_composition/edge_detector.gd" id="14_vahgb"]
 [ext_resource type="PackedScene" uid="uid://c8nfyb168ghgg" path="res://scenes/core/player_audio.tscn" id="15_e48xh"]
+[ext_resource type="Script" path="res://scenes/entity_composition/dash_component.gd" id="16_tawhn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jr7co"]
 size = Vector2(23, 64)
@@ -386,7 +387,7 @@ func _process(delta: float) -> void:
 	pass
 "
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("gun_pivot", "gun", "edge_detector", "lower_body_sprite", "velocity_component")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("gun_pivot", "gun", "dash_component", "edge_detector", "lower_body_sprite", "velocity_component")]
 scale = Vector2(1.68, 1.68)
 collision_mask = 262
 floor_block_on_wall = false
@@ -395,6 +396,7 @@ platform_wall_layers = 4
 script = ExtResource("1_y4k5w")
 gun_pivot = NodePath("GunPivot")
 gun = NodePath("GunPivot/PlayerGun")
+dash_component = NodePath("DashComponent")
 edge_detector = NodePath("EdgeDetector")
 lower_body_sprite = NodePath("Body/LowerBody")
 velocity_component = NodePath("VelocityComponent")
@@ -404,9 +406,10 @@ position = Vector2(-3.5, 0)
 shape = SubResource("RectangleShape2D_jr7co")
 one_way_collision = true
 
-[node name="HealthComponent" parent="." instance=ExtResource("3_e2fg7")]
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("dash_component") instance=ExtResource("3_e2fg7")]
 max_health = 3
 seconds_of_invulnerability_after_damage = 5.0
+dash_component = NodePath("../DashComponent")
 
 [node name="VelocityComponent" parent="." instance=ExtResource("4_nqq8h")]
 gravity = 3000.0
@@ -466,6 +469,13 @@ position = Vector2(7.14286, 31.5476)
 collision_mask = 258
 
 [node name="PlayerAudio" parent="." instance=ExtResource("15_e48xh")]
+
+[node name="DashComponent" type="Node" parent="." node_paths=PackedStringArray("dash_timer")]
+script = ExtResource("16_tawhn")
+dash_timer = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="DashComponent"]
+wait_time = 0.2
 
 [connection signal="damage_applied" from="HealthComponent" to="." method="_on_damage_applied"]
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]

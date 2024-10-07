@@ -4,7 +4,7 @@ class_name Player
 @export var gun_pivot: GunPivot
 @export var gun: Gun 
 
-
+@export var dash_component: DashComponent
 @export var edge_detector: EdgeDetector
 #inputs
 @onready var direction_input: float = 0.0
@@ -13,6 +13,7 @@ class_name Player
 @onready var is_floor_jumping: bool = false
 @onready var is_wall_jumping: bool = false
 @onready var is_wall_sliding: bool = false
+@onready var is_dashing: bool = false
 
 #states
 @onready var is_running = false
@@ -44,10 +45,30 @@ func _physics_process(delta: float) -> void:
 		return
 	
 	direction_input = Input.get_axis("move_left", "move_right")
+	var dash_input = Input.is_action_just_pressed("dash")
+	if dash_input:
+		var dash_direction_input = direction_input
+		if dash_direction_input == 0:
+			dash_direction_input = velocity.x
+		
+		if dash_direction_input != 0:
+			var dash_direction = Vector2(dash_direction_input, 0).normalized()
+			
+			dash_component.start_dash(dash_direction)
+		
 	gun_pivot.rotate_toward_position(get_global_mouse_position())
 	if Input.is_action_pressed("shoot"):
 		gun.shoot_bullet()
 	
+	if dash_component.is_dashing:
+		dash_component.do_dash(self)
+		velocity_component.velocity = velocity
+	else:
+		handle_normal_movement(delta)
+	
+	
+
+func handle_normal_movement(delta: float):
 	set_actions(delta)
 	set_states()
 	
@@ -80,8 +101,6 @@ func _physics_process(delta: float) -> void:
 		velocity_component.apply_idle(delta)
 	
 	velocity_component.do_character_move(self)
-	
-
 
 func get_is_pointing_to_wall():
 	var return_val = (get_wall_normal().x < 0 and direction_input > 0) or (get_wall_normal().x > 0 and direction_input < 0)
@@ -127,6 +146,7 @@ func set_states() -> void:
 		is_idle = true
 	else:
 		is_idle = false
+		
 		
 
 func handle_lower_body_sprite_animation()->void:

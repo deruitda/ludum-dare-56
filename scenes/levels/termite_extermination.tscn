@@ -5,7 +5,7 @@
 [ext_resource type="TileSet" uid="uid://dhwky8od3ahak" path="res://assets/sprites/tiles/base_tileset.tres" id="3_owjan"]
 [ext_resource type="PackedScene" uid="uid://b4shxvhahtanx" path="res://scenes/core/enemy_spawner.tscn" id="5_4yp3j"]
 [ext_resource type="PackedScene" uid="uid://c0qk07leqlcqg" path="res://scenes/enemies/termite_soldier_spawner.tscn" id="6_giht6"]
-[ext_resource type="PackedScene" uid="uid://c3g5a3xfhtd4p" path="res://scenes/enemies/termite_larvae_spawner.tscn" id="6_qhfv5"]
+[ext_resource type="PackedScene" uid="uid://c3g5a3xfhtd4p" path="res://scenes/termite_larvae_spawner.tscn" id="6_qhfv5"]
 
 [node name="TermiteExtermination" type="Node2D"]
 
