@@ -1,5 +1,6 @@
 extends AudioStreamPlayer
 
+var prev_stream : AudioStream
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -19,9 +20,11 @@ func _on_pause_background_music():
 
 func _on_set_background_music(new_stream: AudioStream):
 	stream = new_stream
+	prev_stream = new_stream
 	play()
 	pass
 
 
 func _on_finished() -> void:
-	stream.play()
+	stream = prev_stream
+	play()
