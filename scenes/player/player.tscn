@@ -416,7 +416,6 @@ respawn_component = NodePath("../RespawnComponent")
 [node name="VelocityComponent" parent="." instance=ExtResource("4_nqq8h")]
 gravity = 3000.0
 max_speed = 800.0
-acceleration = 30000.0
 in_air_resistance = 8000.0
 wall_jump_velocity = 800.0
 wall_slide_speed = 250.0
