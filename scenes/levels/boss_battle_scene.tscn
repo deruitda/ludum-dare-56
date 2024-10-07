@@ -30,8 +30,12 @@ rendering_quadrant_size = 32
 
 [node name="EnemySpawner" parent="." instance=ExtResource("4_60ey6")]
 
-[node name="TermiteQueen" parent="." instance=ExtResource("5_5r62d")]
+[node name="TermiteQueen" parent="." node_paths=PackedStringArray("emitters", "egg_muzzles") instance=ExtResource("5_5r62d")]
 position = Vector2(834, -761)
+num_blast_waves = 12
+num_egg_waves = 5
+emitters = []
+egg_muzzles = []
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_i55ik")

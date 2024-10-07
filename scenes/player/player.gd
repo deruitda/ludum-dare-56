@@ -36,6 +36,9 @@ func _ready() -> void:
 	PlayerManager.set_player(self)
 
 func _process(delta: float) -> void:
+	
+	if GameState.game_is_paused:
+		return
 	if is_dead:
 		PlayerManager.remove_current_player()
 		#queue_free()
@@ -47,6 +50,9 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	
+	if GameState.game_is_paused:
+		return
 	if is_dead or respawn_component.is_respawn_idling:
 		return
 	

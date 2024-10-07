@@ -11,6 +11,8 @@ class_name TermiteAlate
 
 func _physics_process(delta: float) -> void:
 	
+	if GameState.game_is_paused:
+		return
 	if is_dead:
 		velocity_component.apply_gravity(delta)
 	

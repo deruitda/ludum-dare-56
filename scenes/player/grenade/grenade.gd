@@ -25,9 +25,14 @@ func start_explosion_animation() -> void:
 	queue_free()
 
 func explode() -> void:
+	
+	if GameState.game_is_paused:
+		return
 	bullet_emitter.create_bullets()
 	start_explosion_animation()
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
+	if GameState.game_is_paused:
+		return
 	explode()
 	pass # Replace with function body.

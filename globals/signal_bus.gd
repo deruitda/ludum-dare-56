@@ -17,3 +17,5 @@ signal enemy_died(enemy: Node)
 signal set_new_checkpoint(new_checkpoint: Checkpoint)
 
 signal opening_cutscene_finished()
+
+signal set_game_is_paused_state(new_game_is_paused_value: bool)

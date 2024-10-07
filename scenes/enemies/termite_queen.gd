@@ -116,4 +116,5 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 
 
 func _on_health_component_died() -> void:
-	queue_free()
+	SignalBus.set_game_is_paused_state.emit(true)
+	#queue_free()
