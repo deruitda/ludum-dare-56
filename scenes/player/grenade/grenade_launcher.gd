@@ -1,4 +1,5 @@
 extends Node2D
+class_name GrenadeLauncher
 @onready var path_finder: PathFinder = $PathFinder
 
 @export var grenade_scene: PackedScene
@@ -9,17 +10,26 @@ extends Node2D
 @export var max_charge_time: float = 1.0  # Maximum seconds to fully charge the grenade
 
 @export var progress_bar: ProgressBar  # Reference to the ProgressBar node
+@export var cooldown_timer: Timer
 
+@onready var is_cooling_down: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	cooldown_timer.autostart = false
+	cooldown_timer.one_shot = true
+	cooldown_timer.timeout.connect(_on_cooldown_timer_timeout)
 	progress_bar.visible = false  # Hide the progress bar initially
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
+func _on_cooldown_timer_timeout() -> void:
+	is_cooling_down = false
+
 func charge_grenade(delta: float):
-	
+	if is_cooling_down:
+		return
 	# Show the progress bar when charging begins
 	if charging_amount == 0.0:
 		progress_bar.visible = true
@@ -31,6 +41,8 @@ func charge_grenade(delta: float):
 	progress_bar.value = charging_amount * progress_bar.max_value  # Set progress based on charge amount
 
 func launch_grenade_toward(position: Vector2) -> void:
+	if is_cooling_down:
+		return
 	var grenade = grenade_scene.instantiate()
 	grenade.global_position = global_position
 	var direction = path_finder.get_direction_to_position(position)
@@ -42,3 +54,5 @@ func launch_grenade_toward(position: Vector2) -> void:
 	# Reset the charging amount and hide the progress bar after launching
 	charging_amount = 0.0  
 	progress_bar.visible = false  # Hide the progress bar after launch
+	is_cooling_down = true
+	cooldown_timer.start()
