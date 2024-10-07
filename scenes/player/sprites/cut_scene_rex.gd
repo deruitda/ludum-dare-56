@@ -22,6 +22,7 @@ signal headphones_are_on
 @onready var time_to_put_on_headphones: Timer = $TimeToPutOnHeadphones
 
 @export var set_as_target_scale: bool = false
+@export var has_headphones: bool = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -58,7 +59,10 @@ func start_walk(new_direction: Vector2):
 	
 func stop_walk() -> void:
 	is_walking = false
-	lower_body.play("idle")
+	if has_headphones:
+		lower_body.play("idle")
+	else:
+		lower_body.play("")
 
 func put_on_headphones_and_shrink(new_original_scale: Vector2):
 	original_scale = new_original_scale

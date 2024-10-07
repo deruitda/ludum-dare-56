@@ -974,7 +974,7 @@ script = ExtResource("1_tl7oj")
 [node name="UpperBody" type="AnimatedSprite2D" parent="."]
 z_index = 2
 sprite_frames = SubResource("SpriteFrames_c4bdg")
-animation = &"put_on_headphones"
+animation = &"no_headphone_idle"
 autoplay = "idle"
 
 [node name="LowerBody" type="AnimatedSprite2D" parent="."]
