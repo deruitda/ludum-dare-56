@@ -23,6 +23,7 @@ color = Color(0, 0, 0, 1)
 [node name="Rex" parent="." instance=ExtResource("2_po3f0")]
 position = Vector2(-997, 208)
 scale = Vector2(7.5, 7.5)
+has_headphones = false
 
 [node name="Help Text" type="RichTextLabel" parent="."]
 visible = false

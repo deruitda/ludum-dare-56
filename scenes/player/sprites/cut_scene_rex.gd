@@ -28,6 +28,10 @@ signal headphones_are_on
 func _ready() -> void:
 	if set_as_target_scale:
 		scale = target_scale
+	if not has_headphones:
+		upper_body.play("no_headphone_idle")
+	else:
+		upper_body.play("idle")
 	pass # Replace with function body.
 
 
@@ -59,10 +63,7 @@ func start_walk(new_direction: Vector2):
 	
 func stop_walk() -> void:
 	is_walking = false
-	if has_headphones:
-		lower_body.play("idle")
-	else:
-		lower_body.play("")
+	lower_body.play("idle")
 
 func put_on_headphones_and_shrink(new_original_scale: Vector2):
 	original_scale = new_original_scale
@@ -78,6 +79,7 @@ func _on_time_to_put_on_headphones():
 func _on_put_on_headphones_end():
 	set_is_shrinking()
 	upper_body.animation_finished.disconnect(_on_put_on_headphones_end)
+	has_headphones = true
 	
 func set_is_shrinking() -> void:
 	is_shrinking = true

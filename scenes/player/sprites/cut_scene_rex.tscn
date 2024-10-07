@@ -1,10 +1,11 @@
-[gd_scene load_steps=141 format=3 uid="uid://cnmdipwqnabip"]
+[gd_scene load_steps=148 format=3 uid="uid://cnmdipwqnabip"]
 
 [ext_resource type="Texture2D" uid="uid://b1kk41ddlbhgu" path="res://assets/sprites/rex/rex-upper-idle.png" id="1_q04gd"]
 [ext_resource type="Script" path="res://scenes/player/sprites/cut_scene_rex.gd" id="1_tl7oj"]
 [ext_resource type="Texture2D" uid="uid://brvnyb15boofo" path="res://assets/sprites/rex/rex-lower-idle.png" id="2_fhd74"]
 [ext_resource type="Texture2D" uid="uid://choevm701xvqa" path="res://assets/sprites/rex/rex-put-on-headphones.png" id="3_864tp"]
 [ext_resource type="Texture2D" uid="uid://b41yjf446te1j" path="res://assets/sprites/rex/rex-lower-jump.png" id="3_oamei"]
+[ext_resource type="Texture2D" uid="uid://yc3cb041n8nk" path="res://assets/sprites/rex/rex-upper-idle-no-headphones.png" id="3_rjupp"]
 [ext_resource type="Texture2D" uid="uid://cbfvo400gwdl4" path="res://assets/sprites/rex/rex-lower-run.png" id="4_s27pe"]
 [ext_resource type="Texture2D" uid="uid://dtxb5812xnpp2" path="res://assets/sprites/rex/rex-lower-wall.png" id="5_6mpu3"]
 
@@ -30,6 +31,30 @@ region = Rect2(256, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_liep1"]
 atlas = ExtResource("1_q04gd")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hv5o4"]
+atlas = ExtResource("3_rjupp")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3dx0a"]
+atlas = ExtResource("3_rjupp")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40fnm"]
+atlas = ExtResource("3_rjupp")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_62314"]
+atlas = ExtResource("3_rjupp")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6cdh"]
+atlas = ExtResource("3_rjupp")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8wpqn"]
+atlas = ExtResource("3_rjupp")
 region = Rect2(320, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nedo8"]
@@ -265,7 +290,25 @@ animations = [{
 "name": &"idle",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hv5o4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3dx0a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_40fnm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_62314")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g6cdh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8wpqn")
+}],
 "loop": true,
 "name": &"no_headphone_idle",
 "speed": 5.0
@@ -972,12 +1015,13 @@ position = Vector2(-5, 0)
 script = ExtResource("1_tl7oj")
 
 [node name="UpperBody" type="AnimatedSprite2D" parent="."]
-z_index = 2
+z_index = 4
 sprite_frames = SubResource("SpriteFrames_c4bdg")
-animation = &"no_headphone_idle"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="LowerBody" type="AnimatedSprite2D" parent="."]
+z_index = 3
 position = Vector2(3, 0)
 sprite_frames = SubResource("SpriteFrames_n4ibw")
 animation = &"idle"
