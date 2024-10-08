@@ -423,9 +423,15 @@ respawn_component = NodePath("../RespawnComponent")
 [node name="VelocityComponent" parent="." instance=ExtResource("4_nqq8h")]
 gravity = 3000.0
 max_speed = 800.0
-in_air_resistance = 8000.0
+acceleration = 6000.0
+in_air_acceleration = 6000.0
+in_air_deceleration = 12000.0
+in_air_resistance = 6000.0
 wall_jump_velocity = 800.0
 wall_slide_speed = 250.0
+floor_resistance = 10000.0
+wall_jump_time = 1.0
+deceleration = 50000.0
 
 [node name="HurtBox" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
 collision_layer = 16
