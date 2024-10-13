@@ -494,7 +494,7 @@ scale = Vector2(5.48001, 5.8)
 color = Color(0.0687983, 0.0687983, 0.0687983, 1)
 
 [node name="LevelEntrance" parent="." instance=ExtResource("10_l5rsu")]
-position = Vector2(151, -57)
+position = Vector2(0, -62)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 modulate = Color(0.533037, 0.533037, 0.533037, 1)
